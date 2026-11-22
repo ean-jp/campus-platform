@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Become a Vendor · Campus Platform</title>
+  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="../assets/css/vendor.css">
+</head>
+<body>
+
+  <!-- Normal buyer header: this person is not a vendor yet -->
+  <header class="site-header">
+    <a class="logo" href="../index.html">Campus Platform</a>
+    <div class="header-actions">
+      <a class="btn btn-sm" href="../index.html">Back to shop</a>
+      <span class="text-small">Ama K.</span>
+    </div>
+  </header>
+
+  <main class="narrow">
+    <h1>Sell on Campus Platform</h1>
+    <p class="text-muted">Students and off-campus businesses can sell clothes, electronics, snacks, books and food to the Ashesi community.</p>
+
+    <div class="steps-intro">
+      <div><b>1. Apply</b>Tell us about your shop. Takes 2 minutes.</div>
+      <div><b>2. Get approved</b>The admin checks your request, usually within a day.</div>
+      <div><b>3. Start selling</b>Add products and receive orders on your dashboard.</div>
+    </div>
+
+    <!-- Shown after the form is sent (status = pending) -->
+    <div class="alert alert-info" role="status">
+      <strong>Request sent.</strong> We'll notify you by email when the admin approves your shop.
+    </div>
+
+    <form class="card" action="#" method="post">
+      <input type="hidden" name="csrf_token" value="">
+
+      <div class="form-group">
+        <label for="business_name">Shop name *</label>
+        <input type="text" id="business_name" name="business_name" maxlength="80" required placeholder="e.g. Ama's Kitchen">
+      </div>
+
+      <div class="form-group">
+        <label for="vendor_type">I am a... *</label>
+        <select id="vendor_type" name="vendor_type" required>
+          <option value="">Choose one</option>
+          <option value="student">Student seller</option>
+          <option value="off_campus">Off-campus business</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="main_category">What will you mainly sell? *</label>
+        <select id="main_category" name="main_category_id" required>
+          <option value="">Choose a category</option>
+          <option value="1">Clothes</option>
+          <option value="2">Electronics</option>
+          <option value="3">Snacks</option>
+          <option value="4">Books</option>
+          <option value="5">Food</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone number *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="024 000 0000">
+        </div>
+        <div class="form-group">
+          <label for="location">Pickup location *</label>
+          <input type="text" id="location" name="location" required placeholder="e.g. Main gate, Hostel 2B">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Tell the admin about your shop *</label>
+        <textarea id="description" name="description" maxlength="500" required placeholder="What you sell, prices, how long you've been selling..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="agree" value="1" required> I agree to follow the campus marketplace rules.</label>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">Send request</button>
+    </form>
+  </main>
+
+</body>
+</html>

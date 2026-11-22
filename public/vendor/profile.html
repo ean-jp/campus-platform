@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Profile · Campus Platform</title>
+  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="../assets/css/vendor.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="../index.html">Campus Platform</a>
+    <div class="header-actions">
+      <a class="btn btn-sm" href="../index.html">Shop as buyer</a>
+      <a class="bell" href="notifications.html" aria-label="Notifications, 3 unread">🔔<span class="bell-dot">3</span></a>
+      <span class="text-small">Ama K.</span>
+    </div>
+  </header>
+
+  <div class="vendor-layout">
+    <nav class="vendor-sidebar" aria-label="Vendor menu">
+      <div class="vendor-shop-name">
+        <strong>Ama's Kitchen</strong>
+        <span class="shop-status text-small"><span class="dot dot-open"></span>Open now</span>
+      </div>
+      <ul class="vendor-nav">
+        <li><a href="index.html"><span class="nav-icon">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html"><span class="nav-icon">🧾</span>Orders<span class="nav-count">4</span></a></li>
+        <li><a href="products.html"><span class="nav-icon">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="nav-icon">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="nav-icon">📈</span>Sales</a></li>
+        <li><a href="profile.html" aria-current="page"><span class="nav-icon">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html"><span class="nav-icon">🔔</span>Notifications</a></li>
+      </ul>
+    </nav>
+
+    <main class="vendor-main">
+      <div class="page-title">
+        <div>
+          <h1>Shop profile</h1>
+          <p class="text-muted">This is what buyers see on your shop page.</p>
+        </div>
+        <a class="btn" href="../vendor-shop.html?id=7">View my shop as a buyer</a>
+      </div>
+
+      <!-- Example success message after saving -->
+      <div class="alert alert-success" role="status">Your changes were saved.</div>
+
+      <form action="#" method="post" enctype="multipart/form-data" class="grid-2 even">
+        <input type="hidden" name="csrf_token" value="">
+
+        <section class="card">
+          <h2>Business details</h2>
+
+          <div class="form-group">
+            <label for="business_name">Shop name *</label>
+            <input type="text" id="business_name" name="business_name" value="Ama's Kitchen" maxlength="80" required>
+          </div>
+
+          <div class="form-group">
+            <label for="vendor_description">About your shop</label>
+            <textarea id="vendor_description" name="description" maxlength="500">Home-style Ghanaian lunches cooked fresh every morning. Pickup at the main gate or delivery to any hostel.</textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Contact phone *</label>
+              <input type="tel" id="phone" name="phone" value="024 000 0000" required>
+              <span class="form-hint">Shown to buyers only on their own orders.</span>
+            </div>
+            <div class="form-group">
+              <label for="location">Pickup location *</label>
+              <input type="text" id="location" name="location" value="Main gate food stand" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Shop type</label>
+            <p class="text-muted" style="margin:0">Off-campus vendor <span class="text-small">(set by the admin)</span></p>
+          </div>
+
+          <div class="form-group">
+            <label for="logo">Shop logo</label>
+            <div class="product-cell">
+              <img class="thumb" src="../assets/images/placeholder.svg" alt="Current shop logo">
+              <input type="file" id="logo" name="logo" accept="image/jpeg,image/png,image/webp">
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <h2>Opening hours</h2>
+          </div>
+          <p class="text-muted text-small">Buyers can only order food while you're open.</p>
+
+          <!-- name="hours[mon][open]" etc. becomes the opening_hours JSON column -->
+          <div class="hours-row">
+            <span class="day">Monday</span>
+            <label class="sr-only" for="mon-open">Monday opens</label><input type="time" id="mon-open" name="hours[mon][open]" value="08:00">
+            <label class="sr-only" for="mon-close">Monday closes</label><input type="time" id="mon-close" name="hours[mon][close]" value="18:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[mon][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Tuesday</span>
+            <label class="sr-only" for="tue-open">Tuesday opens</label><input type="time" id="tue-open" name="hours[tue][open]" value="08:00">
+            <label class="sr-only" for="tue-close">Tuesday closes</label><input type="time" id="tue-close" name="hours[tue][close]" value="18:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[tue][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Wednesday</span>
+            <label class="sr-only" for="wed-open">Wednesday opens</label><input type="time" id="wed-open" name="hours[wed][open]" value="08:00">
+            <label class="sr-only" for="wed-close">Wednesday closes</label><input type="time" id="wed-close" name="hours[wed][close]" value="18:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[wed][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Thursday</span>
+            <label class="sr-only" for="thu-open">Thursday opens</label><input type="time" id="thu-open" name="hours[thu][open]" value="08:00">
+            <label class="sr-only" for="thu-close">Thursday closes</label><input type="time" id="thu-close" name="hours[thu][close]" value="18:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[thu][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Friday</span>
+            <label class="sr-only" for="fri-open">Friday opens</label><input type="time" id="fri-open" name="hours[fri][open]" value="08:00">
+            <label class="sr-only" for="fri-close">Friday closes</label><input type="time" id="fri-close" name="hours[fri][close]" value="18:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[fri][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Saturday</span>
+            <label class="sr-only" for="sat-open">Saturday opens</label><input type="time" id="sat-open" name="hours[sat][open]" value="10:00">
+            <label class="sr-only" for="sat-close">Saturday closes</label><input type="time" id="sat-close" name="hours[sat][close]" value="15:00">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[sat][closed]" value="1"> Closed</label>
+          </div>
+          <div class="hours-row">
+            <span class="day">Sunday</span>
+            <label class="sr-only" for="sun-open">Sunday opens</label><input type="time" id="sun-open" name="hours[sun][open]" value="">
+            <label class="sr-only" for="sun-close">Sunday closes</label><input type="time" id="sun-close" name="hours[sun][close]" value="">
+            <label class="checkbox text-small"><input type="checkbox" name="hours[sun][closed]" value="1" checked> Closed</label>
+          </div>
+
+          <div class="form-group" style="margin-top:16px">
+            <label class="checkbox"><input type="checkbox" name="pause_orders" value="1"> Pause new orders for now (e.g. food ran out)</label>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Save changes</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+
+  <nav class="vendor-bottom-nav" aria-label="Vendor menu">
+    <a href="index.html"><span>🏠</span>Home</a>
+    <a href="orders.html"><span>🧾</span>Orders</a>
+    <a href="products.html"><span>📦</span>Products</a>
+    <a href="sales.html"><span>📈</span>Sales</a>
+    <a href="profile.html" aria-current="page"><span>🏪</span>Shop</a>
+  </nav>
+
+</body>
+</html>

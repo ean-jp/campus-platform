@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications · Campus Platform</title>
+  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="../assets/css/vendor.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="../index.html">Campus Platform</a>
+    <div class="header-actions">
+      <a class="btn btn-sm" href="../index.html">Shop as buyer</a>
+      <a class="bell" href="notifications.html" aria-label="Notifications, 3 unread">🔔<span class="bell-dot">3</span></a>
+      <span class="text-small">Ama K.</span>
+    </div>
+  </header>
+
+  <div class="vendor-layout">
+    <nav class="vendor-sidebar" aria-label="Vendor menu">
+      <div class="vendor-shop-name">
+        <strong>Ama's Kitchen</strong>
+        <span class="shop-status text-small"><span class="dot dot-open"></span>Open now</span>
+      </div>
+      <ul class="vendor-nav">
+        <li><a href="index.html"><span class="nav-icon">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html"><span class="nav-icon">🧾</span>Orders<span class="nav-count">4</span></a></li>
+        <li><a href="products.html"><span class="nav-icon">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="nav-icon">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="nav-icon">📈</span>Sales</a></li>
+        <li><a href="profile.html"><span class="nav-icon">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html" aria-current="page"><span class="nav-icon">🔔</span>Notifications</a></li>
+      </ul>
+    </nav>
+
+    <main class="vendor-main">
+      <div class="page-title">
+        <div>
+          <h1>Notifications</h1>
+          <p class="text-muted">3 unread</p>
+        </div>
+        <form action="#" method="post">
+          <input type="hidden" name="csrf_token" value="">
+          <button class="btn" type="submit">Mark all as read</button>
+        </form>
+      </div>
+
+      <section class="card" style="padding:0">
+        <ul class="notif-list">
+          <li class="notif unread">
+            <span class="notif-icon" aria-hidden="true">🧾</span>
+            <div class="notif-body">
+              <p><strong>New order #1042</strong>: 2 × Jollof with chicken, pickup.</p>
+              <span class="notif-time">2 minutes ago</span>
+            </div>
+            <a class="btn btn-sm" href="orders.html#order-1042">View</a>
+          </li>
+          <li class="notif unread">
+            <span class="notif-icon" aria-hidden="true">🧾</span>
+            <div class="notif-body">
+              <p><strong>New order #1041</strong>: delivery to Hostel 2B.</p>
+              <span class="notif-time">8 minutes ago</span>
+            </div>
+            <a class="btn btn-sm" href="orders.html#order-1041">View</a>
+          </li>
+          <li class="notif unread">
+            <span class="notif-icon" aria-hidden="true">⚠️</span>
+            <div class="notif-body">
+              <p><strong>Running low:</strong> Kelewele (small) has 3 left.</p>
+              <span class="notif-time">25 minutes ago</span>
+            </div>
+            <a class="btn btn-sm" href="products.html">Restock</a>
+          </li>
+          <li class="notif">
+            <span class="notif-icon" aria-hidden="true">⭐</span>
+            <div class="notif-body">
+              <p><strong>New review (5★)</strong> on Waakye special: "Generous portion, still hot."</p>
+              <span class="notif-time">Yesterday, 2:14 pm</span>
+            </div>
+          </li>
+          <li class="notif">
+            <span class="notif-icon" aria-hidden="true">❌</span>
+            <div class="notif-body">
+              <p><strong>Order #1025 was cancelled</strong> by the buyer before you started preparing it.</p>
+              <span class="notif-time">Yesterday, 11:30 am</span>
+            </div>
+          </li>
+          <li class="notif">
+            <span class="notif-icon" aria-hidden="true">✅</span>
+            <div class="notif-body">
+              <p><strong>Your shop was approved.</strong> You can now add products.</p>
+              <span class="notif-time">10 Nov</span>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <nav class="vendor-bottom-nav" aria-label="Vendor menu">
+    <a href="index.html"><span>🏠</span>Home</a>
+    <a href="orders.html"><span>🧾</span>Orders</a>
+    <a href="products.html"><span>📦</span>Products</a>
+    <a href="sales.html"><span>📈</span>Sales</a>
+    <a href="profile.html"><span>🏪</span>Shop</a>
+  </nav>
+
+</body>
+</html>

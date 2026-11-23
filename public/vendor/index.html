@@ -1,150 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Vendor Dashboard · Campus Platform</title>
-  <!-- TEMP: swap kit-temp.css for Person 3's style.css when ready -->
-  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
 <body>
 
-  <!-- ===== Top header (same on every vendor page) ===== -->
+  <!-- ===== Top header (kit) ===== -->
   <header class="site-header">
-    <a class="logo" href="../index.html">Campus Platform</a>
-    <div class="header-actions">
-      <a class="btn btn-sm" href="../index.html">Shop as buyer</a>
-      <a class="bell" href="notifications.html" aria-label="Notifications, 3 unread">🔔<span class="bell-dot">3</span></a>
-      <span class="text-small">Ama K.</span>
+    <div class="bar">
+      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <span class="badge v-hide-phone">Vendor</span>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
+      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
+      <span class="small muted v-user">Ama K.</span>
     </div>
   </header>
 
-  <div class="vendor-layout">
+  <div class="v-layout">
 
-    <!-- ===== Sidebar (desktop) ===== -->
-    <nav class="vendor-sidebar" aria-label="Vendor menu">
-      <div class="vendor-shop-name">
+    <!-- ===== Sidebar (desktop only) ===== -->
+    <nav class="v-sidebar" aria-label="Vendor menu">
+      <div class="v-shop">
         <strong>Ama's Kitchen</strong>
-        <span class="shop-status text-small"><span class="dot dot-open"></span>Open now</span>
+        <span class="v-status"><span class="v-dot open"></span>Open now</span>
       </div>
-      <ul class="vendor-nav">
-        <li><a href="index.html" aria-current="page"><span class="nav-icon">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html"><span class="nav-icon">🧾</span>Orders<span class="nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="nav-icon">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="nav-icon">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="nav-icon">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="nav-icon">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="nav-icon">🔔</span>Notifications</a></li>
+      <ul class="v-nav">
+        <li><a href="index.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
+        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
+        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
       </ul>
     </nav>
 
     <!-- ===== Main content ===== -->
-    <main class="vendor-main">
-      <div class="page-title">
+    <main class="page v-main">
+      <div class="v-head">
         <div>
           <h1>Good afternoon, Ama</h1>
-          <p class="text-muted">Here's how your shop is doing today.</p>
+          <p class="muted">Here's how your shop is doing today.</p>
         </div>
-        <a class="btn btn-primary" href="product-form.html">+ Add product</a>
+        <a class="btn primary auto" href="product-form.html">+ Add product</a>
       </div>
 
-      <!-- Stat tiles -->
-      <section class="stats" aria-label="Today at a glance">
-        <div class="stat">
-          <div class="stat-label">Sales today</div>
-          <div class="stat-value">GH₵ 640</div>
-          <div class="stat-note up">▲ 12% vs yesterday</div>
+      <section class="v-stats" aria-label="Today at a glance">
+        <div class="v-stat">
+          <div class="v-stat-label">Sales today</div>
+          <div class="v-stat-value">GH₵ 640</div>
+          <div class="v-stat-note up">▲ 12% vs yesterday</div>
         </div>
-        <div class="stat">
-          <div class="stat-label">Orders today</div>
-          <div class="stat-value">18</div>
-          <div class="stat-note">4 waiting for you</div>
+        <div class="v-stat">
+          <div class="v-stat-label">Orders today</div>
+          <div class="v-stat-value">18</div>
+          <div class="v-stat-note">4 waiting for you</div>
         </div>
-        <div class="stat">
-          <div class="stat-label">Products listed</div>
-          <div class="stat-value">12</div>
-          <div class="stat-note">2 sold out</div>
+        <div class="v-stat">
+          <div class="v-stat-label">Products listed</div>
+          <div class="v-stat-value">12</div>
+          <div class="v-stat-note">2 sold out</div>
         </div>
-        <div class="stat">
-          <div class="stat-label">Rating</div>
-          <div class="stat-value">4.6 ★</div>
-          <div class="stat-note">from 38 reviews</div>
+        <div class="v-stat">
+          <div class="v-stat-label">Rating</div>
+          <div class="v-stat-value">4.6 ★</div>
+          <div class="v-stat-note">from 38 reviews</div>
         </div>
       </section>
 
-      <div class="grid-2">
-        <!-- Orders that need action -->
-        <section class="card">
-          <div class="card-header">
-            <h2>Orders needing action</h2>
-            <a href="orders.html" class="text-small">See all orders →</a>
+      <div class="v-grid">
+        <section class="card-box">
+          <div class="row between v-card-head">
+            <h3>Orders needing action</h3>
+            <a href="orders.html" class="small">See all orders →</a>
           </div>
-          <div class="table-wrap">
-            <table class="table">
+          <div class="v-table-wrap">
+            <table class="v-table">
               <thead>
-                <tr><th>Order</th><th>Items</th><th>Type</th><th>Status</th><th></th></tr>
+                <tr><th>Order</th><th>Items</th><th>Type</th><th>Status</th><th><span class="sr-only">Open</span></th></tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>#1042</strong><br><span class="text-muted text-small nowrap">12:41 pm</span></td>
+                  <td><strong>#1042</strong><br><span class="muted v-nowrap">12:41 pm</span></td>
                   <td>2 × Jollof with chicken</td>
                   <td>Pickup</td>
-                  <td><span class="badge badge-info">New</span></td>
-                  <td><a class="btn btn-sm" href="orders.html#order-1042">Open</a></td>
+                  <td><span class="badge status-placed">New</span></td>
+                  <td><a class="btn ghost sm auto" href="orders.html#order-1042">Open</a></td>
                 </tr>
                 <tr>
-                  <td><strong>#1041</strong><br><span class="text-muted text-small nowrap">12:35 pm</span></td>
+                  <td><strong>#1041</strong><br><span class="muted v-nowrap">12:35 pm</span></td>
                   <td>1 × Waakye special</td>
                   <td>Delivery</td>
-                  <td><span class="badge badge-info">New</span></td>
-                  <td><a class="btn btn-sm" href="orders.html#order-1041">Open</a></td>
+                  <td><span class="badge status-placed">New</span></td>
+                  <td><a class="btn ghost sm auto" href="orders.html#order-1041">Open</a></td>
                 </tr>
                 <tr>
-                  <td><strong>#1039</strong><br><span class="text-muted text-small nowrap">12:20 pm</span></td>
+                  <td><strong>#1039</strong><br><span class="muted v-nowrap">12:20 pm</span></td>
                   <td>3 × Sobolo (500 ml)</td>
                   <td>Pickup</td>
-                  <td><span class="badge badge-warning">Preparing</span></td>
-                  <td><a class="btn btn-sm" href="orders.html#order-1039">Open</a></td>
+                  <td><span class="badge status-preparing">Preparing</span></td>
+                  <td><a class="btn ghost sm auto" href="orders.html#order-1039">Open</a></td>
                 </tr>
                 <tr>
-                  <td><strong>#1037</strong><br><span class="text-muted text-small nowrap">12:02 pm</span></td>
+                  <td><strong>#1037</strong><br><span class="muted v-nowrap">12:02 pm</span></td>
                   <td>1 × Fried rice, 1 × Kelewele</td>
                   <td>Pickup</td>
-                  <td><span class="badge badge-success">Ready</span></td>
-                  <td><a class="btn btn-sm" href="orders.html#order-1037">Open</a></td>
+                  <td><span class="badge status-ready">Ready</span></td>
+                  <td><a class="btn ghost sm auto" href="orders.html#order-1037">Open</a></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <div>
-          <!-- Low stock -->
-          <section class="card">
-            <div class="card-header">
-              <h2>Running low</h2>
-              <a href="products.html" class="text-small">Manage →</a>
+        <div class="v-col">
+          <section class="card-box">
+            <div class="row between v-card-head">
+              <h3>Running low</h3>
+              <a href="products.html" class="small">Manage →</a>
             </div>
-            <ul class="rank-list">
-              <li><span>Kelewele (small)</span><span class="badge badge-warning">3 left</span></li>
-              <li><span>Sobolo (500 ml)</span><span class="badge badge-warning">5 left</span></li>
-              <li><span>Meat pie</span><span class="badge badge-danger">Sold out</span></li>
+            <ul class="v-rank">
+              <li><span>Kelewele (small)</span><span class="badge warn">3 left</span></li>
+              <li><span>Sobolo (500 ml)</span><span class="badge warn">5 left</span></li>
+              <li><span>Meat pie</span><span class="badge danger">Sold out</span></li>
             </ul>
           </section>
 
-          <!-- Best sellers this week -->
-          <section class="card">
-            <div class="card-header">
-              <h2>Best sellers this week</h2>
-            </div>
-            <ol class="rank-list">
-              <li><span>Jollof with chicken</span><span class="text-muted">64 sold</span>
-                <div class="rank-bar"><span style="width:100%"></span></div></li>
-              <li><span>Waakye special</span><span class="text-muted">41 sold</span>
-                <div class="rank-bar"><span style="width:64%"></span></div></li>
-              <li><span>Fried rice</span><span class="text-muted">29 sold</span>
-                <div class="rank-bar"><span style="width:45%"></span></div></li>
+          <section class="card-box">
+            <h3>Best sellers this week</h3>
+            <ol class="v-rank">
+              <li><span>Jollof with chicken</span><span class="muted">64 sold</span>
+                <div class="v-rank-bar"><span style="width:100%"></span></div></li>
+              <li><span>Waakye special</span><span class="muted">41 sold</span>
+                <div class="v-rank-bar"><span style="width:64%"></span></div></li>
+              <li><span>Fried rice</span><span class="muted">29 sold</span>
+                <div class="v-rank-bar"><span style="width:45%"></span></div></li>
             </ol>
           </section>
         </div>
@@ -152,13 +148,15 @@
     </main>
   </div>
 
-  <!-- ===== Bottom menu (phones only) ===== -->
-  <nav class="vendor-bottom-nav" aria-label="Vendor menu">
-    <a href="index.html" aria-current="page"><span>🏠</span>Home</a>
-    <a href="orders.html"><span>🧾</span>Orders</a>
-    <a href="products.html"><span>📦</span>Products</a>
-    <a href="sales.html"><span>📈</span>Sales</a>
-    <a href="profile.html"><span>🏪</span>Shop</a>
+  <!-- ===== Bottom menu (kit, phones only) ===== -->
+  <nav class="bottom-nav" aria-label="Vendor menu">
+    <div class="items">
+      <a href="index.html" aria-current="page"><span aria-hidden="true">🏠</span>Home</a>
+      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
+      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
+      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
+      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+    </div>
   </nav>
 
 </body>

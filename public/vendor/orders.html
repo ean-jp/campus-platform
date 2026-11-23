@@ -1,174 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Orders · Campus Platform</title>
-  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
 <body>
 
   <header class="site-header">
-    <a class="logo" href="../index.html">Campus Platform</a>
-    <div class="header-actions">
-      <a class="btn btn-sm" href="../index.html">Shop as buyer</a>
-      <a class="bell" href="notifications.html" aria-label="Notifications, 3 unread">🔔<span class="bell-dot">3</span></a>
-      <span class="text-small">Ama K.</span>
+    <div class="bar">
+      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <span class="badge v-hide-phone">Vendor</span>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
+      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
+      <span class="small muted v-user">Ama K.</span>
     </div>
   </header>
 
-  <div class="vendor-layout">
-    <nav class="vendor-sidebar" aria-label="Vendor menu">
-      <div class="vendor-shop-name">
+  <div class="v-layout">
+    <nav class="v-sidebar" aria-label="Vendor menu">
+      <div class="v-shop">
         <strong>Ama's Kitchen</strong>
-        <span class="shop-status text-small"><span class="dot dot-open"></span>Open now</span>
+        <span class="v-status"><span class="v-dot open"></span>Open now</span>
       </div>
-      <ul class="vendor-nav">
-        <li><a href="index.html"><span class="nav-icon">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html" aria-current="page"><span class="nav-icon">🧾</span>Orders<span class="nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="nav-icon">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="nav-icon">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="nav-icon">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="nav-icon">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="nav-icon">🔔</span>Notifications</a></li>
+      <ul class="v-nav">
+        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
+        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
+        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
       </ul>
     </nav>
 
-    <main class="vendor-main">
-      <div class="page-title">
+    <main class="page v-main">
+      <div class="v-head">
         <div>
           <h1>Orders</h1>
-          <p class="text-muted">Move each order along as you work on it. The buyer sees every change.</p>
+          <p class="muted">Move each order along as you work on it. The buyer sees every change.</p>
         </div>
       </div>
 
       <!-- Filter tabs (later: ?status=received etc.) -->
-      <nav class="tabs" aria-label="Filter orders by status">
-        <a class="tab" href="orders.html" aria-current="true">Active (4)</a>
-        <a class="tab" href="orders.html?status=received">New (2)</a>
-        <a class="tab" href="orders.html?status=preparing">Preparing (1)</a>
-        <a class="tab" href="orders.html?status=ready">Ready (1)</a>
-        <a class="tab" href="orders.html?status=completed">Completed</a>
-        <a class="tab" href="orders.html?status=cancelled">Cancelled</a>
+      <nav class="v-tabs" aria-label="Filter orders by status">
+        <a class="v-tab" href="orders.html" aria-current="true">Active (4)</a>
+        <a class="v-tab" href="orders.html?status=placed">New (2)</a>
+        <a class="v-tab" href="orders.html?status=preparing">Preparing (1)</a>
+        <a class="v-tab" href="orders.html?status=ready">Ready (1)</a>
+        <a class="v-tab" href="orders.html?status=completed">Completed</a>
+        <a class="v-tab" href="orders.html?status=cancelled">Cancelled</a>
       </nav>
 
-      <div class="order-list">
+      <div class="v-orders">
 
-        <!-- ===== Order: NEW ===== -->
-        <article class="card order-card is-new" id="order-1042">
-          <div class="order-top">
+        <!-- ===== NEW order, pickup ===== -->
+        <article class="card-box v-order is-new" id="order-1042">
+          <div class="v-order-top">
             <div>
               <h2>Order #1042</h2>
-              <div class="order-meta">
+              <div class="v-order-meta">
                 <span>🕒 Today, 12:41 pm</span>
                 <span>👤 Kofi A. (Ashesi)</span>
                 <span>🚶 Pickup</span>
                 <span>💵 Pay on pickup</span>
               </div>
             </div>
-            <span class="badge badge-info">New</span>
+            <span class="badge status-placed">New</span>
           </div>
-          <ol class="steps" aria-label="Order progress">
-            <li class="done">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
+          <ol class="v-steps" aria-label="Order progress">
+            <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
           </ol>
-          <ul class="order-items">
+          <ul class="v-order-items">
             <li><span>2 × Jollof with chicken</span><span>GH₵ 70.00</span></li>
           </ul>
-          <div class="order-total"><span>Total</span><span>GH₵ 70.00</span></div>
+          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 70.00</span></div>
           <!-- Later: each button sends PATCH /api/v1/vendor/orders/1042 with the new status -->
-          <form class="order-actions" action="#" method="post">
+          <form class="v-actions" action="#" method="post">
             <input type="hidden" name="csrf_token" value="">
-            <button class="btn btn-primary" name="status" value="received">Accept order</button>
-            <button class="btn btn-danger" name="status" value="cancelled">Decline</button>
+            <button class="btn primary auto" name="status" value="received">Accept order</button>
+            <button class="btn ghost auto" name="status" value="cancelled">Decline</button>
           </form>
         </article>
 
-        <!-- ===== Order: NEW, delivery, guest ===== -->
-        <article class="card order-card is-new" id="order-1041">
-          <div class="order-top">
+        <!-- ===== NEW order, delivery, guest ===== -->
+        <article class="card-box v-order is-new" id="order-1041">
+          <div class="v-order-top">
             <div>
               <h2>Order #1041</h2>
-              <div class="order-meta">
+              <div class="v-order-meta">
                 <span>🕒 Today, 12:35 pm</span>
                 <span>👤 Guest · 📞 024 000 0000</span>
                 <span>🛵 Delivery to Hostel 2B, Room 14</span>
                 <span>💵 Pay on delivery</span>
               </div>
             </div>
-            <span class="badge badge-info">New</span>
+            <span class="badge status-placed">New</span>
           </div>
-          <ol class="steps" aria-label="Order progress">
-            <li class="done">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
+          <ol class="v-steps" aria-label="Order progress">
+            <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
           </ol>
-          <ul class="order-items">
+          <ul class="v-order-items">
             <li><span>1 × Waakye special</span><span>GH₵ 30.00</span></li>
             <li><span>Delivery fee</span><span>GH₵ 5.00</span></li>
           </ul>
-          <div class="order-total"><span>Total</span><span>GH₵ 35.00</span></div>
-          <form class="order-actions" action="#" method="post">
+          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 35.00</span></div>
+          <form class="v-actions" action="#" method="post">
             <input type="hidden" name="csrf_token" value="">
-            <button class="btn btn-primary" name="status" value="received">Accept order</button>
-            <button class="btn btn-danger" name="status" value="cancelled">Decline</button>
+            <button class="btn primary auto" name="status" value="received">Accept order</button>
+            <button class="btn ghost auto" name="status" value="cancelled">Decline</button>
           </form>
         </article>
 
-        <!-- ===== Order: PREPARING ===== -->
-        <article class="card order-card is-preparing" id="order-1039">
-          <div class="order-top">
+        <!-- ===== PREPARING ===== -->
+        <article class="card-box v-order is-preparing" id="order-1039">
+          <div class="v-order-top">
             <div>
               <h2>Order #1039</h2>
-              <div class="order-meta">
+              <div class="v-order-meta">
                 <span>🕒 Today, 12:20 pm</span>
                 <span>👤 Esi M. (Ashesi)</span>
                 <span>🚶 Pickup</span>
                 <span>💳 Paid (MoMo)</span>
               </div>
             </div>
-            <span class="badge badge-warning">Preparing</span>
+            <span class="badge status-preparing">Preparing</span>
           </div>
-          <ol class="steps" aria-label="Order progress">
-            <li class="done">Placed</li><li class="done">Received</li><li class="done">Preparing</li><li>Ready</li><li>Completed</li>
+          <ol class="v-steps" aria-label="Order progress">
+            <li class="done">Placed</li><li class="done">Received</li><li class="current">Preparing</li><li>Ready</li><li>Completed</li>
           </ol>
-          <ul class="order-items">
+          <ul class="v-order-items">
             <li><span>3 × Sobolo (500 ml)</span><span>GH₵ 21.00</span></li>
           </ul>
-          <div class="order-total"><span>Total</span><span>GH₵ 21.00</span></div>
-          <form class="order-actions" action="#" method="post">
+          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 21.00</span></div>
+          <form class="v-actions" action="#" method="post">
             <input type="hidden" name="csrf_token" value="">
-            <button class="btn btn-primary" name="status" value="ready">Mark as ready</button>
-            <button class="btn btn-danger" name="status" value="cancelled">Cancel</button>
+            <button class="btn primary auto" name="status" value="ready">Mark as ready</button>
+            <button class="btn ghost auto" name="status" value="cancelled">Cancel</button>
           </form>
         </article>
 
-        <!-- ===== Order: READY (needs pickup code to complete) ===== -->
-        <article class="card order-card is-ready" id="order-1037">
-          <div class="order-top">
+        <!-- ===== READY: needs the buyer's pickup code to complete ===== -->
+        <article class="card-box v-order is-ready" id="order-1037">
+          <div class="v-order-top">
             <div>
               <h2>Order #1037</h2>
-              <div class="order-meta">
+              <div class="v-order-meta">
                 <span>🕒 Today, 12:02 pm</span>
                 <span>👤 Yaw B. (Ashesi)</span>
                 <span>🚶 Pickup</span>
                 <span>💵 Pay on pickup</span>
               </div>
             </div>
-            <span class="badge badge-success">Ready</span>
+            <span class="badge status-ready">Ready</span>
           </div>
-          <ol class="steps" aria-label="Order progress">
-            <li class="done">Placed</li><li class="done">Received</li><li class="done">Preparing</li><li class="done">Ready</li><li>Completed</li>
+          <ol class="v-steps" aria-label="Order progress">
+            <li class="done">Placed</li><li class="done">Received</li><li class="done">Preparing</li><li class="current">Ready</li><li>Completed</li>
           </ol>
-          <ul class="order-items">
+          <ul class="v-order-items">
             <li><span>1 × Fried rice</span><span>GH₵ 30.00</span></li>
             <li><span>1 × Kelewele (small)</span><span>GH₵ 10.00</span></li>
           </ul>
-          <div class="order-total"><span>Total</span><span>GH₵ 40.00</span></div>
+          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 40.00</span></div>
           <!-- The buyer shows a 4-digit code; the vendor types it here to finish the order -->
-          <form class="order-actions pickup-form" action="#" method="post">
+          <form class="v-actions v-pickup" action="#" method="post">
             <input type="hidden" name="csrf_token" value="">
             <label for="code-1037" class="sr-only">Buyer's pickup code</label>
-            <input type="text" id="code-1037" name="pickup_code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Code" required>
-            <button class="btn btn-primary" name="status" value="completed">Complete order</button>
+            <input class="input" type="text" id="code-1037" name="pickup_code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Code" required>
+            <button class="btn primary auto" name="status" value="completed">Complete order</button>
           </form>
         </article>
 
@@ -176,12 +179,14 @@
     </main>
   </div>
 
-  <nav class="vendor-bottom-nav" aria-label="Vendor menu">
-    <a href="index.html"><span>🏠</span>Home</a>
-    <a href="orders.html" aria-current="page"><span>🧾</span>Orders</a>
-    <a href="products.html"><span>📦</span>Products</a>
-    <a href="sales.html"><span>📈</span>Sales</a>
-    <a href="profile.html"><span>🏪</span>Shop</a>
+  <nav class="bottom-nav" aria-label="Vendor menu">
+    <div class="items">
+      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+      <a href="orders.html" aria-current="page"><span aria-hidden="true">🧾</span>Orders</a>
+      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
+      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
+      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+    </div>
   </nav>
 
 </body>

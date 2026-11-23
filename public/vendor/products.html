@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>My Products · Campus Platform</title>
-  <link rel="stylesheet" href="../assets/css/kit-temp.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
 <body>
 
   <header class="site-header">
-    <a class="logo" href="../index.html">Campus Platform</a>
-    <div class="header-actions">
-      <a class="btn btn-sm" href="../index.html">Shop as buyer</a>
-      <a class="bell" href="notifications.html" aria-label="Notifications, 3 unread">🔔<span class="bell-dot">3</span></a>
-      <span class="text-small">Ama K.</span>
+    <div class="bar">
+      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <span class="badge v-hide-phone">Vendor</span>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
+      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
+      <span class="small muted v-user">Ama K.</span>
     </div>
   </header>
 
-  <div class="vendor-layout">
-    <nav class="vendor-sidebar" aria-label="Vendor menu">
-      <div class="vendor-shop-name">
+  <div class="v-layout">
+    <nav class="v-sidebar" aria-label="Vendor menu">
+      <div class="v-shop">
         <strong>Ama's Kitchen</strong>
-        <span class="shop-status text-small"><span class="dot dot-open"></span>Open now</span>
+        <span class="v-status"><span class="v-dot open"></span>Open now</span>
       </div>
-      <ul class="vendor-nav">
-        <li><a href="index.html"><span class="nav-icon">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html"><span class="nav-icon">🧾</span>Orders<span class="nav-count">4</span></a></li>
-        <li><a href="products.html" aria-current="page"><span class="nav-icon">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="nav-icon">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="nav-icon">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="nav-icon">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="nav-icon">🔔</span>Notifications</a></li>
+      <ul class="v-nav">
+        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
+        <li><a href="products.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
+        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
       </ul>
     </nav>
 
-    <main class="vendor-main">
-      <div class="page-title">
+    <main class="page v-main">
+      <div class="v-head">
         <div>
           <h1>My products</h1>
-          <p class="text-muted">12 products · 2 sold out · 1 hidden</p>
+          <p class="muted">12 products · 2 sold out · 1 hidden</p>
         </div>
-        <a class="btn btn-primary" href="product-form.html">+ Add product</a>
+        <a class="btn primary auto" href="product-form.html">+ Add product</a>
       </div>
 
-      <!-- Search and filters (will become a GET form to /api/v1/vendor/items) -->
-      <form class="toolbar" action="products.html" method="get" role="search">
+      <!-- Search and filters (later: GET /api/v1/vendor/items?q=&category=&status=) -->
+      <form class="v-toolbar" action="products.html" method="get" role="search">
         <label for="q" class="sr-only">Search your products</label>
-        <input type="search" id="q" name="q" placeholder="Search your products">
+        <input class="input" type="search" id="q" name="q" placeholder="Search your products">
         <label for="filter-category" class="sr-only">Category</label>
-        <select id="filter-category" name="category">
+        <select class="select" id="filter-category" name="category">
           <option value="">All categories</option>
           <option value="food">Food</option>
           <option value="snacks">Snacks</option>
@@ -58,18 +61,18 @@
           <option value="books">Books</option>
         </select>
         <label for="filter-status" class="sr-only">Status</label>
-        <select id="filter-status" name="status">
+        <select class="select" id="filter-status" name="status">
           <option value="">Any status</option>
           <option value="active">On sale</option>
           <option value="sold_out">Sold out</option>
           <option value="hidden">Hidden</option>
         </select>
-        <button class="btn" type="submit">Filter</button>
+        <button class="btn ghost auto" type="submit">Filter</button>
       </form>
 
-      <section class="card">
-        <div class="table-wrap">
-          <table class="table">
+      <section class="card-box">
+        <div class="v-table-wrap">
+          <table class="v-table">
             <thead>
               <tr>
                 <th>Product</th>
@@ -83,122 +86,124 @@
             <tbody>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Jollof rice with chicken">
-                    <div><strong>Jollof with chicken</strong><span class="text-muted text-small">Added 10 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Jollof rice with chicken">
+                    <div><strong>Jollof with chicken</strong><span class="muted small">Added 10 Nov</span></div>
                   </div>
                 </td>
                 <td>Food</td>
-                <td>GH₵ 35.00</td>
+                <td class="price v-nowrap">GH₵ 35.00</td>
                 <td>24</td>
-                <td><span class="badge badge-success">On sale</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=1">Edit</a>
-                  <button class="btn btn-sm" type="button">Mark sold out</button>
-                </td>
+                <td><span class="badge ok">On sale</span></td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=1">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Mark sold out</button>
+                </div></td>
               </tr>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Waakye with egg and gari">
-                    <div><strong>Waakye special</strong><span class="text-muted text-small">Added 10 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Waakye with egg and gari">
+                    <div><strong>Waakye special</strong><span class="muted small">Added 10 Nov</span></div>
                   </div>
                 </td>
                 <td>Food</td>
-                <td>GH₵ 30.00</td>
+                <td class="price v-nowrap">GH₵ 30.00</td>
                 <td>15</td>
-                <td><span class="badge badge-success">On sale</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=2">Edit</a>
-                  <button class="btn btn-sm" type="button">Mark sold out</button>
-                </td>
+                <td><span class="badge ok">On sale</span></td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=2">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Mark sold out</button>
+                </div></td>
               </tr>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Kelewele in a small cup">
-                    <div><strong>Kelewele (small)</strong><span class="text-muted text-small">Added 12 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Kelewele in a small cup">
+                    <div><strong>Kelewele (small)</strong><span class="muted small">Added 12 Nov</span></div>
                   </div>
                 </td>
                 <td>Snacks</td>
-                <td>GH₵ 10.00</td>
-                <td><span class="badge badge-warning">3 left</span></td>
-                <td><span class="badge badge-success">On sale</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=3">Edit</a>
-                  <button class="btn btn-sm" type="button">Mark sold out</button>
-                </td>
+                <td class="price v-nowrap">GH₵ 10.00</td>
+                <td><span class="badge warn">3 left</span></td>
+                <td><span class="badge ok">On sale</span></td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=3">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Mark sold out</button>
+                </div></td>
               </tr>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Meat pie">
-                    <div><strong>Meat pie</strong><span class="text-muted text-small">Added 12 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Meat pie">
+                    <div><strong>Meat pie</strong><span class="muted small">Added 12 Nov</span></div>
                   </div>
                 </td>
                 <td>Snacks</td>
-                <td>GH₵ 8.00</td>
+                <td class="price v-nowrap">GH₵ 8.00</td>
                 <td>0</td>
-                <td><span class="badge badge-danger">Sold out</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=4">Edit</a>
-                  <button class="btn btn-sm" type="button">Restock</button>
-                </td>
+                <td><span class="badge danger">Sold out</span></td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=4">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Restock</button>
+                </div></td>
               </tr>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Bottle of sobolo drink">
-                    <div><strong>Sobolo (500 ml)</strong><span class="text-muted text-small">Added 14 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Bottle of sobolo drink">
+                    <div><strong>Sobolo (500 ml)</strong><span class="muted small">Added 14 Nov</span></div>
                   </div>
                 </td>
                 <td>Snacks</td>
-                <td>GH₵ 7.00</td>
-                <td><span class="badge badge-warning">5 left</span></td>
-                <td><span class="badge badge-success">On sale</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=5">Edit</a>
-                  <button class="btn btn-sm" type="button">Mark sold out</button>
-                </td>
+                <td class="price v-nowrap">GH₵ 7.00</td>
+                <td><span class="badge warn">5 left</span></td>
+                <td><span class="badge ok">On sale</span></td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=5">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Mark sold out</button>
+                </div></td>
               </tr>
               <tr>
                 <td>
-                  <div class="product-cell">
-                    <img class="thumb" src="../assets/images/placeholder.svg" alt="Banku and tilapia">
-                    <div><strong>Banku &amp; tilapia</strong><span class="text-muted text-small">Added 15 Nov</span></div>
+                  <div class="v-product">
+                    <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Banku and tilapia">
+                    <div><strong>Banku &amp; tilapia</strong><span class="muted small">Added 15 Nov</span></div>
                   </div>
                 </td>
                 <td>Food</td>
-                <td>GH₵ 55.00</td>
+                <td class="price v-nowrap">GH₵ 55.00</td>
                 <td>10</td>
                 <td><span class="badge">Hidden</span></td>
-                <td class="order-actions">
-                  <a class="btn btn-sm" href="product-form.html?id=6">Edit</a>
-                  <button class="btn btn-sm" type="button">Show</button>
-                </td>
+                <td><div class="v-actions">
+                  <a class="btn ghost sm auto" href="product-form.html?id=6">Edit</a>
+                  <button class="btn ghost sm auto" type="button">Show</button>
+                </div></td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- Shown instead of the table when the vendor has no products yet -->
+      <!-- Shown instead of the table when the vendor has no products yet (kit's .empty) -->
       <!--
-      <section class="card empty-state">
-        <p><strong>You haven't added any products yet.</strong></p>
+      <div class="empty">
+        <h3>No products yet</h3>
         <p>Add your first product so buyers can find you.</p>
-        <a class="btn btn-primary" href="product-form.html">+ Add product</a>
-      </section>
+        <a class="btn primary auto" href="product-form.html">+ Add product</a>
+      </div>
       -->
     </main>
   </div>
 
-  <nav class="vendor-bottom-nav" aria-label="Vendor menu">
-    <a href="index.html"><span>🏠</span>Home</a>
-    <a href="orders.html"><span>🧾</span>Orders</a>
-    <a href="products.html" aria-current="page"><span>📦</span>Products</a>
-    <a href="sales.html"><span>📈</span>Sales</a>
-    <a href="profile.html"><span>🏪</span>Shop</a>
+  <nav class="bottom-nav" aria-label="Vendor menu">
+    <div class="items">
+      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
+      <a href="products.html" aria-current="page"><span aria-hidden="true">📦</span>Products</a>
+      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
+      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+    </div>
   </nav>
 
 </body>

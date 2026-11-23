@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Become a Vendor · Campus Platform</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/vendor.css">
+</head>
+<body>
+
+  <!-- Normal buyer header: this person is not a vendor yet -->
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="../index.html">Back to shop</a>
+      <span class="small muted v-user">Ama K.</span>
+    </div>
+  </header>
+
+  <main class="page container v-narrow">
+    <h1>Sell on Campus Platform</h1>
+    <p class="muted">Students and off-campus businesses can sell clothes, electronics, snacks, books and food to the Ashesi community.</p>
+
+    <div class="v-intro">
+      <div><b>1. Apply</b>Tell us about your shop. Takes 2 minutes.</div>
+      <div><b>2. Get approved</b>The admin checks your request, usually within a day.</div>
+      <div><b>3. Start selling</b>Add products and receive orders on your dashboard.</div>
+    </div>
+
+    <!-- Shown after the form is sent (approval_status = pending) -->
+    <div class="v-alert info" role="status">
+      <strong>Request sent.</strong> We'll notify you by email when the admin approves your shop.
+    </div>
+
+    <form class="card-box" action="#" method="post">
+      <input type="hidden" name="csrf_token" value="">
+
+      <div class="field">
+        <label for="business_name">Shop name *</label>
+        <input class="input" type="text" id="business_name" name="business_name" maxlength="80" required placeholder="e.g. Ama's Kitchen">
+      </div>
+
+      <div class="grid cols-2">
+        <div class="field">
+          <label for="vendor_type">I am a... *</label>
+          <select class="select" id="vendor_type" name="vendor_type" required>
+            <option value="">Choose one</option>
+            <option value="student">Student seller</option>
+            <option value="off_campus">Off-campus business</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="main_category">What will you mainly sell? *</label>
+          <select class="select" id="main_category" name="main_category_id" required>
+            <option value="">Choose a category</option>
+            <option value="1">Clothes</option>
+            <option value="2">Electronics</option>
+            <option value="3">Snacks</option>
+            <option value="4">Books</option>
+            <option value="5">Food</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="field">
+          <label for="phone">Phone number *</label>
+          <input class="input" type="tel" id="phone" name="phone" required placeholder="024 000 0000">
+        </div>
+        <div class="field">
+          <label for="location">Pickup location *</label>
+          <input class="input" type="text" id="location" name="location" required placeholder="e.g. Main gate, Hostel 2B">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="description">Tell the admin about your shop *</label>
+        <textarea class="textarea" id="description" name="description" maxlength="500" required placeholder="What you sell, prices, how long you've been selling..."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="check"><input type="checkbox" name="agree" value="1" required> I agree to follow the campus marketplace rules.</label>
+      </div>
+
+      <button class="btn primary" type="submit">Send request</button>
+      <div class="msg" role="status" aria-live="polite"></div>
+    </form>
+  </main>
+
+</body>
+</html>

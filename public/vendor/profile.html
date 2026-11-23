@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Shop Profile · Campus Platform</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/vendor.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <span class="badge v-hide-phone">Vendor</span>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
+      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
+      <span class="small muted v-user">Ama K.</span>
+    </div>
+  </header>
+
+  <div class="v-layout">
+    <nav class="v-sidebar" aria-label="Vendor menu">
+      <div class="v-shop">
+        <strong>Ama's Kitchen</strong>
+        <span class="v-status"><span class="v-dot open"></span>Open now</span>
+      </div>
+      <ul class="v-nav">
+        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
+        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
+        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
+        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
+        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
+        <li><a href="profile.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
+        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
+      </ul>
+    </nav>
+
+    <main class="page v-main">
+      <div class="v-head">
+        <div>
+          <h1>Shop profile</h1>
+          <p class="muted">This is what buyers see on your shop page.</p>
+        </div>
+        <a class="btn ghost auto" href="../vendor-shop.html?id=7">View my shop as a buyer</a>
+      </div>
+
+      <!-- Example message after saving -->
+      <div class="v-alert ok" role="status">Your changes were saved.</div>
+
+      <form action="#" method="post" enctype="multipart/form-data" class="v-grid even">
+        <input type="hidden" name="csrf_token" value="">
+
+        <section class="card-box">
+          <h3>Business details</h3>
+
+          <div class="field">
+            <label for="business_name">Shop name *</label>
+            <input class="input" type="text" id="business_name" name="business_name" value="Ama's Kitchen" maxlength="80" required>
+          </div>
+
+          <div class="field">
+            <label for="vendor_description">About your shop</label>
+            <textarea class="textarea" id="vendor_description" name="description" maxlength="500">Home-style Ghanaian lunches cooked fresh every morning. Pickup at the main gate or delivery to any hostel.</textarea>
+          </div>
+
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="phone">Contact phone *</label>
+              <input class="input" type="tel" id="phone" name="phone" value="024 000 0000" required>
+              <span class="hint">Shown to buyers only on their own orders.</span>
+            </div>
+            <div class="field">
+              <label for="location">Pickup location *</label>
+              <input class="input" type="text" id="location" name="location" value="Main gate food stand" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Shop type</label>
+            <span><span class="badge">Off-campus vendor</span> <span class="hint">Set by the admin</span></span>
+          </div>
+
+          <div class="field">
+            <label for="logo">Shop logo</label>
+            <div class="row">
+              <img class="v-thumb" src="../assets/images/placeholder.svg" alt="Current shop logo">
+              <input type="file" id="logo" name="logo" accept="image/jpeg,image/png,image/webp" class="small">
+            </div>
+          </div>
+        </section>
+
+        <section class="card-box">
+          <h3>Opening hours</h3>
+          <p class="muted small">Buyers can only order food while you're open.</p>
+
+          <!-- name="hours[mon][open]" etc. becomes the opening_hours JSON column -->
+          <div class="v-hours-row">
+            <span class="v-day">Monday</span>
+            <label class="sr-only" for="mon-open">Monday opens</label><input class="input" type="time" id="mon-open" name="hours[mon][open]" value="08:00">
+            <label class="sr-only" for="mon-close">Monday closes</label><input class="input" type="time" id="mon-close" name="hours[mon][close]" value="18:00">
+            <label class="check"><input type="checkbox" name="hours[mon][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Tuesday</span>
+            <label class="sr-only" for="tue-open">Tuesday opens</label><input class="input" type="time" id="tue-open" name="hours[tue][open]" value="08:00">
+            <label class="sr-only" for="tue-close">Tuesday closes</label><input class="input" type="time" id="tue-close" name="hours[tue][close]" value="18:00">
+            <label class="check"><input type="checkbox" name="hours[tue][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Wednesday</span>
+            <label class="sr-only" for="wed-open">Wednesday opens</label><input class="input" type="time" id="wed-open" name="hours[wed][open]" value="08:00">
+            <label class="sr-only" for="wed-close">Wednesday closes</label><input class="input" type="time" id="wed-close" name="hours[wed][close]" value="18:00">
+            <label class="check"><input type="checkbox" name="hours[wed][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Thursday</span>
+            <label class="sr-only" for="thu-open">Thursday opens</label><input class="input" type="time" id="thu-open" name="hours[thu][open]" value="08:00">
+            <label class="sr-only" for="thu-close">Thursday closes</label><input class="input" type="time" id="thu-close" name="hours[thu][close]" value="18:00">
+            <label class="check"><input type="checkbox" name="hours[thu][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Friday</span>
+            <label class="sr-only" for="fri-open">Friday opens</label><input class="input" type="time" id="fri-open" name="hours[fri][open]" value="08:00">
+            <label class="sr-only" for="fri-close">Friday closes</label><input class="input" type="time" id="fri-close" name="hours[fri][close]" value="18:00">
+            <label class="check"><input type="checkbox" name="hours[fri][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Saturday</span>
+            <label class="sr-only" for="sat-open">Saturday opens</label><input class="input" type="time" id="sat-open" name="hours[sat][open]" value="10:00">
+            <label class="sr-only" for="sat-close">Saturday closes</label><input class="input" type="time" id="sat-close" name="hours[sat][close]" value="15:00">
+            <label class="check"><input type="checkbox" name="hours[sat][closed]" value="1"> Closed</label>
+          </div>
+          <div class="v-hours-row">
+            <span class="v-day">Sunday</span>
+            <label class="sr-only" for="sun-open">Sunday opens</label><input class="input" type="time" id="sun-open" name="hours[sun][open]" value="">
+            <label class="sr-only" for="sun-close">Sunday closes</label><input class="input" type="time" id="sun-close" name="hours[sun][close]" value="">
+            <label class="check"><input type="checkbox" name="hours[sun][closed]" value="1" checked> Closed</label>
+          </div>
+
+          <label class="check" style="margin:var(--sp-4) 0"><input type="checkbox" name="pause_orders" value="1"> Pause new orders for now (e.g. food ran out)</label>
+
+          <div class="v-form-actions">
+            <button class="btn primary" type="submit">Save changes</button>
+          </div>
+        </section>
+      </form>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Vendor menu">
+    <div class="items">
+      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
+      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
+      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
+      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
+      <a href="profile.html" aria-current="page"><span aria-hidden="true">🏪</span>Shop</a>
+    </div>
+  </nav>
+
+</body>
+</html>

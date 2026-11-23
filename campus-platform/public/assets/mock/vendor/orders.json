@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1042,
+      "status": "placed",
+      "created_at": "2026-11-23T12:41:00",
+      "buyer": {
+        "name": "Kofi A.",
+        "account_type": "ashesi",
+        "phone": null
+      },
+      "fulfilment": "pickup",
+      "delivery_location": null,
+      "payment_method": "pay_on_pickup",
+      "payment_status": "unpaid",
+      "items": [
+        {
+          "item_id": 1,
+          "name": "Jollof with chicken",
+          "quantity": 2,
+          "price": 35.0
+        }
+      ],
+      "delivery_fee": 0,
+      "total": 70.0
+    },
+    {
+      "id": 1041,
+      "status": "placed",
+      "created_at": "2026-11-23T12:35:00",
+      "buyer": {
+        "name": "Guest",
+        "account_type": "guest",
+        "phone": "024 000 0000"
+      },
+      "fulfilment": "delivery",
+      "delivery_location": "Hostel 2B, Room 14",
+      "payment_method": "pay_on_delivery",
+      "payment_status": "unpaid",
+      "items": [
+        {
+          "item_id": 2,
+          "name": "Waakye special",
+          "quantity": 1,
+          "price": 30.0
+        }
+      ],
+      "delivery_fee": 5.0,
+      "total": 35.0
+    },
+    {
+      "id": 1039,
+      "status": "preparing",
+      "created_at": "2026-11-23T12:20:00",
+      "buyer": {
+        "name": "Esi M.",
+        "account_type": "ashesi",
+        "phone": null
+      },
+      "fulfilment": "pickup",
+      "delivery_location": null,
+      "payment_method": "momo",
+      "payment_status": "paid",
+      "items": [
+        {
+          "item_id": 5,
+          "name": "Sobolo (500 ml)",
+          "quantity": 3,
+          "price": 7.0
+        }
+      ],
+      "delivery_fee": 0,
+      "total": 21.0
+    },
+    {
+      "id": 1037,
+      "status": "ready",
+      "created_at": "2026-11-23T12:02:00",
+      "buyer": {
+        "name": "Yaw B.",
+        "account_type": "ashesi",
+        "phone": null
+      },
+      "fulfilment": "pickup",
+      "delivery_location": null,
+      "payment_method": "pay_on_pickup",
+      "payment_status": "unpaid",
+      "items": [
+        {
+          "item_id": 1,
+          "name": "Fried rice",
+          "quantity": 1,
+          "price": 30.0
+        },
+        {
+          "item_id": 3,
+          "name": "Kelewele (small)",
+          "quantity": 1,
+          "price": 10.0
+        }
+      ],
+      "delivery_fee": 0,
+      "total": 40.0
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 20,
+    "total": 4,
+    "counts": {
+      "active": 4,
+      "placed": 2,
+      "preparing": 1,
+      "ready": 1
+    }
+  }
+}

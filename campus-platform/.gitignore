@@ -1,0 +1,26 @@
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+
+# Composer dependencies
+/vendor/
+
+# Uploaded files
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# Logs and temporary files
+*.log
+*.tmp
+/cache/
+/tmp/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
+.idea/

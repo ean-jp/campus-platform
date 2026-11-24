@@ -4,158 +4,261 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Vendor Dashboard · Campus Platform</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
-<body>
+<body class="v-vendor">
 
-  <!-- ===== Top header (kit) ===== -->
-  <header class="site-header">
-    <div class="bar">
-      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
-      <span class="badge v-hide-phone">Vendor</span>
-      <div class="nav-spacer"></div>
-      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
-      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
-      <span class="small muted v-user">Ama K.</span>
+  <!-- ===== Top header (same on every vendor page) ===== -->
+  <header class="v-top">
+    <div class="v-top-bar">
+      <a class="v-brand" href="index.html">
+        <span class="v-brand-tile"><i class="v-ic v-ic-store" aria-hidden="true"></i></span>
+        <span>Campus <b>Platform</b></span>
+      </a>
+      <nav class="v-top-nav" aria-label="Vendor menu">
+        <a href="index.html" aria-current="page"><i class="v-ic v-ic-home" aria-hidden="true"></i>Dashboard</a>
+        <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders <span class="v-count">4</span></a>
+        <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+        <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+        <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
+      </nav>
+      <div class="v-top-actions">
+        <a class="v-btn v-btn-outline" href="product-form.html" aria-label="Add product"><i class="v-ic v-ic-plus" aria-hidden="true"></i><span class="v-btn-label">Add product</span></a>
+        <a class="v-iconbtn" href="notifications.html" aria-label="Notifications, 3 unread"><i class="v-ic v-ic-bell" aria-hidden="true"></i><span class="v-dot-count">3</span></a>
+        <span class="v-avatar" title="Ama K.">AK</span>
+      </div>
     </div>
   </header>
 
-  <div class="v-layout">
+  <main class="page v-page">
 
-    <!-- ===== Sidebar (desktop only) ===== -->
-    <nav class="v-sidebar" aria-label="Vendor menu">
-      <div class="v-shop">
-        <strong>Ama's Kitchen</strong>
-        <span class="v-status"><span class="v-dot open"></span>Open now</span>
+    <!-- ===== Hero ===== -->
+    <section class="v-hero">
+      <span class="v-pill"><i class="v-ic v-ic-shield" aria-hidden="true"></i>Approved vendor · Ama's Kitchen</span>
+      <h1 class="v-display">Good afternoon, Ama.<br><span class="v-red">Your shop is open.</span></h1>
+      <p class="v-lead">4 orders are waiting for you and 2 products are running low. Everything you need for today is right here.</p>
+      <div class="v-hero-actions">
+        <a class="v-btn v-btn-red" href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>See waiting orders</a>
+        <a class="v-btn v-btn-soft" href="product-form.html"><i class="v-ic v-ic-plus" aria-hidden="true"></i>Add a product</a>
       </div>
-      <ul class="v-nav">
-        <li><a href="index.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
-      </ul>
-    </nav>
+      <div class="v-trust">
+        <span><i class="v-ic v-ic-clock" aria-hidden="true"></i>Open until 6:00 pm</span>
+        <span><i class="v-ic v-ic-pin" aria-hidden="true"></i>Pickup at the main gate</span>
+        <span><i class="v-ic v-ic-star" aria-hidden="true"></i>4.6 from 38 reviews</span>
+      </div>
+    </section>
 
-    <!-- ===== Main content ===== -->
-    <main class="page v-main">
-      <div class="v-head">
+    <!-- ===== Numbers ===== -->
+    <section class="v-sec" aria-labelledby="numbers-title">
+      <div class="v-sec-head">
         <div>
-          <h1>Good afternoon, Ama</h1>
-          <p class="muted">Here's how your shop is doing today.</p>
+          <span class="v-eyebrow">Today at a glance</span>
+          <h2 id="numbers-title">Your numbers</h2>
         </div>
-        <a class="btn primary auto" href="product-form.html">+ Add product</a>
+        <a class="v-link" href="sales.html">Full sales report <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
       </div>
+      <div class="v-tiles">
+        <a class="v-tile" href="sales.html">
+          <span class="v-tile-icon"><i class="v-ic v-ic-wallet" aria-hidden="true"></i></span>
+          <span class="v-tile-body">
+            <span class="v-tile-value">GH₵ 640</span>
+            <span class="v-tile-label">Sales today</span>
+            <span class="v-tile-note up">▲ 12% vs yesterday</span>
+          </span>
+          <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="v-tile" href="orders.html">
+          <span class="v-tile-icon black"><i class="v-ic v-ic-receipt" aria-hidden="true"></i></span>
+          <span class="v-tile-body">
+            <span class="v-tile-value">18</span>
+            <span class="v-tile-label">Orders today</span>
+            <span class="v-tile-note">4 waiting for you</span>
+          </span>
+          <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="v-tile" href="products.html">
+          <span class="v-tile-icon"><i class="v-ic v-ic-package" aria-hidden="true"></i></span>
+          <span class="v-tile-body">
+            <span class="v-tile-value">12</span>
+            <span class="v-tile-label">Products listed</span>
+            <span class="v-tile-note">2 sold out</span>
+          </span>
+          <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
+        </a>
+        <a class="v-tile" href="notifications.html">
+          <span class="v-tile-icon black"><i class="v-ic v-ic-star" aria-hidden="true"></i></span>
+          <span class="v-tile-body">
+            <span class="v-tile-value">4.6 ★</span>
+            <span class="v-tile-label">Average rating</span>
+            <span class="v-tile-note">from 38 reviews</span>
+          </span>
+          <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
 
-      <section class="v-stats" aria-label="Today at a glance">
-        <div class="v-stat">
-          <div class="v-stat-label">Sales today</div>
-          <div class="v-stat-value">GH₵ 640</div>
-          <div class="v-stat-note up">▲ 12% vs yesterday</div>
+    <!-- ===== Orders waiting + low stock ===== -->
+    <section class="v-sec" aria-labelledby="waiting-title">
+      <div class="v-sec-head">
+        <div>
+          <span class="v-eyebrow">Needs your attention</span>
+          <h2 id="waiting-title">Orders waiting</h2>
         </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Orders today</div>
-          <div class="v-stat-value">18</div>
-          <div class="v-stat-note">4 waiting for you</div>
-        </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Products listed</div>
-          <div class="v-stat-value">12</div>
-          <div class="v-stat-note">2 sold out</div>
-        </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Rating</div>
-          <div class="v-stat-value">4.6 ★</div>
-          <div class="v-stat-note">from 38 reviews</div>
-        </div>
-      </section>
+        <a class="v-link" href="orders.html">View all orders <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
+      </div>
 
       <div class="v-grid">
-        <section class="card-box">
-          <div class="row between v-card-head">
-            <h3>Orders needing action</h3>
-            <a href="orders.html" class="small">See all orders →</a>
-          </div>
-          <div class="v-table-wrap">
-            <table class="v-table">
-              <thead>
-                <tr><th>Order</th><th>Items</th><th>Type</th><th>Status</th><th><span class="sr-only">Open</span></th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>#1042</strong><br><span class="muted v-nowrap">12:41 pm</span></td>
-                  <td>2 × Jollof with chicken</td>
-                  <td>Pickup</td>
-                  <td><span class="badge status-placed">New</span></td>
-                  <td><a class="btn ghost sm auto" href="orders.html#order-1042">Open</a></td>
-                </tr>
-                <tr>
-                  <td><strong>#1041</strong><br><span class="muted v-nowrap">12:35 pm</span></td>
-                  <td>1 × Waakye special</td>
-                  <td>Delivery</td>
-                  <td><span class="badge status-placed">New</span></td>
-                  <td><a class="btn ghost sm auto" href="orders.html#order-1041">Open</a></td>
-                </tr>
-                <tr>
-                  <td><strong>#1039</strong><br><span class="muted v-nowrap">12:20 pm</span></td>
-                  <td>3 × Sobolo (500 ml)</td>
-                  <td>Pickup</td>
-                  <td><span class="badge status-preparing">Preparing</span></td>
-                  <td><a class="btn ghost sm auto" href="orders.html#order-1039">Open</a></td>
-                </tr>
-                <tr>
-                  <td><strong>#1037</strong><br><span class="muted v-nowrap">12:02 pm</span></td>
-                  <td>1 × Fried rice, 1 × Kelewele</td>
-                  <td>Pickup</td>
-                  <td><span class="badge status-ready">Ready</span></td>
-                  <td><a class="btn ghost sm auto" href="orders.html#order-1037">Open</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+        <div class="v-card">
+          <ul class="v-rows">
+            <li class="v-rowi">
+              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
+              <div class="v-rowi-body">
+                <div class="v-rowi-title">#1042 · 2 × Jollof with chicken</div>
+                <div class="v-rowi-sub">Kofi A. · Pickup · 12:41 pm</div>
+              </div>
+              <span class="v-badge new">New</span>
+              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1042">Open</a>
+            </li>
+            <li class="v-rowi">
+              <span class="v-rowi-icon"><i class="v-ic v-ic-bike" aria-hidden="true"></i></span>
+              <div class="v-rowi-body">
+                <div class="v-rowi-title">#1041 · 1 × Waakye special</div>
+                <div class="v-rowi-sub">Guest · Delivery to Hostel 2B · 12:35 pm</div>
+              </div>
+              <span class="v-badge new">New</span>
+              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1041">Open</a>
+            </li>
+            <li class="v-rowi">
+              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
+              <div class="v-rowi-body">
+                <div class="v-rowi-title">#1039 · 3 × Sobolo (500 ml)</div>
+                <div class="v-rowi-sub">Esi M. · Pickup · 12:20 pm</div>
+              </div>
+              <span class="v-badge preparing">Preparing</span>
+              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1039">Open</a>
+            </li>
+            <li class="v-rowi">
+              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
+              <div class="v-rowi-body">
+                <div class="v-rowi-title">#1037 · Fried rice, Kelewele</div>
+                <div class="v-rowi-sub">Yaw B. · Pickup · 12:02 pm</div>
+              </div>
+              <span class="v-badge ready">Ready</span>
+              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1037">Open</a>
+            </li>
+          </ul>
+        </div>
 
-        <div class="v-col">
-          <section class="card-box">
-            <div class="row between v-card-head">
-              <h3>Running low</h3>
-              <a href="products.html" class="small">Manage →</a>
-            </div>
-            <ul class="v-rank">
-              <li><span>Kelewele (small)</span><span class="badge warn">3 left</span></li>
-              <li><span>Sobolo (500 ml)</span><span class="badge warn">5 left</span></li>
-              <li><span>Meat pie</span><span class="badge danger">Sold out</span></li>
-            </ul>
-          </section>
-
-          <section class="card-box">
-            <h3>Best sellers this week</h3>
-            <ol class="v-rank">
-              <li><span>Jollof with chicken</span><span class="muted">64 sold</span>
-                <div class="v-rank-bar"><span style="width:100%"></span></div></li>
-              <li><span>Waakye special</span><span class="muted">41 sold</span>
-                <div class="v-rank-bar"><span style="width:64%"></span></div></li>
-              <li><span>Fried rice</span><span class="muted">29 sold</span>
-                <div class="v-rank-bar"><span style="width:45%"></span></div></li>
-            </ol>
-          </section>
+        <div class="v-card">
+          <div class="v-card-head">
+            <h3>Running low</h3>
+            <a class="v-link" href="products.html">Manage <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <ul class="v-rows">
+            <li class="v-rowi">
+              <span class="v-rowi-icon red"><i class="v-ic v-ic-alert" aria-hidden="true"></i></span>
+              <div class="v-rowi-body"><div class="v-rowi-title">Kelewele (small)</div><div class="v-rowi-sub">Snacks</div></div>
+              <span class="v-badge low">3 left</span>
+            </li>
+            <li class="v-rowi">
+              <span class="v-rowi-icon red"><i class="v-ic v-ic-alert" aria-hidden="true"></i></span>
+              <div class="v-rowi-body"><div class="v-rowi-title">Sobolo (500 ml)</div><div class="v-rowi-sub">Snacks</div></div>
+              <span class="v-badge low">5 left</span>
+            </li>
+            <li class="v-rowi">
+              <span class="v-rowi-icon black"><i class="v-ic v-ic-x-circle" aria-hidden="true"></i></span>
+              <div class="v-rowi-body"><div class="v-rowi-title">Meat pie</div><div class="v-rowi-sub">Snacks</div></div>
+              <span class="v-badge out">Sold out</span>
+            </li>
+          </ul>
         </div>
       </div>
-    </main>
-  </div>
+    </section>
+
+    <!-- ===== Best sellers as product cards ===== -->
+    <section class="v-sec" aria-labelledby="best-title">
+      <div class="v-sec-head">
+        <div>
+          <span class="v-eyebrow">Your menu</span>
+          <h2 id="best-title">Best sellers this week</h2>
+        </div>
+        <a class="v-link" href="products.html">View all products <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
+      </div>
+
+      <div class="v-pgrid">
+        <article class="v-pcard">
+          <div class="v-pcard-media">
+            <img src="../assets/images/placeholder.svg" alt="Jollof rice with chicken">
+            <span class="v-pcard-tag">On sale</span>
+            <a class="v-pcard-action" href="product-form.html?id=1" aria-label="Edit Jollof with chicken"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
+          </div>
+          <div class="v-pcard-body">
+            <div class="v-pcard-top"><span class="v-pcard-title">Jollof with chicken</span><span class="v-pcard-price">GH₵ 35</span></div>
+            <span class="v-chip">24 in stock</span>
+            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>64 sold</strong> this week</span>
+            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
+            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=1">Edit product</a>
+          </div>
+        </article>
+
+        <article class="v-pcard">
+          <div class="v-pcard-media">
+            <img src="../assets/images/placeholder.svg" alt="Waakye with egg and gari">
+            <span class="v-pcard-tag">On sale</span>
+            <a class="v-pcard-action" href="product-form.html?id=2" aria-label="Edit Waakye special"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
+          </div>
+          <div class="v-pcard-body">
+            <div class="v-pcard-top"><span class="v-pcard-title">Waakye special</span><span class="v-pcard-price">GH₵ 30</span></div>
+            <span class="v-chip">15 in stock</span>
+            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>41 sold</strong> this week</span>
+            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
+            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=2">Edit product</a>
+          </div>
+        </article>
+
+        <article class="v-pcard">
+          <div class="v-pcard-media">
+            <img src="../assets/images/placeholder.svg" alt="Fried rice">
+            <span class="v-pcard-tag">On sale</span>
+            <a class="v-pcard-action" href="product-form.html?id=7" aria-label="Edit Fried rice"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
+          </div>
+          <div class="v-pcard-body">
+            <div class="v-pcard-top"><span class="v-pcard-title">Fried rice</span><span class="v-pcard-price">GH₵ 30</span></div>
+            <span class="v-chip">18 in stock</span>
+            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>29 sold</strong> this week</span>
+            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
+            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=7">Edit product</a>
+          </div>
+        </article>
+
+        <article class="v-pcard">
+          <div class="v-pcard-media">
+            <img src="../assets/images/placeholder.svg" alt="Kelewele in a small cup">
+            <span class="v-pcard-tag">On sale</span>
+            <a class="v-pcard-action" href="product-form.html?id=3" aria-label="Edit Kelewele"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
+          </div>
+          <div class="v-pcard-body">
+            <div class="v-pcard-top"><span class="v-pcard-title">Kelewele (small)</span><span class="v-pcard-price">GH₵ 10</span></div>
+            <span class="v-chip red">Only 3 left</span>
+            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>22 sold</strong> this week</span>
+            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Snacks</span>
+            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=3">Edit product</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
 
   <!-- ===== Bottom menu (kit, phones only) ===== -->
   <nav class="bottom-nav" aria-label="Vendor menu">
     <div class="items">
-      <a href="index.html" aria-current="page"><span aria-hidden="true">🏠</span>Home</a>
-      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
-      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
-      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
-      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+      <a href="index.html" aria-current="page"><i class="v-ic v-ic-home" aria-hidden="true"></i>Home</a>
+      <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders</a>
+      <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+      <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+      <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
 

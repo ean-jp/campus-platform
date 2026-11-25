@@ -1,0 +1,131 @@
+{
+  "success": true,
+  "data": {
+    "today": {
+      "sales": 640.0,
+      "sales_change_pct": 12,
+      "orders": 18,
+      "orders_waiting": 4,
+      "products_listed": 12,
+      "products_sold_out": 2,
+      "rating_avg": 4.6,
+      "review_count": 38
+    },
+    "low_stock": [
+      {
+        "id": 3,
+        "name": "Kelewele (small)",
+        "stock": 3,
+        "status": "active"
+      },
+      {
+        "id": 5,
+        "name": "Sobolo (500 ml)",
+        "stock": 5,
+        "status": "active"
+      },
+      {
+        "id": 4,
+        "name": "Meat pie",
+        "stock": 0,
+        "status": "sold_out"
+      }
+    ],
+    "best_sellers": [
+      {
+        "name": "Jollof with chicken",
+        "sold": 64,
+        "revenue": 2240.0
+      },
+      {
+        "name": "Waakye special",
+        "sold": 41,
+        "revenue": 1230.0
+      },
+      {
+        "name": "Fried rice",
+        "sold": 29,
+        "revenue": 870.0
+      },
+      {
+        "name": "Kelewele (small)",
+        "sold": 22,
+        "revenue": 220.0
+      },
+      {
+        "name": "Sobolo (500 ml)",
+        "sold": 18,
+        "revenue": 126.0
+      }
+    ],
+    "period": {
+      "range": "week",
+      "total_sales": 3480.0,
+      "change_pct": 18,
+      "completed_orders": 104,
+      "cancelled_orders": 6,
+      "average_order": 33.0,
+      "busiest_time": "12-1 pm",
+      "sales_per_day": [
+        {
+          "date": "2026-11-17",
+          "total": 410
+        },
+        {
+          "date": "2026-11-18",
+          "total": 520
+        },
+        {
+          "date": "2026-11-19",
+          "total": 480
+        },
+        {
+          "date": "2026-11-20",
+          "total": 610
+        },
+        {
+          "date": "2026-11-21",
+          "total": 590
+        },
+        {
+          "date": "2026-11-22",
+          "total": 230
+        },
+        {
+          "date": "2026-11-23",
+          "total": 640
+        }
+      ]
+    },
+    "recent_completed": [
+      {
+        "id": 1036,
+        "completed_at": "2026-11-22T11:50:00",
+        "buyer": "Abena O.",
+        "payment_method": "momo",
+        "total": 35.0
+      },
+      {
+        "id": 1033,
+        "completed_at": "2026-11-22T11:12:00",
+        "buyer": "Guest",
+        "payment_method": "pay_on_delivery",
+        "total": 65.0
+      },
+      {
+        "id": 1030,
+        "completed_at": "2026-11-21T18:40:00",
+        "buyer": "Kwame D.",
+        "payment_method": "pay_on_pickup",
+        "total": 30.0
+      },
+      {
+        "id": 1028,
+        "completed_at": "2026-11-21T13:05:00",
+        "buyer": "Efua S.",
+        "payment_method": "momo",
+        "total": 47.0
+      }
+    ]
+  }
+}

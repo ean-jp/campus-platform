@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Clothes",
+      "slug": "clothes"
+    },
+    {
+      "id": 2,
+      "name": "Electronics",
+      "slug": "electronics"
+    },
+    {
+      "id": 3,
+      "name": "Snacks",
+      "slug": "snacks"
+    },
+    {
+      "id": 4,
+      "name": "Books",
+      "slug": "books"
+    },
+    {
+      "id": 5,
+      "name": "Food",
+      "slug": "food"
+    }
+  ]
+}

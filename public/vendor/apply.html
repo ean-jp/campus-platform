@@ -56,9 +56,10 @@
 
       <section class="v-sec" style="margin-top:32px">
         <!-- Shown after the form is sent (approval_status = pending) -->
-        <div class="v-alert info" role="status"><i class="v-ic v-ic-check-circle" aria-hidden="true"></i><span><strong>Request sent.</strong> We'll email you when the admin approves your shop.</span></div>
+        <!-- Shown by vendor/apply.js when this person already has a request -->
+        <div class="v-alert info" role="status" id="apply-status" hidden><i class="v-ic v-ic-check-circle" aria-hidden="true"></i><span id="apply-status-text"></span></div>
 
-        <form class="v-card" action="#" method="post">
+        <form class="v-card" action="#" method="post" id="apply-form" novalidate>
           <input type="hidden" name="csrf_token" value="">
           <span class="v-eyebrow">Your application</span>
           <h2 style="margin-bottom:24px">Tell us about your shop</h2>
@@ -110,12 +111,16 @@
             <label class="check"><input type="checkbox" name="agree" value="1" required> I agree to follow the campus marketplace rules.</label>
           </div>
 
-          <button class="v-btn v-btn-red v-btn-block" type="submit">Send request <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></button>
+          <button class="v-btn v-btn-red v-btn-block" type="submit" id="apply-btn">Send request</button>
           <div class="msg" role="status" aria-live="polite"></div>
         </form>
       </section>
     </div>
   </main>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/apply.js"></script>
 </body>
 </html>

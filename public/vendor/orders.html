@@ -36,134 +36,23 @@
       <div>
         <span class="v-eyebrow">Incoming</span>
         <h1>Orders</h1>
-        <p>Move each order along as you work on it. The buyer sees every change.</p>
+        <p>Move each order along as you work on it. The buyer is notified at every step.</p>
       </div>
+      <button class="v-btn v-btn-outline" type="button" id="refresh-btn"><i class="v-ic v-ic-trend" aria-hidden="true"></i>Refresh</button>
     </div>
 
-    <!-- Filter tabs (later: ?status=placed etc.) -->
+    <!-- Filter tabs: vendor/orders.js reloads from GET /api/v1/vendor/orders?status= -->
     <nav class="v-tabs" aria-label="Filter orders by status">
-      <a class="v-tab" href="orders.html" aria-current="true">Active (4)</a>
-      <a class="v-tab" href="orders.html?status=placed">New (2)</a>
-      <a class="v-tab" href="orders.html?status=preparing">Preparing (1)</a>
-      <a class="v-tab" href="orders.html?status=ready">Ready (1)</a>
-      <a class="v-tab" href="orders.html?status=completed">Completed</a>
-      <a class="v-tab" href="orders.html?status=cancelled">Cancelled</a>
+      <a class="v-tab" href="orders.html" data-status="active" aria-current="true">Active</a>
+      <a class="v-tab" href="orders.html?status=received" data-status="received">New</a>
+      <a class="v-tab" href="orders.html?status=preparing" data-status="preparing">Preparing</a>
+      <a class="v-tab" href="orders.html?status=ready" data-status="ready">Ready</a>
+      <a class="v-tab" href="orders.html?status=completed" data-status="completed">Completed</a>
+      <a class="v-tab" href="orders.html?status=cancelled" data-status="cancelled">Cancelled</a>
     </nav>
 
-    <div class="v-orders">
-
-      <!-- ===== NEW order, pickup ===== -->
-      <article class="v-card v-order" id="order-1042">
-        <div class="v-order-top">
-          <h3>Order #1042</h3>
-          <span class="v-badge new">New</span>
-        </div>
-        <div class="v-metas">
-          <span class="v-meta"><i class="v-ic v-ic-clock v-ic-sm" aria-hidden="true"></i>Today, 12:41 pm</span>
-          <span class="v-meta"><i class="v-ic v-ic-user v-ic-sm" aria-hidden="true"></i><strong>Kofi A.</strong> <i class="v-ic v-ic-shield v-ic-sm v-red" aria-hidden="true"></i>Ashesi</span>
-          <span class="v-meta"><i class="v-ic v-ic-bag v-ic-sm" aria-hidden="true"></i>Pickup</span>
-          <span class="v-meta"><i class="v-ic v-ic-wallet v-ic-sm" aria-hidden="true"></i>Pay on pickup</span>
-        </div>
-        <ol class="v-steps" aria-label="Order progress">
-          <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
-        </ol>
-        <ul class="v-items">
-          <li><span>2 × Jollof with chicken</span><span>GH₵ 70.00</span></li>
-        </ul>
-        <div class="v-total"><span>Total</span><span class="v-red">GH₵ 70.00</span></div>
-        <!-- Later: each button sends PATCH /api/v1/vendor/orders/1042 with the new status -->
-        <form class="v-actions" action="#" method="post">
-          <input type="hidden" name="csrf_token" value="">
-          <button class="v-btn v-btn-red" name="status" value="received"><i class="v-ic v-ic-check" aria-hidden="true"></i>Accept order</button>
-          <button class="v-btn v-btn-outline" name="status" value="cancelled">Decline</button>
-        </form>
-      </article>
-
-      <!-- ===== NEW order, delivery, guest ===== -->
-      <article class="v-card v-order" id="order-1041">
-        <div class="v-order-top">
-          <h3>Order #1041</h3>
-          <span class="v-badge new">New</span>
-        </div>
-        <div class="v-metas">
-          <span class="v-meta"><i class="v-ic v-ic-clock v-ic-sm" aria-hidden="true"></i>Today, 12:35 pm</span>
-          <span class="v-meta"><i class="v-ic v-ic-user v-ic-sm" aria-hidden="true"></i><strong>Guest</strong></span>
-          <span class="v-meta"><i class="v-ic v-ic-phone v-ic-sm" aria-hidden="true"></i>024 000 0000</span>
-          <span class="v-meta"><i class="v-ic v-ic-bike v-ic-sm" aria-hidden="true"></i>Delivery</span>
-          <span class="v-meta"><i class="v-ic v-ic-pin v-ic-sm" aria-hidden="true"></i>Hostel 2B, Room 14</span>
-          <span class="v-meta"><i class="v-ic v-ic-wallet v-ic-sm" aria-hidden="true"></i>Pay on delivery</span>
-        </div>
-        <ol class="v-steps" aria-label="Order progress">
-          <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
-        </ol>
-        <ul class="v-items">
-          <li><span>1 × Waakye special</span><span>GH₵ 30.00</span></li>
-          <li><span>Delivery fee</span><span>GH₵ 5.00</span></li>
-        </ul>
-        <div class="v-total"><span>Total</span><span class="v-red">GH₵ 35.00</span></div>
-        <form class="v-actions" action="#" method="post">
-          <input type="hidden" name="csrf_token" value="">
-          <button class="v-btn v-btn-red" name="status" value="received"><i class="v-ic v-ic-check" aria-hidden="true"></i>Accept order</button>
-          <button class="v-btn v-btn-outline" name="status" value="cancelled">Decline</button>
-        </form>
-      </article>
-
-      <!-- ===== PREPARING ===== -->
-      <article class="v-card v-order" id="order-1039">
-        <div class="v-order-top">
-          <h3>Order #1039</h3>
-          <span class="v-badge preparing">Preparing</span>
-        </div>
-        <div class="v-metas">
-          <span class="v-meta"><i class="v-ic v-ic-clock v-ic-sm" aria-hidden="true"></i>Today, 12:20 pm</span>
-          <span class="v-meta"><i class="v-ic v-ic-user v-ic-sm" aria-hidden="true"></i><strong>Esi M.</strong> <i class="v-ic v-ic-shield v-ic-sm v-red" aria-hidden="true"></i>Ashesi</span>
-          <span class="v-meta"><i class="v-ic v-ic-bag v-ic-sm" aria-hidden="true"></i>Pickup</span>
-          <span class="v-meta"><i class="v-ic v-ic-check-circle v-ic-sm" aria-hidden="true"></i>Paid (MoMo)</span>
-        </div>
-        <ol class="v-steps" aria-label="Order progress">
-          <li class="done">Placed</li><li class="done">Received</li><li class="current">Preparing</li><li>Ready</li><li>Completed</li>
-        </ol>
-        <ul class="v-items">
-          <li><span>3 × Sobolo (500 ml)</span><span>GH₵ 21.00</span></li>
-        </ul>
-        <div class="v-total"><span>Total</span><span class="v-red">GH₵ 21.00</span></div>
-        <form class="v-actions" action="#" method="post">
-          <input type="hidden" name="csrf_token" value="">
-          <button class="v-btn v-btn-black" name="status" value="ready"><i class="v-ic v-ic-check" aria-hidden="true"></i>Mark as ready</button>
-          <button class="v-btn v-btn-outline" name="status" value="cancelled">Cancel</button>
-        </form>
-      </article>
-
-      <!-- ===== READY: needs the buyer's pickup code to complete ===== -->
-      <article class="v-card v-order" id="order-1037">
-        <div class="v-order-top">
-          <h3>Order #1037</h3>
-          <span class="v-badge ready">Ready</span>
-        </div>
-        <div class="v-metas">
-          <span class="v-meta"><i class="v-ic v-ic-clock v-ic-sm" aria-hidden="true"></i>Today, 12:02 pm</span>
-          <span class="v-meta"><i class="v-ic v-ic-user v-ic-sm" aria-hidden="true"></i><strong>Yaw B.</strong> <i class="v-ic v-ic-shield v-ic-sm v-red" aria-hidden="true"></i>Ashesi</span>
-          <span class="v-meta"><i class="v-ic v-ic-bag v-ic-sm" aria-hidden="true"></i>Pickup</span>
-          <span class="v-meta"><i class="v-ic v-ic-wallet v-ic-sm" aria-hidden="true"></i>Pay on pickup</span>
-        </div>
-        <ol class="v-steps" aria-label="Order progress">
-          <li class="done">Placed</li><li class="done">Received</li><li class="done">Preparing</li><li class="current">Ready</li><li>Completed</li>
-        </ol>
-        <ul class="v-items">
-          <li><span>1 × Fried rice</span><span>GH₵ 30.00</span></li>
-          <li><span>1 × Kelewele (small)</span><span>GH₵ 10.00</span></li>
-        </ul>
-        <div class="v-total"><span>Total</span><span class="v-red">GH₵ 40.00</span></div>
-        <!-- The buyer shows a 4-digit code; the vendor types it here to finish the order -->
-        <form class="v-actions" action="#" method="post">
-          <input type="hidden" name="csrf_token" value="">
-          <label for="code-1037" class="sr-only">Buyer's pickup code</label>
-          <input class="input v-code" type="text" id="code-1037" name="pickup_code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="0000" required>
-          <button class="v-btn v-btn-red" name="status" value="completed"><i class="v-ic v-ic-check-circle" aria-hidden="true"></i>Complete order</button>
-        </form>
-      </article>
-
-    </div>
+    <!-- Order cards are built by vendor/orders.js -->
+    <div class="v-orders" id="order-list" aria-live="polite"></div>
   </main>
 
   <nav class="bottom-nav" aria-label="Vendor menu">
@@ -176,5 +65,9 @@
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/orders.js"></script>
 </body>
 </html>

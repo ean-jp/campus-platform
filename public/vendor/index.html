@@ -34,19 +34,19 @@
 
   <main class="page v-page">
 
-    <!-- ===== Hero ===== -->
+    <!-- ===== Hero (filled in by vendor/dashboard.js) ===== -->
     <section class="v-hero">
-      <span class="v-pill"><i class="v-ic v-ic-shield" aria-hidden="true"></i>Approved vendor · Ama's Kitchen</span>
-      <h1 class="v-display">Good afternoon, Ama.<br><span class="v-red">Your shop is open.</span></h1>
-      <p class="v-lead">4 orders are waiting for you and 2 products are running low. Everything you need for today is right here.</p>
+      <span class="v-pill"><i class="v-ic v-ic-shield" aria-hidden="true"></i><span id="hero-pill">Approved vendor</span></span>
+      <h1 class="v-display"><span id="hero-hello">Welcome back.</span><br><span class="v-red" id="hero-open">Your shop is open.</span></h1>
+      <p class="v-lead" id="hero-lead">Loading today's summary…</p>
       <div class="v-hero-actions">
         <a class="v-btn v-btn-red" href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>See waiting orders</a>
         <a class="v-btn v-btn-soft" href="product-form.html"><i class="v-ic v-ic-plus" aria-hidden="true"></i>Add a product</a>
       </div>
       <div class="v-trust">
-        <span><i class="v-ic v-ic-clock" aria-hidden="true"></i>Open until 6:00 pm</span>
-        <span><i class="v-ic v-ic-pin" aria-hidden="true"></i>Pickup at the main gate</span>
-        <span><i class="v-ic v-ic-star" aria-hidden="true"></i>4.6 from 38 reviews</span>
+        <span><i class="v-ic v-ic-clock" aria-hidden="true"></i><span id="trust-hours">Open hours not set</span></span>
+        <span><i class="v-ic v-ic-pin" aria-hidden="true"></i><span id="trust-place">Pickup spot not set</span></span>
+        <span><i class="v-ic v-ic-star" aria-hidden="true"></i><span id="trust-rating">No reviews yet</span></span>
       </div>
     </section>
 
@@ -63,36 +63,36 @@
         <a class="v-tile" href="sales.html">
           <span class="v-tile-icon"><i class="v-ic v-ic-wallet" aria-hidden="true"></i></span>
           <span class="v-tile-body">
-            <span class="v-tile-value">GH₵ 640</span>
+            <span class="v-tile-value" id="t-sales">–</span>
             <span class="v-tile-label">Sales today</span>
-            <span class="v-tile-note up">▲ 12% vs yesterday</span>
+            <span class="v-tile-note" id="t-sales-note">completed orders</span>
           </span>
           <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
         </a>
         <a class="v-tile" href="orders.html">
           <span class="v-tile-icon black"><i class="v-ic v-ic-receipt" aria-hidden="true"></i></span>
           <span class="v-tile-body">
-            <span class="v-tile-value">18</span>
+            <span class="v-tile-value" id="t-orders">–</span>
             <span class="v-tile-label">Orders today</span>
-            <span class="v-tile-note">4 waiting for you</span>
+            <span class="v-tile-note" id="t-orders-note">&nbsp;</span>
           </span>
           <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
         </a>
         <a class="v-tile" href="products.html">
           <span class="v-tile-icon"><i class="v-ic v-ic-package" aria-hidden="true"></i></span>
           <span class="v-tile-body">
-            <span class="v-tile-value">12</span>
+            <span class="v-tile-value" id="t-products">–</span>
             <span class="v-tile-label">Products listed</span>
-            <span class="v-tile-note">2 sold out</span>
+            <span class="v-tile-note" id="t-products-note">&nbsp;</span>
           </span>
           <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
         </a>
         <a class="v-tile" href="notifications.html">
           <span class="v-tile-icon black"><i class="v-ic v-ic-star" aria-hidden="true"></i></span>
           <span class="v-tile-body">
-            <span class="v-tile-value">4.6 ★</span>
+            <span class="v-tile-value" id="t-rating">–</span>
             <span class="v-tile-label">Average rating</span>
-            <span class="v-tile-note">from 38 reviews</span>
+            <span class="v-tile-note" id="t-rating-note">&nbsp;</span>
           </span>
           <i class="v-ic v-ic-arrow-right v-tile-arrow" aria-hidden="true"></i>
         </a>
@@ -108,146 +108,28 @@
         </div>
         <a class="v-link" href="orders.html">View all orders <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
       </div>
-
       <div class="v-grid">
-        <div class="v-card">
-          <ul class="v-rows">
-            <li class="v-rowi">
-              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
-              <div class="v-rowi-body">
-                <div class="v-rowi-title">#1042 · 2 × Jollof with chicken</div>
-                <div class="v-rowi-sub">Kofi A. · Pickup · 12:41 pm</div>
-              </div>
-              <span class="v-badge new">New</span>
-              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1042">Open</a>
-            </li>
-            <li class="v-rowi">
-              <span class="v-rowi-icon"><i class="v-ic v-ic-bike" aria-hidden="true"></i></span>
-              <div class="v-rowi-body">
-                <div class="v-rowi-title">#1041 · 1 × Waakye special</div>
-                <div class="v-rowi-sub">Guest · Delivery to Hostel 2B · 12:35 pm</div>
-              </div>
-              <span class="v-badge new">New</span>
-              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1041">Open</a>
-            </li>
-            <li class="v-rowi">
-              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
-              <div class="v-rowi-body">
-                <div class="v-rowi-title">#1039 · 3 × Sobolo (500 ml)</div>
-                <div class="v-rowi-sub">Esi M. · Pickup · 12:20 pm</div>
-              </div>
-              <span class="v-badge preparing">Preparing</span>
-              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1039">Open</a>
-            </li>
-            <li class="v-rowi">
-              <span class="v-rowi-icon"><i class="v-ic v-ic-bag" aria-hidden="true"></i></span>
-              <div class="v-rowi-body">
-                <div class="v-rowi-title">#1037 · Fried rice, Kelewele</div>
-                <div class="v-rowi-sub">Yaw B. · Pickup · 12:02 pm</div>
-              </div>
-              <span class="v-badge ready">Ready</span>
-              <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1037">Open</a>
-            </li>
-          </ul>
-        </div>
-
+        <div class="v-card"><div id="waiting-list"></div></div>
         <div class="v-card">
           <div class="v-card-head">
             <h3>Running low</h3>
             <a class="v-link" href="products.html">Manage <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
           </div>
-          <ul class="v-rows">
-            <li class="v-rowi">
-              <span class="v-rowi-icon red"><i class="v-ic v-ic-alert" aria-hidden="true"></i></span>
-              <div class="v-rowi-body"><div class="v-rowi-title">Kelewele (small)</div><div class="v-rowi-sub">Snacks</div></div>
-              <span class="v-badge low">3 left</span>
-            </li>
-            <li class="v-rowi">
-              <span class="v-rowi-icon red"><i class="v-ic v-ic-alert" aria-hidden="true"></i></span>
-              <div class="v-rowi-body"><div class="v-rowi-title">Sobolo (500 ml)</div><div class="v-rowi-sub">Snacks</div></div>
-              <span class="v-badge low">5 left</span>
-            </li>
-            <li class="v-rowi">
-              <span class="v-rowi-icon black"><i class="v-ic v-ic-x-circle" aria-hidden="true"></i></span>
-              <div class="v-rowi-body"><div class="v-rowi-title">Meat pie</div><div class="v-rowi-sub">Snacks</div></div>
-              <span class="v-badge out">Sold out</span>
-            </li>
-          </ul>
+          <div id="low-list"></div>
         </div>
       </div>
     </section>
 
-    <!-- ===== Best sellers as product cards ===== -->
+    <!-- ===== Best sellers ===== -->
     <section class="v-sec" aria-labelledby="best-title">
       <div class="v-sec-head">
         <div>
-          <span class="v-eyebrow">Your menu</span>
+          <span class="v-eyebrow">Your shop</span>
           <h2 id="best-title">Best sellers this week</h2>
         </div>
         <a class="v-link" href="products.html">View all products <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
       </div>
-
-      <div class="v-pgrid">
-        <article class="v-pcard">
-          <div class="v-pcard-media">
-            <img src="../assets/images/placeholder.svg" alt="Jollof rice with chicken">
-            <span class="v-pcard-tag">On sale</span>
-            <a class="v-pcard-action" href="product-form.html?id=1" aria-label="Edit Jollof with chicken"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
-          </div>
-          <div class="v-pcard-body">
-            <div class="v-pcard-top"><span class="v-pcard-title">Jollof with chicken</span><span class="v-pcard-price">GH₵ 35</span></div>
-            <span class="v-chip">24 in stock</span>
-            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>64 sold</strong> this week</span>
-            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=1">Edit product</a>
-          </div>
-        </article>
-
-        <article class="v-pcard">
-          <div class="v-pcard-media">
-            <img src="../assets/images/placeholder.svg" alt="Waakye with egg and gari">
-            <span class="v-pcard-tag">On sale</span>
-            <a class="v-pcard-action" href="product-form.html?id=2" aria-label="Edit Waakye special"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
-          </div>
-          <div class="v-pcard-body">
-            <div class="v-pcard-top"><span class="v-pcard-title">Waakye special</span><span class="v-pcard-price">GH₵ 30</span></div>
-            <span class="v-chip">15 in stock</span>
-            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>41 sold</strong> this week</span>
-            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=2">Edit product</a>
-          </div>
-        </article>
-
-        <article class="v-pcard">
-          <div class="v-pcard-media">
-            <img src="../assets/images/placeholder.svg" alt="Fried rice">
-            <span class="v-pcard-tag">On sale</span>
-            <a class="v-pcard-action" href="product-form.html?id=7" aria-label="Edit Fried rice"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
-          </div>
-          <div class="v-pcard-body">
-            <div class="v-pcard-top"><span class="v-pcard-title">Fried rice</span><span class="v-pcard-price">GH₵ 30</span></div>
-            <span class="v-chip">18 in stock</span>
-            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>29 sold</strong> this week</span>
-            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=7">Edit product</a>
-          </div>
-        </article>
-
-        <article class="v-pcard">
-          <div class="v-pcard-media">
-            <img src="../assets/images/placeholder.svg" alt="Kelewele in a small cup">
-            <span class="v-pcard-tag">On sale</span>
-            <a class="v-pcard-action" href="product-form.html?id=3" aria-label="Edit Kelewele"><i class="v-ic v-ic-edit" aria-hidden="true"></i></a>
-          </div>
-          <div class="v-pcard-body">
-            <div class="v-pcard-top"><span class="v-pcard-title">Kelewele (small)</span><span class="v-pcard-price">GH₵ 10</span></div>
-            <span class="v-chip red">Only 3 left</span>
-            <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>22 sold</strong> this week</span>
-            <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Snacks</span>
-            <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=3">Edit product</a>
-          </div>
-        </article>
-      </div>
+      <div class="v-pgrid" id="best-grid"></div>
     </section>
   </main>
 
@@ -262,5 +144,9 @@
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/dashboard.js"></script>
 </body>
 </html>

@@ -34,20 +34,19 @@
     <div class="v-pagehead">
       <div>
         <a href="products.html" class="v-back"><i class="v-ic v-ic-arrow-left v-ic-sm" aria-hidden="true"></i>Back to my products</a>
-        <span class="v-eyebrow">New listing</span>
-        <h1>Add a product</h1>
-        <p>The same form is used for editing. Fields marked * are required.</p>
+        <span class="v-eyebrow" id="form-eyebrow">New listing</span>
+        <h1 id="form-title">Add a product</h1>
+        <p>Fields marked * are required.</p>
       </div>
     </div>
 
     <!--
-      Later: this form posts to the API.
-      enctype="multipart/form-data" is needed so photos can be uploaded.
-      The input "name" values match the columns in the items table.
+      vendor/product-form.js sends this to POST /api/v1/vendor/items (new)
+      or PATCH /api/v1/vendor/items/{id} (edit), then uploads the photos.
+      The input names match what the API expects.
     -->
-    <form action="#" method="post" enctype="multipart/form-data" class="v-grid">
+    <form id="product-form" action="#" method="post" enctype="multipart/form-data" class="v-grid" novalidate>
       <input type="hidden" name="csrf_token" value="">
-      <input type="hidden" name="id" value="">
 
       <div class="v-col">
         <section class="v-card">
@@ -55,59 +54,67 @@
 
           <div class="field">
             <label for="name">Product name *</label>
-            <input class="input" type="text" id="name" name="name" maxlength="100" required placeholder="e.g. Jollof with chicken">
-            <span class="error" id="name-error"></span>
+            <input class="input" type="text" id="name" name="name" maxlength="150" required placeholder="e.g. Wireless earbuds, Canvas tote bag">
+            <span class="error"></span>
           </div>
 
-          <div class="field">
-            <label for="category_id">Category *</label>
-            <select class="select" id="category_id" name="category_id" required>
-              <option value="">Choose a category</option>
-              <option value="1">Clothes</option>
-              <option value="2">Electronics</option>
-              <option value="3">Snacks</option>
-              <option value="4">Books</option>
-              <option value="5">Food</option>
-            </select>
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="category_id">Category *</label>
+              <select class="select" id="category_id" name="category_id" required>
+                <option value="">Choose a category</option>
+              </select>
+              <span class="error"></span>
+            </div>
+            <div class="field">
+              <label for="condition">Condition</label>
+              <select class="select" id="condition" name="condition">
+                <option value="">Not stated</option>
+                <option value="new">New</option>
+                <option value="like_new">Like new</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+              </select>
+              <span class="hint">Buyers see this on the product card.</span>
+              <span class="error"></span>
+            </div>
           </div>
 
           <div class="field">
             <label for="description">Description *</label>
-            <textarea class="textarea" id="description" name="description" maxlength="1000" required placeholder="What's included, size, spice level, condition..."></textarea>
-            <span class="hint">Up to 1,000 characters.</span>
+            <textarea class="textarea" id="description" name="description" maxlength="1000" required placeholder="What it is, size or model, what's included, any marks or wear..."></textarea>
+            <span class="hint"><span id="desc-count">0</span> / 1,000 characters</span>
+            <span class="error"></span>
           </div>
 
           <div class="grid cols-2">
             <div class="field">
               <label for="price">Price (GH₵) *</label>
-              <input class="input" type="number" id="price" name="price" min="0.50" step="0.50" required placeholder="35.00">
+              <input class="input" type="number" id="price" name="price" min="0.50" step="0.01" required placeholder="45.00" inputmode="decimal">
+              <span class="error"></span>
             </div>
-            <div class="field">
-              <label for="stock">Number in stock *</label>
-              <input class="input" type="number" id="stock" name="stock" min="0" step="1" required placeholder="20">
-              <span class="hint">Set to 0 to show it as sold out.</span>
+            <div class="field" id="stock">
+              <label for="stock-input">Number in stock *</label>
+              <input class="input" type="number" id="stock-input" name="stock" min="0" step="1" required placeholder="10" inputmode="numeric">
+              <span class="hint">At 0 it shows as sold out automatically.</span>
+              <span class="error"></span>
             </div>
           </div>
         </section>
 
         <section class="v-card">
-          <div class="v-card-head"><h3>Photos</h3></div>
-          <div class="v-drop">
-            <span class="v-tile-icon"><i class="v-ic v-ic-upload" aria-hidden="true"></i></span>
-            <label for="images"><strong>Add up to 4 photos</strong></label>
-            <span class="muted" style="font-size:13px">JPG, PNG or WebP · max 2 MB each · the first photo is the cover</span><br>
-            <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
+          <div class="v-card-head"><h3>Photos</h3><span class="v-chip" id="photo-count">0 / 4</span></div>
+          <div class="field" style="margin:0">
+            <div class="v-drop">
+              <span class="v-tile-icon"><i class="v-ic v-ic-upload" aria-hidden="true"></i></span>
+              <label for="images"><strong>Add up to 4 photos</strong></label>
+              <span class="muted" style="font-size:13px">JPG, PNG or WebP · max 2 MB each · the first photo is the cover</span><br>
+              <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
+            </div>
+            <span class="error"></span>
           </div>
-          <div class="v-previews">
-            <figure>
-              <img src="../assets/images/placeholder.svg" alt="Preview of uploaded photo 1">
-              <figcaption>Cover</figcaption>
-            </figure>
-            <figure>
-              <img src="../assets/images/placeholder.svg" alt="Preview of uploaded photo 2">
-              <figcaption>Photo 2</figcaption>
-            </figure>
-          </div>
+          <!-- saved photos (with remove buttons) and photos waiting to upload -->
+          <div class="v-previews" id="previews" aria-live="polite"></div>
         </section>
       </div>
 
@@ -117,31 +124,31 @@
           <fieldset class="v-options" style="border:0;padding:0;margin:0">
             <legend class="sr-only">Product status</legend>
             <label class="v-option"><input type="radio" name="status" value="active" checked><span><strong>On sale</strong><span>Buyers can see and order it</span></span></label>
-            <label class="v-option"><input type="radio" name="status" value="sold_out"><span><strong>Sold out</strong><span>Shown, but can't be ordered</span></span></label>
-            <label class="v-option"><input type="radio" name="status" value="hidden"><span><strong>Hidden</strong><span>Buyers can't see it at all</span></span></label>
+            <label class="v-option"><input type="radio" name="status" value="hidden"><span><strong>Hidden</strong><span>Only you can see it. Good for drafts.</span></span></label>
           </fieldset>
         </section>
 
         <section class="v-card">
-          <div class="v-card-head"><h3>Food options</h3></div>
-          <p class="muted" style="font-size:13.5px">Only for products in the Food category.</p>
-          <div class="stack">
-            <label class="check"><input type="checkbox" name="allow_pickup" value="1" checked> Pickup available</label>
-            <label class="check"><input type="checkbox" name="allow_delivery" value="1" checked> Delivery on campus</label>
+          <div class="v-card-head"><h3>How buyers get it</h3></div>
+          <div class="field" style="margin:0">
+            <div class="stack">
+              <label class="check"><input type="checkbox" name="allow_pickup" value="1" checked> Pickup or meet-up on campus</label>
+              <label class="check"><input type="checkbox" name="allow_delivery" value="1"> I can deliver to hostels</label>
+            </div>
+            <span class="error"></span>
           </div>
         </section>
 
         <div class="v-form-actions">
           <a class="v-btn v-btn-outline" href="products.html">Cancel</a>
-          <button class="v-btn v-btn-red" type="submit"><i class="v-ic v-ic-check" aria-hidden="true"></i>Save product</button>
+          <button class="v-btn v-btn-red" type="submit" id="save-btn">Save product</button>
         </div>
-        <div class="msg" role="status" aria-live="polite"></div>
 
-        <!-- Delete only shows when editing an existing product -->
-        <section class="v-card">
+        <!-- Only shown when editing a product -->
+        <section class="v-card" id="delete-card" hidden>
           <div class="v-card-head"><h3>Delete product</h3></div>
-          <p class="muted" style="font-size:13.5px">Old orders keep their details, but buyers won't see this product any more.</p>
-          <button class="v-btn v-btn-text-red" type="button"><i class="v-ic v-ic-trash" aria-hidden="true"></i>Delete this product</button>
+          <p class="muted" style="font-size:13.5px">Buyers won't see it any more. Past orders keep their details.</p>
+          <button class="v-btn v-btn-text-red" type="button" id="delete-btn"><i class="v-ic v-ic-trash" aria-hidden="true"></i>Delete this product</button>
         </section>
       </div>
     </form>
@@ -157,5 +164,9 @@
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/product-form.js"></script>
 </body>
 </html>

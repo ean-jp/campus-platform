@@ -36,139 +36,35 @@
       <div>
         <span class="v-eyebrow">My shop</span>
         <h1>My products</h1>
-        <p>12 products · 2 sold out · 1 hidden</p>
+        <p id="product-summary">Loading your products…</p>
       </div>
       <a class="v-btn v-btn-red" href="product-form.html"><i class="v-ic v-ic-plus" aria-hidden="true"></i>Add product</a>
     </div>
 
-    <!-- Search + filters (later: GET /api/v1/vendor/items?q=&category=&status=) -->
-    <form action="products.html" method="get" role="search">
+    <!-- Search + filters: vendor/products.js reloads the grid from GET /api/v1/vendor/items -->
+    <form id="product-filters" action="products.html" method="get" role="search">
       <div class="v-search">
         <i class="v-ic v-ic-search" aria-hidden="true"></i>
         <label for="q" class="sr-only">Search your products</label>
-        <input type="search" id="q" name="q" placeholder="Search your products...">
+        <input type="search" id="q" name="q" placeholder="Search your products..." autocomplete="off">
         <button class="v-btn v-btn-red" type="submit"><i class="v-ic v-ic-search" aria-hidden="true"></i><span class="v-btn-label">Search</span></button>
       </div>
       <div class="v-filters">
         <nav class="v-tabs" aria-label="Filter by status">
-          <a class="v-tab" href="products.html" aria-current="true">All (12)</a>
-          <a class="v-tab" href="products.html?status=active">On sale (9)</a>
-          <a class="v-tab" href="products.html?status=sold_out">Sold out (2)</a>
-          <a class="v-tab" href="products.html?status=hidden">Hidden (1)</a>
+          <a class="v-tab" href="products.html" data-status="" aria-current="true">All</a>
+          <a class="v-tab" href="products.html?status=active" data-status="active">On sale</a>
+          <a class="v-tab" href="products.html?status=sold_out" data-status="sold_out">Sold out</a>
+          <a class="v-tab" href="products.html?status=hidden" data-status="hidden">Hidden</a>
         </nav>
         <label for="filter-category" class="sr-only">Category</label>
-        <select class="select" id="filter-category" name="category">
+        <select class="select" id="filter-category" name="category_id">
           <option value="">All categories</option>
-          <option value="food">Food</option>
-          <option value="snacks">Snacks</option>
-          <option value="clothes">Clothes</option>
-          <option value="electronics">Electronics</option>
-          <option value="books">Books</option>
         </select>
       </div>
     </form>
 
-    <div class="v-pgrid">
-      <!-- One card per product. Later these are built by JavaScript from the API. -->
-      <article class="v-pcard">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Jollof rice with chicken">
-          <span class="v-pcard-tag">On sale</span>
-          <button class="v-pcard-action" type="button" aria-label="Hide Jollof with chicken from buyers"><i class="v-ic v-ic-eye-off" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Jollof with chicken</span><span class="v-pcard-price">GH₵ 35</span></div>
-          <span class="v-chip">24 in stock</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-          <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>64 sold</strong> this week</span>
-          <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=1"><i class="v-ic v-ic-edit" aria-hidden="true"></i>Edit product</a>
-        </div>
-      </article>
-
-      <article class="v-pcard">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Waakye with egg and gari">
-          <span class="v-pcard-tag">On sale</span>
-          <button class="v-pcard-action" type="button" aria-label="Hide Waakye special from buyers"><i class="v-ic v-ic-eye-off" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Waakye special</span><span class="v-pcard-price">GH₵ 30</span></div>
-          <span class="v-chip">15 in stock</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-          <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>41 sold</strong> this week</span>
-          <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=2"><i class="v-ic v-ic-edit" aria-hidden="true"></i>Edit product</a>
-        </div>
-      </article>
-
-      <article class="v-pcard">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Kelewele in a small cup">
-          <span class="v-pcard-tag">On sale</span>
-          <button class="v-pcard-action" type="button" aria-label="Hide Kelewele from buyers"><i class="v-ic v-ic-eye-off" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Kelewele (small)</span><span class="v-pcard-price">GH₵ 10</span></div>
-          <span class="v-chip red">Only 3 left</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Snacks</span>
-          <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>22 sold</strong> this week</span>
-          <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=3"><i class="v-ic v-ic-edit" aria-hidden="true"></i>Edit product</a>
-        </div>
-      </article>
-
-      <article class="v-pcard is-off">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Meat pie">
-          <span class="v-pcard-tag sold">Sold out</span>
-          <button class="v-pcard-action" type="button" aria-label="Hide Meat pie from buyers"><i class="v-ic v-ic-eye-off" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Meat pie</span><span class="v-pcard-price">GH₵ 8</span></div>
-          <span class="v-chip black">0 in stock</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Snacks</span>
-          <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>30 sold</strong> this week</span>
-          <a class="v-btn v-btn-red v-btn-block" href="product-form.html?id=4"><i class="v-ic v-ic-plus" aria-hidden="true"></i>Restock</a>
-        </div>
-      </article>
-
-      <article class="v-pcard">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Bottle of sobolo drink">
-          <span class="v-pcard-tag">On sale</span>
-          <button class="v-pcard-action" type="button" aria-label="Hide Sobolo from buyers"><i class="v-ic v-ic-eye-off" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Sobolo (500 ml)</span><span class="v-pcard-price">GH₵ 7</span></div>
-          <span class="v-chip red">Only 5 left</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Snacks</span>
-          <span class="v-meta"><i class="v-ic v-ic-trend v-ic-sm" aria-hidden="true"></i><strong>18 sold</strong> this week</span>
-          <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=5"><i class="v-ic v-ic-edit" aria-hidden="true"></i>Edit product</a>
-        </div>
-      </article>
-
-      <article class="v-pcard is-off">
-        <div class="v-pcard-media">
-          <img src="../assets/images/placeholder.svg" alt="Banku and tilapia">
-          <span class="v-pcard-tag hidden">Hidden</span>
-          <button class="v-pcard-action" type="button" aria-label="Show Banku and tilapia to buyers"><i class="v-ic v-ic-eye" aria-hidden="true"></i></button>
-        </div>
-        <div class="v-pcard-body">
-          <div class="v-pcard-top"><span class="v-pcard-title">Banku &amp; tilapia</span><span class="v-pcard-price">GH₵ 55</span></div>
-          <span class="v-chip">10 in stock</span>
-          <span class="v-meta"><i class="v-ic v-ic-tag v-ic-sm" aria-hidden="true"></i>Food</span>
-          <span class="v-meta"><i class="v-ic v-ic-eye-off v-ic-sm" aria-hidden="true"></i>Buyers can't see this</span>
-          <a class="v-btn v-btn-outline v-btn-block" href="product-form.html?id=6"><i class="v-ic v-ic-edit" aria-hidden="true"></i>Edit product</a>
-        </div>
-      </article>
-    </div>
-
-    <!-- Shown instead of the grid when the vendor has no products yet (kit's .empty) -->
-    <!--
-    <div class="empty">
-      <h3>No products yet</h3>
-      <p>Add your first product so buyers can find you.</p>
-      <a class="v-btn v-btn-red" href="product-form.html">Add product</a>
-    </div>
-    -->
+    <!-- Cards are built by vendor/products.js (V.productCard) -->
+    <div class="v-pgrid" id="product-grid" aria-live="polite"></div>
   </main>
 
   <nav class="bottom-nav" aria-label="Vendor menu">
@@ -181,5 +77,9 @@
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/products.js"></script>
 </body>
 </html>

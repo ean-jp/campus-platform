@@ -36,15 +36,13 @@
       <div>
         <span class="v-eyebrow">Settings</span>
         <h1>Shop profile</h1>
-        <p>This is what buyers see on your shop page.</p>
+        <p>This is what buyers see about your shop.</p>
       </div>
-      <a class="v-btn v-btn-outline" href="../vendor-shop.html?id=7"><i class="v-ic v-ic-eye" aria-hidden="true"></i>View my shop as a buyer</a>
+      <span class="v-badge" id="open-badge">…</span>
     </div>
 
-    <!-- Example message after saving -->
-    <div class="v-alert ok" role="status"><i class="v-ic v-ic-check-circle" aria-hidden="true"></i>Your changes were saved.</div>
-
-    <form action="#" method="post" enctype="multipart/form-data" class="v-grid even">
+    <!-- vendor/profile.js loads GET /api/v1/vendor/profile and saves with PATCH -->
+    <form id="profile-form" class="v-grid even" novalidate>
       <input type="hidden" name="csrf_token" value="">
 
       <section class="v-card">
@@ -52,97 +50,73 @@
 
         <div class="field">
           <label for="business_name">Shop name *</label>
-          <input class="input" type="text" id="business_name" name="business_name" value="Ama's Kitchen" maxlength="80" required>
+          <input class="input" type="text" id="business_name" name="business_name" maxlength="120" required>
+          <span class="error"></span>
         </div>
 
         <div class="field">
-          <label for="vendor_description">About your shop</label>
-          <textarea class="textarea" id="vendor_description" name="description" maxlength="500">Home-style Ghanaian lunches cooked fresh every morning. Pickup at the main gate or delivery to any hostel.</textarea>
+          <label for="description">About your shop</label>
+          <textarea class="textarea" id="description" name="description" maxlength="500" placeholder="What you sell and anything buyers should know."></textarea>
+          <span class="error"></span>
         </div>
 
         <div class="grid cols-2">
           <div class="field">
             <label for="phone">Contact phone *</label>
-            <input class="input" type="tel" id="phone" name="phone" value="024 000 0000" required>
-            <span class="hint">Shown to buyers only on their own orders.</span>
+            <input class="input" type="tel" id="phone" name="phone" required placeholder="024 000 0000">
+            <span class="hint">Buyers only see it on their own orders.</span>
+            <span class="error"></span>
           </div>
           <div class="field">
-            <label for="location">Pickup location *</label>
-            <input class="input" type="text" id="location" name="location" value="Main gate food stand" required>
+            <label for="location">Pickup spot *</label>
+            <input class="input" type="text" id="location" name="location" maxlength="150" required placeholder="e.g. Hostel 2B common room">
+            <span class="error"></span>
           </div>
         </div>
 
         <div class="field">
           <label>Shop type</label>
-          <span class="v-chips"><span class="v-chip black">Off-campus vendor</span><span class="v-meta"><i class="v-ic v-ic-shield v-ic-sm v-red" aria-hidden="true"></i>Set by the admin</span></span>
-        </div>
-
-        <div class="field">
-          <label for="logo">Shop logo</label>
-          <div class="row">
-            <span class="v-brand-tile" style="width:56px;height:56px;border-radius:16px"><i class="v-ic v-ic-store" aria-hidden="true"></i></span>
-            <input type="file" id="logo" name="logo" accept="image/jpeg,image/png,image/webp" style="font:500 13px var(--v-font);color:var(--v-mut)">
-          </div>
+          <span class="v-chips"><span class="v-chip black" id="shop-type">Student vendor</span><span class="v-meta"><i class="v-ic v-ic-shield v-ic-sm v-red" aria-hidden="true"></i>Set by the admin</span></span>
         </div>
       </section>
 
-      <section class="v-card">
-        <div class="v-card-head">
-          <h3>Opening hours</h3>
-          <span class="v-badge ready">Open now</span>
-        </div>
-        <p class="muted" style="font-size:13.5px">Buyers can only order food while you're open.</p>
+      <div class="v-col">
+        <section class="v-card">
+          <div class="v-card-head"><h3>Opening hours</h3></div>
+          <p class="muted" style="font-size:13.5px">Buyers see "Open now" or "Closed" on your shop. Leave both empty if you're open any time.</p>
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="opens_at">Opens at</label>
+              <input class="input" type="time" id="opens_at" name="opens_at">
+              <span class="error"></span>
+            </div>
+            <div class="field">
+              <label for="closes_at">Closes at</label>
+              <input class="input" type="time" id="closes_at" name="closes_at">
+              <span class="error"></span>
+            </div>
+          </div>
+        </section>
 
-        <!-- name="hours[mon][open]" etc. becomes the opening_hours JSON column -->
-        <div class="v-hours-row">
-          <span class="v-day">Monday</span>
-          <label class="sr-only" for="mon-open">Monday opens</label><input class="input" type="time" id="mon-open" name="hours[mon][open]" value="08:00">
-          <label class="sr-only" for="mon-close">Monday closes</label><input class="input" type="time" id="mon-close" name="hours[mon][close]" value="18:00">
-          <label class="check"><input type="checkbox" name="hours[mon][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Tuesday</span>
-          <label class="sr-only" for="tue-open">Tuesday opens</label><input class="input" type="time" id="tue-open" name="hours[tue][open]" value="08:00">
-          <label class="sr-only" for="tue-close">Tuesday closes</label><input class="input" type="time" id="tue-close" name="hours[tue][close]" value="18:00">
-          <label class="check"><input type="checkbox" name="hours[tue][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Wednesday</span>
-          <label class="sr-only" for="wed-open">Wednesday opens</label><input class="input" type="time" id="wed-open" name="hours[wed][open]" value="08:00">
-          <label class="sr-only" for="wed-close">Wednesday closes</label><input class="input" type="time" id="wed-close" name="hours[wed][close]" value="18:00">
-          <label class="check"><input type="checkbox" name="hours[wed][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Thursday</span>
-          <label class="sr-only" for="thu-open">Thursday opens</label><input class="input" type="time" id="thu-open" name="hours[thu][open]" value="08:00">
-          <label class="sr-only" for="thu-close">Thursday closes</label><input class="input" type="time" id="thu-close" name="hours[thu][close]" value="18:00">
-          <label class="check"><input type="checkbox" name="hours[thu][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Friday</span>
-          <label class="sr-only" for="fri-open">Friday opens</label><input class="input" type="time" id="fri-open" name="hours[fri][open]" value="08:00">
-          <label class="sr-only" for="fri-close">Friday closes</label><input class="input" type="time" id="fri-close" name="hours[fri][close]" value="18:00">
-          <label class="check"><input type="checkbox" name="hours[fri][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Saturday</span>
-          <label class="sr-only" for="sat-open">Saturday opens</label><input class="input" type="time" id="sat-open" name="hours[sat][open]" value="10:00">
-          <label class="sr-only" for="sat-close">Saturday closes</label><input class="input" type="time" id="sat-close" name="hours[sat][close]" value="15:00">
-          <label class="check"><input type="checkbox" name="hours[sat][closed]" value="1"> Closed</label>
-        </div>
-        <div class="v-hours-row">
-          <span class="v-day">Sunday</span>
-          <label class="sr-only" for="sun-open">Sunday opens</label><input class="input" type="time" id="sun-open" name="hours[sun][open]" value="">
-          <label class="sr-only" for="sun-close">Sunday closes</label><input class="input" type="time" id="sun-close" name="hours[sun][close]" value="">
-          <label class="check"><input type="checkbox" name="hours[sun][closed]" value="1" checked> Closed</label>
-        </div>
-
-        <label class="v-option" style="margin:18px 0"><input type="checkbox" name="pause_orders" value="1"><span><strong>Pause new orders</strong><span>For when food runs out or you need a break</span></span></label>
+        <section class="v-card">
+          <div class="v-card-head"><h3>Shop logo</h3></div>
+          <div class="field" style="margin:0">
+            <div class="row">
+              <img id="logo-img" src="../assets/images/placeholder.svg" alt="Your shop logo" style="width:72px;height:72px;border-radius:16px;object-fit:cover;border:1px solid var(--v-line)">
+              <div>
+                <label for="logo" class="v-btn v-btn-outline v-btn-sm" style="cursor:pointer"><i class="v-ic v-ic-upload" aria-hidden="true"></i>Choose a picture</label>
+                <input type="file" id="logo" name="logo" accept="image/jpeg,image/png,image/webp" class="sr-only">
+                <div class="muted" style="font-size:12.5px;margin-top:6px">JPG, PNG or WebP · max 2 MB · saves straight away</div>
+              </div>
+            </div>
+            <span class="error"></span>
+          </div>
+        </section>
 
         <div class="v-form-actions">
-          <button class="v-btn v-btn-red" type="submit"><i class="v-ic v-ic-check" aria-hidden="true"></i>Save changes</button>
+          <button class="v-btn v-btn-red" type="submit" id="save-btn">Save changes</button>
         </div>
-      </section>
+      </div>
     </form>
   </main>
 
@@ -155,11 +129,9 @@
       <a href="profile.html" aria-current="page"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
-
-  <!-- Stage 3: this page still shows sample numbers. common.js fills the header and checks the login. -->
   <script src="../assets/js/ui.js"></script>
   <script src="../assets/js/api.js"></script>
   <script src="../assets/js/vendor/common.js"></script>
-  <script>V.boot().catch(function () {});</script>
+  <script src="../assets/js/vendor/profile.js"></script>
 </body>
 </html>

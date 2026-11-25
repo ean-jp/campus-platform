@@ -156,6 +156,45 @@ abstract class VendorBase
         return $parts[0] . ' ' . mb_strtoupper(mb_substr(end($parts), 0, 1)) . '.';
     }
 
+    /**
+     * Check and save one uploaded picture into public/uploads/<folder>/ (P4, Stage 3).
+     * Same rules as product photos: real JPG/PNG/WebP, max 2 MB, random file name.
+     * Returns the path to store, e.g. "uploads/logos/ab12....jpg". Stops with 422 if it's not OK.
+     */
+    protected function saveImage(array $f, string $folder, string $field): string
+    {
+        $types = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp'];
+        if (in_array($f['error'], [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true) || $f['size'] > 2 * 1024 * 1024) {
+            $this->invalid([$field => 'The picture is bigger than 2 MB.']);
+        }
+        if ($f['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($f['tmp_name'])) {
+            $this->invalid([$field => 'The picture could not be uploaded. Please try again.']);
+        }
+        $mime = (new \finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']);
+        if (!isset($types[$mime]) || @getimagesize($f['tmp_name']) === false) {
+            $this->invalid([$field => 'Use a JPG, PNG or WebP picture.']);
+        }
+        $dir = BASE_PATH . '/public/uploads/' . $folder;
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        $name = bin2hex(random_bytes(16)) . '.' . $types[$mime];
+        if (!move_uploaded_file($f['tmp_name'], "$dir/$name")) {
+            $this->fail(500, 'UPLOAD_FAILED', 'The picture could not be saved. Please try again.');
+        }
+        return "uploads/$folder/$name";
+    }
+
+    /** Delete an uploaded file, but only if it really is inside public/uploads. */
+    protected function deleteUpload(string $relative): void
+    {
+        $base = realpath(BASE_PATH . '/public/uploads');
+        $path = realpath(BASE_PATH . '/public/' . $relative);
+        if ($base && $path && str_starts_with($path, $base . DIRECTORY_SEPARATOR) && is_file($path)) {
+            @unlink($path);
+        }
+    }
+
     /** Add a row to the notifications table (shown in the bell). */
     protected function notify(int $userId, string $type, string $message, ?string $link = null): void
     {

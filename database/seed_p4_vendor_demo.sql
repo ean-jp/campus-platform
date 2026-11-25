@@ -47,3 +47,25 @@ INSERT INTO order_items (order_id, item_id, item_name, unit_price, quantity) VAL
 (9004, 102, 'Intro to Economics Textbook', 90.00, 1),
 (9005, 32, 'Kente Tote Bag', 70.00, 1),
 (9006, 31, 'Kente Bracelet', 20.00, 1);
+
+-- Stage 3: a week of completed orders for the Sales page, and some notifications for the bell
+DELETE FROM notifications WHERE user_id = 8;
+INSERT INTO orders (id, user_id, vendor_id, status, total, fulfilment, pickup_code, created_at, updated_at) VALUES
+(9010, 2, 5, 'completed', 180.00, 'pickup',   '1111', NOW() - INTERVAL 6 DAY - INTERVAL 3 HOUR, NOW() - INTERVAL 6 DAY - INTERVAL 2 HOUR),
+(9011, 3, 5, 'completed',  45.00, 'delivery', '1112', NOW() - INTERVAL 5 DAY - INTERVAL 5 HOUR, NOW() - INTERVAL 5 DAY - INTERVAL 4 HOUR),
+(9012, 2, 5, 'completed', 140.00, 'pickup',   '1113', NOW() - INTERVAL 4 DAY - INTERVAL 2 HOUR, NOW() - INTERVAL 4 DAY - INTERVAL 1 HOUR),
+(9013, 3, 5, 'completed',  90.00, 'pickup',   '1114', NOW() - INTERVAL 3 DAY - INTERVAL 6 HOUR, NOW() - INTERVAL 3 DAY - INTERVAL 5 HOUR),
+(9014, 2, 5, 'completed', 240.00, 'pickup',   '1115', NOW() - INTERVAL 2 DAY - INTERVAL 4 HOUR, NOW() - INTERVAL 2 DAY - INTERVAL 3 HOUR),
+(9015, 2, 5, 'completed',  30.00, 'delivery', '1116', NOW() - INTERVAL 10 DAY,                  NOW() - INTERVAL 10 DAY + INTERVAL 1 HOUR);
+INSERT INTO order_items (order_id, item_id, item_name, unit_price, quantity) VALUES
+(9010, 101, 'Wireless Earbuds', 180.00, 1),
+(9011, 103, 'Chin Chin Pack', 15.00, 3),
+(9012, 32, 'Kente Tote Bag', 70.00, 2),
+(9013, 102, 'Intro to Economics Textbook', 90.00, 1),
+(9014, 33, 'Campus Hoodie', 120.00, 2),
+(9015, 103, 'Chin Chin Pack', 15.00, 2);
+INSERT INTO notifications (user_id, type, message, link, is_read, created_at) VALUES
+(8, 'vendor_approved', 'Your shop Kente Corner was approved. You can now add products.', 'vendor/products.html', 1, NOW() - INTERVAL 9 DAY),
+(8, 'order_new', 'New order #9004 from Ama M.', 'vendor/orders.html#order-9004', 1, NOW() - INTERVAL 2 HOUR),
+(8, 'order_new', 'New order #9002 (delivery to Hostel 3)', 'vendor/orders.html#order-9002', 0, NOW() - INTERVAL 25 MINUTE),
+(8, 'order_new', 'New order #9001 from Ama M.', 'vendor/orders.html#order-9001', 0, NOW() - INTERVAL 12 MINUTE);

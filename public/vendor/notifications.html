@@ -36,62 +36,14 @@
       <div>
         <span class="v-eyebrow">Updates</span>
         <h1>Notifications</h1>
-        <p>3 unread</p>
+        <p id="unread-text">Loading…</p>
       </div>
-      <form action="#" method="post">
-        <input type="hidden" name="csrf_token" value="">
-        <button class="v-btn v-btn-outline" type="submit"><i class="v-ic v-ic-check" aria-hidden="true"></i>Mark all as read</button>
-      </form>
+      <button class="v-btn v-btn-outline" type="button" id="read-all"><i class="v-ic v-ic-check" aria-hidden="true"></i>Mark all as read</button>
     </div>
 
+    <!-- vendor/notifications.js loads GET /api/v1/notifications -->
     <section class="v-card v-flush">
-      <ul class="v-rows">
-        <li class="v-notif unread">
-          <span class="v-rowi-icon red"><i class="v-ic v-ic-receipt" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>New order #1042</strong>: 2 × Jollof with chicken, pickup.</p>
-            <span class="v-notif-time">2 minutes ago</span>
-          </div>
-          <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1042">View</a>
-        </li>
-        <li class="v-notif unread">
-          <span class="v-rowi-icon red"><i class="v-ic v-ic-bike" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>New order #1041</strong>: delivery to Hostel 2B.</p>
-            <span class="v-notif-time">8 minutes ago</span>
-          </div>
-          <a class="v-btn v-btn-outline v-btn-sm" href="orders.html#order-1041">View</a>
-        </li>
-        <li class="v-notif unread">
-          <span class="v-rowi-icon red"><i class="v-ic v-ic-alert" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>Running low:</strong> Kelewele (small) has 3 left.</p>
-            <span class="v-notif-time">25 minutes ago</span>
-          </div>
-          <a class="v-btn v-btn-outline v-btn-sm" href="products.html">Restock</a>
-        </li>
-        <li class="v-notif">
-          <span class="v-rowi-icon"><i class="v-ic v-ic-star" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>New review (5★)</strong> on Waakye special: "Generous portion, still hot."</p>
-            <span class="v-notif-time">Yesterday, 2:14 pm</span>
-          </div>
-        </li>
-        <li class="v-notif">
-          <span class="v-rowi-icon"><i class="v-ic v-ic-x-circle" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>Order #1025 was cancelled</strong> by the buyer before you started preparing it.</p>
-            <span class="v-notif-time">Yesterday, 11:30 am</span>
-          </div>
-        </li>
-        <li class="v-notif">
-          <span class="v-rowi-icon black"><i class="v-ic v-ic-shield" aria-hidden="true"></i></span>
-          <div class="v-notif-body">
-            <p><strong>Your shop was approved.</strong> You can now add products.</p>
-            <span class="v-notif-time">10 Nov</span>
-          </div>
-        </li>
-      </ul>
+      <ul class="v-rows" id="notif-list" aria-live="polite"></ul>
     </section>
   </main>
 
@@ -104,11 +56,9 @@
       <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
-
-  <!-- Stage 3: this page still shows sample numbers. common.js fills the header and checks the login. -->
   <script src="../assets/js/ui.js"></script>
   <script src="../assets/js/api.js"></script>
   <script src="../assets/js/vendor/common.js"></script>
-  <script>V.boot().catch(function () {});</script>
+  <script src="../assets/js/vendor/notifications.js"></script>
 </body>
 </html>

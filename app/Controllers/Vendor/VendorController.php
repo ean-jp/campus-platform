@@ -160,7 +160,7 @@ final class VendorController extends VendorBase
     }
 
     /** Open now? Uses the shop's opening and closing time (null = always open). */
-    private static function isOpen(?string $opens, ?string $closes): bool
+    public static function isOpen(?string $opens, ?string $closes): bool
     {
         if (!$opens || !$closes) {
             return true;

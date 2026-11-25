@@ -4,190 +4,70 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Orders · Campus Platform</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
-<body>
+<body class="v-vendor">
 
-  <header class="site-header">
-    <div class="bar">
-      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
-      <span class="badge v-hide-phone">Vendor</span>
-      <div class="nav-spacer"></div>
-      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
-      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
-      <span class="small muted v-user">Ama K.</span>
+  <header class="v-top">
+    <div class="v-top-bar">
+      <a class="v-brand" href="index.html">
+        <span class="v-brand-tile"><i class="v-ic v-ic-store" aria-hidden="true"></i></span>
+        <span>Campus <b>Platform</b></span>
+      </a>
+      <nav class="v-top-nav" aria-label="Vendor menu">
+        <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Dashboard</a>
+        <a href="orders.html" aria-current="page"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders <span class="v-count">4</span></a>
+        <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+        <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+        <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
+      </nav>
+      <div class="v-top-actions">
+        <a class="v-btn v-btn-outline" href="product-form.html" aria-label="Add product"><i class="v-ic v-ic-plus" aria-hidden="true"></i><span class="v-btn-label">Add product</span></a>
+        <a class="v-iconbtn" href="notifications.html" aria-label="Notifications, 3 unread"><i class="v-ic v-ic-bell" aria-hidden="true"></i><span class="v-dot-count">3</span></a>
+        <span class="v-avatar" title="Ama K.">AK</span>
+      </div>
     </div>
   </header>
 
-  <div class="v-layout">
-    <nav class="v-sidebar" aria-label="Vendor menu">
-      <div class="v-shop">
-        <strong>Ama's Kitchen</strong>
-        <span class="v-status"><span class="v-dot open"></span>Open now</span>
+  <main class="page v-page">
+    <div class="v-pagehead">
+      <div>
+        <span class="v-eyebrow">Incoming</span>
+        <h1>Orders</h1>
+        <p>Move each order along as you work on it. The buyer is notified at every step.</p>
       </div>
-      <ul class="v-nav">
-        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
-      </ul>
+      <button class="v-btn v-btn-outline" type="button" id="refresh-btn"><i class="v-ic v-ic-trend" aria-hidden="true"></i>Refresh</button>
+    </div>
+
+    <!-- Filter tabs: vendor/orders.js reloads from GET /api/v1/vendor/orders?status= -->
+    <nav class="v-tabs" aria-label="Filter orders by status">
+      <a class="v-tab" href="orders.html" data-status="active" aria-current="true">Active</a>
+      <a class="v-tab" href="orders.html?status=received" data-status="received">New</a>
+      <a class="v-tab" href="orders.html?status=preparing" data-status="preparing">Preparing</a>
+      <a class="v-tab" href="orders.html?status=ready" data-status="ready">Ready</a>
+      <a class="v-tab" href="orders.html?status=completed" data-status="completed">Completed</a>
+      <a class="v-tab" href="orders.html?status=cancelled" data-status="cancelled">Cancelled</a>
     </nav>
 
-    <main class="page v-main">
-      <div class="v-head">
-        <div>
-          <h1>Orders</h1>
-          <p class="muted">Move each order along as you work on it. The buyer sees every change.</p>
-        </div>
-      </div>
-
-      <!-- Filter tabs (later: ?status=received etc.) -->
-      <nav class="v-tabs" aria-label="Filter orders by status">
-        <a class="v-tab" href="orders.html" aria-current="true">Active (4)</a>
-        <a class="v-tab" href="orders.html?status=placed">New (2)</a>
-        <a class="v-tab" href="orders.html?status=preparing">Preparing (1)</a>
-        <a class="v-tab" href="orders.html?status=ready">Ready (1)</a>
-        <a class="v-tab" href="orders.html?status=completed">Completed</a>
-        <a class="v-tab" href="orders.html?status=cancelled">Cancelled</a>
-      </nav>
-
-      <div class="v-orders">
-
-        <!-- ===== NEW order, pickup ===== -->
-        <article class="card-box v-order is-new" id="order-1042">
-          <div class="v-order-top">
-            <div>
-              <h2>Order #1042</h2>
-              <div class="v-order-meta">
-                <span>🕒 Today, 12:41 pm</span>
-                <span>👤 Kofi A. (Ashesi)</span>
-                <span>🚶 Pickup</span>
-                <span>💵 Pay on pickup</span>
-              </div>
-            </div>
-            <span class="badge status-placed">New</span>
-          </div>
-          <ol class="v-steps" aria-label="Order progress">
-            <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
-          </ol>
-          <ul class="v-order-items">
-            <li><span>2 × Jollof with chicken</span><span>GH₵ 70.00</span></li>
-          </ul>
-          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 70.00</span></div>
-          <!-- Later: each button sends PATCH /api/v1/vendor/orders/1042 with the new status -->
-          <form class="v-actions" action="#" method="post">
-            <input type="hidden" name="csrf_token" value="">
-            <button class="btn primary auto" name="status" value="received">Accept order</button>
-            <button class="btn ghost auto" name="status" value="cancelled">Decline</button>
-          </form>
-        </article>
-
-        <!-- ===== NEW order, delivery, guest ===== -->
-        <article class="card-box v-order is-new" id="order-1041">
-          <div class="v-order-top">
-            <div>
-              <h2>Order #1041</h2>
-              <div class="v-order-meta">
-                <span>🕒 Today, 12:35 pm</span>
-                <span>👤 Guest · 📞 024 000 0000</span>
-                <span>🛵 Delivery to Hostel 2B, Room 14</span>
-                <span>💵 Pay on delivery</span>
-              </div>
-            </div>
-            <span class="badge status-placed">New</span>
-          </div>
-          <ol class="v-steps" aria-label="Order progress">
-            <li class="current">Placed</li><li>Received</li><li>Preparing</li><li>Ready</li><li>Completed</li>
-          </ol>
-          <ul class="v-order-items">
-            <li><span>1 × Waakye special</span><span>GH₵ 30.00</span></li>
-            <li><span>Delivery fee</span><span>GH₵ 5.00</span></li>
-          </ul>
-          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 35.00</span></div>
-          <form class="v-actions" action="#" method="post">
-            <input type="hidden" name="csrf_token" value="">
-            <button class="btn primary auto" name="status" value="received">Accept order</button>
-            <button class="btn ghost auto" name="status" value="cancelled">Decline</button>
-          </form>
-        </article>
-
-        <!-- ===== PREPARING ===== -->
-        <article class="card-box v-order is-preparing" id="order-1039">
-          <div class="v-order-top">
-            <div>
-              <h2>Order #1039</h2>
-              <div class="v-order-meta">
-                <span>🕒 Today, 12:20 pm</span>
-                <span>👤 Esi M. (Ashesi)</span>
-                <span>🚶 Pickup</span>
-                <span>💳 Paid (MoMo)</span>
-              </div>
-            </div>
-            <span class="badge status-preparing">Preparing</span>
-          </div>
-          <ol class="v-steps" aria-label="Order progress">
-            <li class="done">Placed</li><li class="done">Received</li><li class="current">Preparing</li><li>Ready</li><li>Completed</li>
-          </ol>
-          <ul class="v-order-items">
-            <li><span>3 × Sobolo (500 ml)</span><span>GH₵ 21.00</span></li>
-          </ul>
-          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 21.00</span></div>
-          <form class="v-actions" action="#" method="post">
-            <input type="hidden" name="csrf_token" value="">
-            <button class="btn primary auto" name="status" value="ready">Mark as ready</button>
-            <button class="btn ghost auto" name="status" value="cancelled">Cancel</button>
-          </form>
-        </article>
-
-        <!-- ===== READY: needs the buyer's pickup code to complete ===== -->
-        <article class="card-box v-order is-ready" id="order-1037">
-          <div class="v-order-top">
-            <div>
-              <h2>Order #1037</h2>
-              <div class="v-order-meta">
-                <span>🕒 Today, 12:02 pm</span>
-                <span>👤 Yaw B. (Ashesi)</span>
-                <span>🚶 Pickup</span>
-                <span>💵 Pay on pickup</span>
-              </div>
-            </div>
-            <span class="badge status-ready">Ready</span>
-          </div>
-          <ol class="v-steps" aria-label="Order progress">
-            <li class="done">Placed</li><li class="done">Received</li><li class="done">Preparing</li><li class="current">Ready</li><li>Completed</li>
-          </ol>
-          <ul class="v-order-items">
-            <li><span>1 × Fried rice</span><span>GH₵ 30.00</span></li>
-            <li><span>1 × Kelewele (small)</span><span>GH₵ 10.00</span></li>
-          </ul>
-          <div class="v-order-total"><span>Total</span><span class="price">GH₵ 40.00</span></div>
-          <!-- The buyer shows a 4-digit code; the vendor types it here to finish the order -->
-          <form class="v-actions v-pickup" action="#" method="post">
-            <input type="hidden" name="csrf_token" value="">
-            <label for="code-1037" class="sr-only">Buyer's pickup code</label>
-            <input class="input" type="text" id="code-1037" name="pickup_code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="Code" required>
-            <button class="btn primary auto" name="status" value="completed">Complete order</button>
-          </form>
-        </article>
-
-      </div>
-    </main>
-  </div>
+    <!-- Order cards are built by vendor/orders.js -->
+    <div class="v-orders" id="order-list" aria-live="polite"></div>
+  </main>
 
   <nav class="bottom-nav" aria-label="Vendor menu">
     <div class="items">
-      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
-      <a href="orders.html" aria-current="page"><span aria-hidden="true">🧾</span>Orders</a>
-      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
-      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
-      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+      <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Home</a>
+      <a href="orders.html" aria-current="page"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders</a>
+      <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+      <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+      <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/orders.js"></script>
 </body>
 </html>

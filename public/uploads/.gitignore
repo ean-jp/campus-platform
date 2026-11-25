@@ -1,0 +1,6 @@
+*
+!.gitignore
+!.htaccess
+!items/
+items/*
+!items/.gitkeep

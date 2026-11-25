@@ -97,6 +97,8 @@ CREATE TABLE vendors (
   id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
   user_id     INT UNSIGNED NOT NULL,                    -- the owner account
   shop_name   VARCHAR(120) NOT NULL,
+  vendor_type ENUM('student','off_campus') NOT NULL DEFAULT 'student',  -- P4 asked P2: from the "Become a vendor" form
+  location    VARCHAR(150) NULL,                        -- P4 asked P2: pickup / meet-up spot shown to buyers
   description TEXT NULL,
   phone       VARCHAR(20) NULL,
   logo_path   VARCHAR(255) NULL,
@@ -149,7 +151,10 @@ CREATE TABLE items (
   description TEXT NULL,
   price       DECIMAL(10,2) NOT NULL,
   stock       INT UNSIGNED NOT NULL DEFAULT 0,          -- 0 = sold out; checkout lowers it safely
-  status      ENUM('active','hidden','removed') NOT NULL DEFAULT 'active',  -- hidden: vendor; removed: admin
+  item_condition ENUM('new','like_new','good','fair') NULL,      -- P4: shown as a chip (NULL = not stated)
+  allow_pickup   TINYINT(1) NOT NULL DEFAULT 1,           -- P4: buyer can pick up / meet on campus
+  allow_delivery TINYINT(1) NOT NULL DEFAULT 0,           -- P4: vendor delivers to hostels
+  status      ENUM('active','hidden','removed','deleted') NOT NULL DEFAULT 'active',  -- hidden: vendor; removed: admin; deleted: vendor deleted an item that has old orders
   created_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id),

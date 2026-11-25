@@ -1,0 +1,34 @@
+/* ==========================================================================
+   auth.css: the few styles only the sign-up / verify / log-in pages need.
+   Everything else comes from styles.css (the shared kit).
+   ========================================================================== */
+
+/* centred card; no bottom-nav padding because these pages have no bottom menu */
+.auth-wrap {
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--sp-6) var(--sp-4) var(--sp-6);
+}
+.auth-card { width: 100%; max-width: 440px; }
+.auth-card h1 { margin-bottom: var(--sp-2); }
+.auth-card form { margin-top: var(--sp-5); }
+.auth-foot { text-align: center; margin: var(--sp-5) 0 0; }
+
+/* the "you will get an Ashesi / guest account" line under the email box */
+.field .hint.type-ashesi { color: var(--ok); }
+.field .hint.type-guest  { color: var(--info); }
+
+/* big, spaced-out 6-digit box */
+.code-input {
+  text-align: center;
+  letter-spacing: .5em;
+  padding-left: calc(var(--sp-4) + .5em);   /* re-centre: letter-spacing adds space after the last digit */
+  font-size: var(--fs-xl);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .auth-wrap { padding-top: var(--sp-5); }
+}

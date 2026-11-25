@@ -4,140 +4,161 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Sales · Campus Platform</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
-<body>
+<body class="v-vendor">
 
-  <header class="site-header">
-    <div class="bar">
-      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
-      <span class="badge v-hide-phone">Vendor</span>
-      <div class="nav-spacer"></div>
-      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
-      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
-      <span class="small muted v-user">Ama K.</span>
+  <header class="v-top">
+    <div class="v-top-bar">
+      <a class="v-brand" href="index.html">
+        <span class="v-brand-tile"><i class="v-ic v-ic-store" aria-hidden="true"></i></span>
+        <span>Campus <b>Platform</b></span>
+      </a>
+      <nav class="v-top-nav" aria-label="Vendor menu">
+        <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Dashboard</a>
+        <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders <span class="v-count">4</span></a>
+        <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+        <a href="sales.html" aria-current="page"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+        <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
+      </nav>
+      <div class="v-top-actions">
+        <a class="v-btn v-btn-outline" href="product-form.html" aria-label="Add product"><i class="v-ic v-ic-plus" aria-hidden="true"></i><span class="v-btn-label">Add product</span></a>
+        <a class="v-iconbtn" href="notifications.html" aria-label="Notifications, 3 unread"><i class="v-ic v-ic-bell" aria-hidden="true"></i><span class="v-dot-count">3</span></a>
+        <span class="v-avatar" title="Ama K.">AK</span>
+      </div>
     </div>
   </header>
 
-  <div class="v-layout">
-    <nav class="v-sidebar" aria-label="Vendor menu">
-      <div class="v-shop">
-        <strong>Ama's Kitchen</strong>
-        <span class="v-status"><span class="v-dot open"></span>Open now</span>
+  <main class="page v-page">
+    <div class="v-pagehead">
+      <div>
+        <span class="v-eyebrow">Performance</span>
+        <h1>Sales</h1>
+        <p>Only completed orders are counted.</p>
       </div>
-      <ul class="v-nav">
-        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
-        <li><a href="product-form.html"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
-        <li><a href="sales.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
-      </ul>
-    </nav>
+      <form action="sales.html" method="get">
+        <label for="range" class="sr-only">Time period</label>
+        <select class="select" id="range" name="range" style="width:auto;min-width:180px">
+          <option value="7d" selected>Last 7 days</option>
+          <option value="30d">Last 30 days</option>
+          <option value="all">All time</option>
+        </select>
+      </form>
+    </div>
 
-    <main class="page v-main">
-      <div class="v-head">
-        <div>
-          <h1>Sales</h1>
-          <p class="muted">Only completed orders are counted.</p>
-        </div>
-        <form action="sales.html" method="get">
-          <label for="range" class="sr-only">Time period</label>
-          <select class="select" id="range" name="range">
-            <option value="7d" selected>Last 7 days</option>
-            <option value="30d">Last 30 days</option>
-            <option value="all">All time</option>
-          </select>
-        </form>
+    <section class="v-tiles" aria-label="Summary for the last 7 days">
+      <div class="v-tile">
+        <span class="v-tile-icon"><i class="v-ic v-ic-wallet" aria-hidden="true"></i></span>
+        <span class="v-tile-body">
+          <span class="v-tile-value">GH₵ 3,480</span>
+          <span class="v-tile-label">Total sales</span>
+          <span class="v-tile-note up">▲ 18% vs last week</span>
+        </span>
       </div>
+      <div class="v-tile">
+        <span class="v-tile-icon black"><i class="v-ic v-ic-check-circle" aria-hidden="true"></i></span>
+        <span class="v-tile-body">
+          <span class="v-tile-value">104</span>
+          <span class="v-tile-label">Completed orders</span>
+          <span class="v-tile-note">6 cancelled</span>
+        </span>
+      </div>
+      <div class="v-tile">
+        <span class="v-tile-icon"><i class="v-ic v-ic-receipt" aria-hidden="true"></i></span>
+        <span class="v-tile-body">
+          <span class="v-tile-value">GH₵ 33</span>
+          <span class="v-tile-label">Average order</span>
+          <span class="v-tile-note">per order</span>
+        </span>
+      </div>
+      <div class="v-tile">
+        <span class="v-tile-icon black"><i class="v-ic v-ic-clock" aria-hidden="true"></i></span>
+        <span class="v-tile-body">
+          <span class="v-tile-value">12–1 pm</span>
+          <span class="v-tile-label">Busiest time</span>
+          <span class="v-tile-note">lunch rush</span>
+        </span>
+      </div>
+    </section>
 
-      <section class="v-stats" aria-label="Summary for the last 7 days">
-        <div class="v-stat">
-          <div class="v-stat-label">Total sales</div>
-          <div class="v-stat-value">GH₵ 3,480</div>
-          <div class="v-stat-note up">▲ 18% vs last week</div>
-        </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Completed orders</div>
-          <div class="v-stat-value">104</div>
-          <div class="v-stat-note">6 cancelled</div>
-        </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Average order</div>
-          <div class="v-stat-value">GH₵ 33</div>
-          <div class="v-stat-note">per order</div>
-        </div>
-        <div class="v-stat">
-          <div class="v-stat-label">Busiest time</div>
-          <div class="v-stat-value">12–1 pm</div>
-          <div class="v-stat-note">lunch rush</div>
-        </div>
-      </section>
-
-      <div class="v-grid">
-        <!-- Pure-CSS bar chart: each bar's height = that day's sales ÷ the best day -->
-        <section class="card-box">
+    <section class="v-sec v-grid" style="margin-top:24px">
+      <!-- Pure-CSS bar chart: each bar's height = that day's sales ÷ the best day -->
+      <div class="v-card">
+        <div class="v-card-head">
           <h3>Sales per day (GH₵)</h3>
-          <div class="v-bars" role="img" aria-label="Sales per day: Mon 420, Tue 510, Wed 380, Thu 560, Fri 690, Sat 280, today 640 cedis">
-            <div class="v-bar-col"><div class="v-bar" style="height:61%"><span class="v-bar-value">420</span></div></div>
-            <div class="v-bar-col"><div class="v-bar" style="height:74%"><span class="v-bar-value">510</span></div></div>
-            <div class="v-bar-col"><div class="v-bar" style="height:55%"><span class="v-bar-value">380</span></div></div>
-            <div class="v-bar-col"><div class="v-bar" style="height:81%"><span class="v-bar-value">560</span></div></div>
-            <div class="v-bar-col"><div class="v-bar" style="height:100%"><span class="v-bar-value">690</span></div></div>
-            <div class="v-bar-col"><div class="v-bar" style="height:41%"><span class="v-bar-value">280</span></div></div>
-            <div class="v-bar-col today"><div class="v-bar" style="height:93%"><span class="v-bar-value">640</span></div></div>
-          </div>
-          <div class="v-bar-labels" aria-hidden="true">
-            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Today</span>
-          </div>
-        </section>
-
-        <section class="card-box">
-          <h3>Best sellers</h3>
-          <ol class="v-rank">
-            <li><span>Jollof with chicken</span><span class="muted">64 · GH₵ 2,240</span>
-              <div class="v-rank-bar"><span style="width:100%"></span></div></li>
-            <li><span>Waakye special</span><span class="muted">41 · GH₵ 1,230</span>
-              <div class="v-rank-bar"><span style="width:64%"></span></div></li>
-            <li><span>Fried rice</span><span class="muted">29 · GH₵ 870</span>
-              <div class="v-rank-bar"><span style="width:45%"></span></div></li>
-            <li><span>Kelewele (small)</span><span class="muted">22 · GH₵ 220</span>
-              <div class="v-rank-bar"><span style="width:34%"></span></div></li>
-            <li><span>Sobolo (500 ml)</span><span class="muted">18 · GH₵ 126</span>
-              <div class="v-rank-bar"><span style="width:28%"></span></div></li>
-          </ol>
-        </section>
+          <span class="v-badge low">Today: GH₵ 640</span>
+        </div>
+        <div class="v-bars" role="img" aria-label="Sales per day: Mon 420, Tue 510, Wed 380, Thu 560, Fri 690, Sat 280, today 640 cedis">
+          <div class="v-bar-col"><div class="v-bar" style="height:61%"><span class="v-bar-value">420</span></div></div>
+          <div class="v-bar-col"><div class="v-bar" style="height:74%"><span class="v-bar-value">510</span></div></div>
+          <div class="v-bar-col"><div class="v-bar" style="height:55%"><span class="v-bar-value">380</span></div></div>
+          <div class="v-bar-col"><div class="v-bar" style="height:81%"><span class="v-bar-value">560</span></div></div>
+          <div class="v-bar-col"><div class="v-bar" style="height:100%"><span class="v-bar-value">690</span></div></div>
+          <div class="v-bar-col"><div class="v-bar" style="height:41%"><span class="v-bar-value">280</span></div></div>
+          <div class="v-bar-col today"><div class="v-bar" style="height:93%"><span class="v-bar-value">640</span></div></div>
+        </div>
+        <div class="v-bar-labels" aria-hidden="true">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Today</span>
+        </div>
       </div>
 
-      <section class="card-box" style="margin-top:var(--sp-4)">
-        <h3>Recent completed orders</h3>
+      <div class="v-card">
+        <div class="v-card-head"><h3>Best sellers</h3></div>
+        <ol class="v-rank">
+          <li><span>Jollof with chicken</span><span class="muted">64 · GH₵ 2,240</span>
+            <div class="v-rank-bar"><span style="width:100%"></span></div></li>
+          <li><span>Waakye special</span><span class="muted">41 · GH₵ 1,230</span>
+            <div class="v-rank-bar"><span style="width:64%"></span></div></li>
+          <li><span>Fried rice</span><span class="muted">29 · GH₵ 870</span>
+            <div class="v-rank-bar"><span style="width:45%"></span></div></li>
+          <li><span>Kelewele (small)</span><span class="muted">22 · GH₵ 220</span>
+            <div class="v-rank-bar"><span style="width:34%"></span></div></li>
+          <li><span>Sobolo (500 ml)</span><span class="muted">18 · GH₵ 126</span>
+            <div class="v-rank-bar"><span style="width:28%"></span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="v-sec">
+      <div class="v-sec-head">
+        <div>
+          <span class="v-eyebrow">History</span>
+          <h2>Recent completed orders</h2>
+        </div>
+        <a class="v-link" href="orders.html?status=completed">See all <i class="v-ic v-ic-arrow-right" aria-hidden="true"></i></a>
+      </div>
+      <div class="v-card v-flush">
         <div class="v-table-wrap">
           <table class="v-table">
             <thead><tr><th>Order</th><th>Date</th><th>Buyer</th><th>Payment</th><th>Total</th></tr></thead>
             <tbody>
-              <tr><td>#1036</td><td>22 Nov, 11:50 am</td><td>Abena O.</td><td>MoMo</td><td class="price">GH₵ 35.00</td></tr>
-              <tr><td>#1033</td><td>22 Nov, 11:12 am</td><td>Guest</td><td>On delivery</td><td class="price">GH₵ 65.00</td></tr>
-              <tr><td>#1030</td><td>21 Nov, 6:40 pm</td><td>Kwame D.</td><td>On pickup</td><td class="price">GH₵ 30.00</td></tr>
-              <tr><td>#1028</td><td>21 Nov, 1:05 pm</td><td>Efua S.</td><td>MoMo</td><td class="price">GH₵ 47.00</td></tr>
+              <tr><td><strong>#1036</strong></td><td>22 Nov, 11:50 am</td><td>Abena O.</td><td>MoMo</td><td class="v-red"><strong>GH₵ 35.00</strong></td></tr>
+              <tr><td><strong>#1033</strong></td><td>22 Nov, 11:12 am</td><td>Guest</td><td>On delivery</td><td class="v-red"><strong>GH₵ 65.00</strong></td></tr>
+              <tr><td><strong>#1030</strong></td><td>21 Nov, 6:40 pm</td><td>Kwame D.</td><td>On pickup</td><td class="v-red"><strong>GH₵ 30.00</strong></td></tr>
+              <tr><td><strong>#1028</strong></td><td>21 Nov, 1:05 pm</td><td>Efua S.</td><td>MoMo</td><td class="v-red"><strong>GH₵ 47.00</strong></td></tr>
             </tbody>
           </table>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 
   <nav class="bottom-nav" aria-label="Vendor menu">
     <div class="items">
-      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
-      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
-      <a href="products.html"><span aria-hidden="true">📦</span>Products</a>
-      <a href="sales.html" aria-current="page"><span aria-hidden="true">📈</span>Sales</a>
-      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+      <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Home</a>
+      <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders</a>
+      <a href="products.html"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+      <a href="sales.html" aria-current="page"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+      <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
 
+  <!-- Stage 3: this page still shows sample numbers. common.js fills the header and checks the login. -->
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script>V.boot().catch(function () {});</script>
 </body>
 </html>

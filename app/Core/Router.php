@@ -26,6 +26,7 @@ final class Router
     public function post(string $path, callable|array $handler, array $middleware = []): void   { $this->add('POST', $path, $handler, $middleware); }
     public function put(string $path, callable|array $handler, array $middleware = []): void    { $this->add('PUT', $path, $handler, $middleware); }
     public function delete(string $path, callable|array $handler, array $middleware = []): void { $this->add('DELETE', $path, $handler, $middleware); }
+    public function patch(string $path, callable|array $handler, array $middleware = []): void  { $this->add('PATCH', $path, $handler, $middleware); }   // P4: api.js sends PATCH for updates
 
     private function add(string $method, string $path, callable|array $handler, array $middleware): void
     {

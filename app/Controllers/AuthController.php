@@ -71,7 +71,7 @@ final class AuthController
         $existing = User::findByEmail($email);
         try {
             if ($existing) {
-                if ((int) $existing['email_verified'] === 1) {
+                if ($existing['email_verified_at'] !== null) {
                     self::fail('EMAIL_EXISTS', 'An account with this email already exists. Try logging in.', 409, ['email' => 'Already registered.']);
                 }
                 $userId = (int) $existing['id'];
@@ -120,7 +120,7 @@ final class AuthController
         }
 
         $user = User::findByEmail($email);
-        if (!$user || (int) $user['email_verified'] === 1) {
+        if (!$user || $user['email_verified_at'] !== null) {
             // Same answer for "no such account" and "already verified": reveals nothing
             self::fail('INVALID_CODE', 'That code is not valid. Request a new one.', 422);
         }
@@ -163,12 +163,12 @@ final class AuthController
         }
 
         $user = User::findByEmail($email);
-        if ($user && (int) $user['email_verified'] === 0) {
+        if ($user && $user['email_verified_at'] === null) {
             $wait = VerificationService::secondsUntilResend((int) $user['id'], 'signup');
             if ($wait > 0) {
                 self::fail('RATE_LIMITED', "Please wait {$wait} seconds before asking for another code.", 429);
             }
-            self::sendNewCode((int) $user['id'], $email, (string) $user['name'], 'signup');
+            self::sendNewCode((int) $user['id'], $email, (string) $user['full_name'], 'signup');
         }
 
         // Same answer whether or not the account exists
@@ -212,7 +212,7 @@ final class AuthController
         if ($user['status'] !== 'active') {
             self::fail('ACCOUNT_SUSPENDED', 'This account is suspended. Contact the admin.', 403);
         }
-        if ((int) $user['email_verified'] !== 1) {
+        if ($user['email_verified_at'] === null) {
             self::fail('EMAIL_NOT_VERIFIED', 'Please verify your email first. We can send you a new code.', 403);
         }
 
@@ -267,10 +267,10 @@ final class AuthController
     {
         return [
             'id'           => (int) $row['id'],
-            'name'         => $row['name'],
+            'name'         => $row['full_name'],
             'email'        => $row['email'],
             'phone'        => $row['phone'],
-            'role'         => $row['role'],
+            'role'         => User::effectiveRole((int) $row['id'], (string) $row['role']),
             'account_type' => $row['account_type'],
         ];
     }

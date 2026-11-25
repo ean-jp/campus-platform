@@ -7,12 +7,21 @@
  *   AuthMiddleware::requireVendor();
  *
  * On failure it sends a JSON error and stops the request.
+ *
+ * Every guard re-reads the user from the database, so a suspended account, a
+ * newly approved vendor or a linked Ashesi email takes effect on the very next
+ * request instead of waiting for the session to end.
  */
 require_once __DIR__ . '/../Core/Session.php';
 
+use App\Models\User;
+
 class AuthMiddleware
 {
-    /** Must be logged in (any role). Returns the user array. */
+    /**
+     * Must be logged in (any role) and still active.
+     * Returns the user array with fresh account_type and role.
+     */
     public static function requireLogin(): array
     {
         $user = Session::user();
@@ -22,6 +31,15 @@ class AuthMiddleware
                 : 'Please log in first.';
             self::fail(401, $msg);
         }
+
+        $row = User::findById((int) $user['id']);
+        if ($row === null || $row['status'] !== 'active') {
+            Session::destroy();
+            self::fail(401, 'Your account is not available. Please log in again.');
+        }
+
+        $user['account_type'] = $row['account_type'];
+        $user['role']         = User::effectiveRole((int) $row['id'], (string) $row['role']);
         return $user;
     }
 
@@ -35,26 +53,31 @@ class AuthMiddleware
         return $user;
     }
 
+    /** Owner of a vendor shop that the admin has approved. */
     public static function requireVendor(): array
     {
-        return self::requireRole('vendor', 'Vendor access only.');
+        $user = self::requireLogin();
+        if (!User::isApprovedVendor((int) $user['id'])) {
+            self::fail(403, 'Vendor access only.');
+        }
+        return $user;
     }
 
+    /** Login account of an active resource provider. */
     public static function requireProvider(): array
     {
-        return self::requireRole('provider', 'Provider access only.');
+        $user = self::requireLogin();
+        if (!User::isProvider((int) $user['id'])) {
+            self::fail(403, 'Provider access only.');
+        }
+        return $user;
     }
 
     public static function requireAdmin(): array
     {
-        return self::requireRole('admin', 'Admin access only.');
-    }
-
-    private static function requireRole(string $role, string $message): array
-    {
         $user = self::requireLogin();
-        if (($user['role'] ?? '') !== $role) {
-            self::fail(403, $message);
+        if (($user['role'] ?? '') !== 'admin') {
+            self::fail(403, 'Admin access only.');
         }
         return $user;
     }

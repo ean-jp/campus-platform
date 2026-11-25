@@ -7,7 +7,12 @@ use App\Core\Database;
 use App\Core\Env;
 
 /**
- * User model (Person 1). All queries use prepared statements.
+ * User model (Person 1). Matches the shared schema.sql:
+ *   users(full_name, email, phone, password_hash, account_type, role user|admin,
+ *         status, email_verified_at, remember_token_hash)
+ * "vendor" and "provider" are not stored in users.role. They come from the
+ * vendors and providers tables, so we look them up here.
+ * All queries use prepared statements.
  */
 final class User
 {
@@ -55,31 +60,31 @@ final class User
         return $st->fetchColumn() !== false;
     }
 
-    /** New accounts are ALWAYS role 'buyer' and unverified. */
-    public static function create(string $name, string $email, string $passwordHash, string $accountType, ?string $phone): int
+    /** New accounts always get the default role ('user') and are unverified. */
+    public static function create(string $fullName, string $email, string $passwordHash, string $accountType, ?string $phone): int
     {
         $db = Database::connection();
         $st = $db->prepare(
-            "INSERT INTO users (name, email, password_hash, account_type, role, phone)
-             VALUES (?, ?, ?, ?, 'buyer', ?)"
+            'INSERT INTO users (full_name, email, password_hash, account_type, phone)
+             VALUES (?, ?, ?, ?, ?)'
         );
-        $st->execute([$name, $email, $passwordHash, $accountType, $phone]);
+        $st->execute([$fullName, $email, $passwordHash, $accountType, $phone]);
         return (int) $db->lastInsertId();
     }
 
     /** Someone signs up again with an email that was never verified: refresh the pending account. */
-    public static function updatePending(int $id, string $name, string $passwordHash, string $accountType, ?string $phone): void
+    public static function updatePending(int $id, string $fullName, string $passwordHash, string $accountType, ?string $phone): void
     {
         $st = Database::connection()->prepare(
-            'UPDATE users SET name = ?, password_hash = ?, account_type = ?, phone = ?
-             WHERE id = ? AND email_verified = 0'
+            'UPDATE users SET full_name = ?, password_hash = ?, account_type = ?, phone = ?
+             WHERE id = ? AND email_verified_at IS NULL'
         );
-        $st->execute([$name, $passwordHash, $accountType, $phone, $id]);
+        $st->execute([$fullName, $passwordHash, $accountType, $phone, $id]);
     }
 
     public static function markVerified(int $id): void
     {
-        $st = Database::connection()->prepare('UPDATE users SET email_verified = 1 WHERE id = ?');
+        $st = Database::connection()->prepare('UPDATE users SET email_verified_at = NOW() WHERE id = ?');
         $st->execute([$id]);
     }
 
@@ -89,14 +94,55 @@ final class User
         $st->execute([$hash, $id]);
     }
 
+    // ------------------------------------------------------------ roles
+
+    /** True if this user owns a vendor shop that the admin has approved. */
+    public static function isApprovedVendor(int $userId): bool
+    {
+        $st = Database::connection()->prepare(
+            "SELECT 1 FROM vendors WHERE user_id = ? AND status = 'approved' LIMIT 1"
+        );
+        $st->execute([$userId]);
+        return $st->fetchColumn() !== false;
+    }
+
+    /** True if this user is the login account of an active resource provider. */
+    public static function isProvider(int $userId): bool
+    {
+        $st = Database::connection()->prepare(
+            'SELECT 1 FROM providers WHERE user_id = ? AND is_active = 1 LIMIT 1'
+        );
+        $st->execute([$userId]);
+        return $st->fetchColumn() !== false;
+    }
+
+    /**
+     * The one role shown to the front end: admin, vendor, provider or user.
+     * users.role gives 'admin'; vendor and provider come from their tables.
+     */
+    public static function effectiveRole(int $userId, string $storedRole): string
+    {
+        if ($storedRole === 'admin') {
+            return 'admin';
+        }
+        if (self::isApprovedVendor($userId)) {
+            return 'vendor';
+        }
+        if (self::isProvider($userId)) {
+            return 'provider';
+        }
+        return 'user';
+    }
+
     /** The array Session::login() expects. Values come from the database only. */
     public static function toSession(array $row): array
     {
+        $id = (int) $row['id'];
         return [
-            'id'           => (int) $row['id'],
-            'name'         => $row['name'],
+            'id'           => $id,
+            'name'         => $row['full_name'],
             'email'        => $row['email'],
-            'role'         => $row['role'],
+            'role'         => self::effectiveRole($id, (string) $row['role']),
             'account_type' => $row['account_type'],
         ];
     }

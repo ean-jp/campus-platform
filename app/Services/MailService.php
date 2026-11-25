@@ -23,9 +23,9 @@ final class MailService
     public static function sendCode(string $to, string $name, string $code, string $purpose): bool
     {
         $subjects = [
-            'signup' => 'Your Campus Platform verification code',
-            'link'   => 'Confirm your Ashesi email',
-            'reset'  => 'Reset your Campus Platform password',
+            'signup'         => 'Your Campus Platform verification code',
+            'link_email'     => 'Confirm your Ashesi email',
+            'password_reset' => 'Reset your Campus Platform password',
         ];
         $subject = $subjects[$purpose] ?? 'Your verification code';
         $minutes = VerificationService::TTL_MINUTES;

@@ -63,34 +63,42 @@ document.querySelectorAll('.v-actions button[name="status"]').forEach(btn => {
 });
 ```
 
-## 5. Response shapes (Person 2's `response.php` must send exactly these)
+## 5. Response shapes (what Person 2's `Response.php` really sends today)
 
 ```json
 { "success": true,  "data": { } }
-{ "success": true,  "data": [ ], "meta": { "page": 1, "per_page": 20, "total": 57 } }
-{ "success": false, "error": { "code": "OUT_OF_STOCK", "message": "Only 2 left." } }
-{ "success": false, "error": { "code": "VALIDATION", "message": "Please check the highlighted fields.",
-                               "fields": { "phone": "Enter a phone number." } } }
+{ "success": false, "error": "Only 2 left in stock." }
 ```
-Status codes: 200, 201, 400, 401 (not logged in: `api.js` sends them to login), 403, 404, 409 (conflict: slot taken, out of stock), 422 (validation), 429.
+`Response::success($data, $status)` and `Response::error($message, $status)`. `api.js` shows the `error` string in a red toast and throws it, so this already works. Status codes: 200, 201, 400, 401 (`api.js` sends the user to login), 403, 404, 405, 409 (conflict: out of stock, slot taken), 422, 429, 500.
 
-## 6. Vendor sample data (Person 4)
+Lists now carry a top-level `meta` (`Response::success($data, 200, $meta)`), read with `API.get(..., { full: true })`.
 
-Each endpoint below already has a sample file in `public/assets/mock/`. Use the same field names in PHP so nothing changes when the mock is switched off.
+Optional extras `api.js` understands if Person 2 adds them later (nothing breaks without them): `error` as an object `{ "code": "OUT_OF_STOCK", "message": "..." }`, `error.fields` for per-input messages on 422 (`UI.fieldErrors`), .
 
-| Call | Mock file | Notes |
+## 6. Sample data per endpoint (matches `database/schema.sql`)
+
+Every endpoint below has a sample file in `public/assets/mock/`, using the real column names so nothing changes when the mock is switched off.
+
+| Call | Mock file | Real columns / notes |
 |---|---|---|
-| `GET /vendor/orders?status=` | `vendor/orders.json` | order `status`: placed, received, preparing, ready, completed, cancelled. The buyer's pickup code is NOT included; the vendor types it. Guest phone is included only for that vendor's own order. |
+| `GET /vendor/orders?status=` | `vendor/orders.json` | `status`: received, preparing, ready, completed, cancelled (there is no "placed"; new orders arrive as `received`). Lines use `item_name`, `unit_price`, `quantity`. `delivery_spot`, `contact_phone`. The buyer's `pickup_code` is NOT sent to the vendor; the vendor types it. |
 | `PATCH /vendor/orders/{id}` | echoed | body `{ status, pickup_code? }` |
-| `GET /vendor/items` , `GET /vendor/items/{id}` | `vendor/items.json` | `status`: active, sold_out, hidden |
-| `POST /vendor/items` , `PATCH /vendor/items/{id}` , `DELETE` | echoed | form fields as named in `product-form.html` |
+| `GET /vendor/items` , `/vendor/items/{id}` | `vendor/items.json` | `status`: active, hidden (removed = admin). Sold out = `stock` 0. `images[].file_path`. |
+| `POST /vendor/items` , `PATCH` , `DELETE` | echoed | form fields as in `product-form.html` |
 | `POST /vendor/items/{id}/images` | echoed | multipart, field `images[]` |
-| `GET /vendor/stats` | `vendor/stats.json` | dashboard (`today`, `low_stock`, `best_sellers`) and sales page (`period`, `recent_completed`) |
-| `GET/PATCH /vendor/profile` | `vendor/profile.json` | `hours.mon.open/close/closed` etc. |
-| `GET /notifications` | `notifications.json` | `meta.unread_count` for the bell |
-| `GET /categories` | `categories.json` | fills the category dropdowns |
+| `GET /vendor/stats` | `vendor/stats.json` | computed in PHP: `today`, `low_stock`, `best_sellers`, `period`, `recent_completed` |
+| `GET/PATCH /vendor/profile` | `vendor/profile.json` | `shop_name`, `description`, `phone`, `logo_path`, `opens_at`, `closes_at`, `status` |
+| `GET /notifications` | `notifications.json` | `is_read`, `created_at`; `meta.unread_count` for the bell |
+| `GET /categories` | `categories.json` | same five names as `seed.sql` |
+| Marketplace (Person 3) | `items.json`, `items/{id}.json`, `vendors/{id}.json`, `cart.json`, `orders.json`, `orders/{id}.json` | captured from the REAL endpoints; see `docs/SHOP-API.md` |
 
 In mock mode `?status=` and `?q=` filter lists; other filters are ignored. Writes are not saved: they just succeed so buttons and toasts can be built.
+
+**Mismatches between the vendor pages and the schema (Person 4 and Person 2 to settle):**
+- `profile.html` has opening hours per day (`hours[mon][open]` ...) but `vendors` has only one `opens_at` / `closes_at`.
+- `product-form.html` has `allow_pickup` / `allow_delivery`, which no table stores.
+- Pages show a "Placed" status; the database starts at `received`.
+- `vendors` has no `location` or `vendor_type` columns, which the profile page shows.
 
 ## 7. Add your own mock data (Person 5, Person 3)
 
@@ -98,8 +106,8 @@ Create `public/assets/mock/<same path as the endpoint>.json`, for example `servi
 
 ## 8. Switching to the real API
 
-1. Person 2's router answers `/api/v1/...` and `response.php` uses the shapes in section 5.
-2. Set `MOCK = false` in `api.js` (or test one tab with `?mock=0`).
-3. Person 1's login page URL goes in `API.config.loginUrl`.
-
-Not final until the group agrees: the error object (`code` + `message`), `fields` on 422, and the `meta` paging object. Person 2 needs to confirm these three.
+1. Person 2's router answers `/api/v1/...` (it already does for `/api/v1/ping`; open it to check routing + database).
+2. **Router has no PATCH.** `Router.php` only has `get/post/put/delete`, and the plan uses PATCH for updates. Person 2: add one line next to the others, `public function patch(string $path, callable|array $handler, array $middleware = []): void { $this->add('PATCH', $path, $handler, $middleware); }`. Until then, PATCH calls answer 405.
+3. Set `MOCK = false` in `api.js` (or test one tab with `?mock=0`).
+4. Person 1's login page URL goes in `API.config.loginUrl`.
+5. CSRF: the shared layout needs `<meta name="csrf-token" content="...">` once Person 1 has the token helper. Until then the header is skipped.

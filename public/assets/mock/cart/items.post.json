@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": {
+    "groups": [
+      {
+        "vendor": {
+          "id": 2,
+          "shop_name": "Campus Bites",
+          "is_open": true
+        },
+        "items": [
+          {
+            "id": 2,
+            "item_id": 9,
+            "name": "Meat Pie",
+            "price": 12,
+            "quantity": 1,
+            "line_total": 12,
+            "stock": 60,
+            "image": null,
+            "problem": null
+          }
+        ],
+        "subtotal": 12
+      },
+      {
+        "vendor": {
+          "id": 1,
+          "shop_name": "Mama Esi's Kitchen",
+          "is_open": true
+        },
+        "items": [
+          {
+            "id": 1,
+            "item_id": 1,
+            "name": "Jollof Rice with Chicken",
+            "price": 35,
+            "quantity": 2,
+            "line_total": 70,
+            "stock": 40,
+            "image": null,
+            "problem": null
+          }
+        ],
+        "subtotal": 70
+      }
+    ],
+    "item_count": 3,
+    "total": 82,
+    "delivery_possible": false,
+    "has_problems": false
+  }
+}

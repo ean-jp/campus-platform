@@ -31,7 +31,7 @@
                     <?= htmlspecialchars($service["description"], ENT_QUOTES, "UTF-8") ?>
                 </p>
 
-                <a href="/resources/services/<?= (int) $service["id"] ?>/providers">
+                <a href="/campus-platform-fused/public/resources/services/<?= (int) $service["id"] ?>/providers">
                     View Providers
                 </a>
 

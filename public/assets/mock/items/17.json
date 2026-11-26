@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": 17,
+    "name": "Iced Coffee",
+    "description": "Cold brew over ice.",
+    "price": 18,
+    "stock": 50,
+    "in_stock": true,
+    "image": null,
+    "category": {
+      "id": 2,
+      "name": "Snacks & Drinks",
+      "slug": "snacks-drinks"
+    },
+    "vendor": {
+      "id": 3,
+      "shop_name": "Brew & Chill",
+      "is_open": true,
+      "description": "Coffee, smoothies and cold drinks.",
+      "phone": "0200000003",
+      "opens_at": "07:00",
+      "closes_at": "19:00"
+    },
+    "rating": {
+      "avg": null,
+      "count": 0
+    },
+    "created_at": "2026-11-25 08:36:40",
+    "images": [],
+    "reviews": []
+  }
+}

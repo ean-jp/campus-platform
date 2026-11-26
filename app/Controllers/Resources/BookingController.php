@@ -479,7 +479,7 @@ final class BookingController
         if (!$user || empty($user['id'])) {
 
             header(
-                'Location: /login.html?next=/resources/bookings'
+                'Location: /campus-platform-fused/public/login.html?next=/resources/bookings'
             );
 
             exit;
@@ -498,7 +498,7 @@ final class BookingController
             \Session::destroy();
 
             header(
-                'Location: /login.html?next=/resources/bookings'
+                'Location: /campus-platform-fused/public/login.html?next=/resources/bookings'
             );
 
             exit;

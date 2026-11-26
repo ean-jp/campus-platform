@@ -333,7 +333,7 @@ final class ProviderController
         if (!$user || empty($user['id'])) {
 
             header(
-                'Location: /login.html?next=/resources/provider/dashboard'
+                'Location: /campus-platform-fused/public/login.html?next=/resources/provider/dashboard'
             );
 
             exit;
@@ -348,7 +348,7 @@ final class ProviderController
             \Session::destroy();
 
             header(
-                'Location: /login.html?next=/resources/provider/dashboard'
+                'Location: /campus-platform-fused/public/login.html?next=/resources/provider/dashboard'
             );
 
             exit;

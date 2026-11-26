@@ -1,13 +1,46 @@
 -- Campus Platform sample data. Run AFTER schema.sql (it re-creates the tables empty first).
 -- Every test account below uses the password:  Password123!
 USE campus_platform;
-SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE reports; TRUNCATE TABLE reviews; TRUNCATE TABLE notifications; TRUNCATE TABLE bookings;
-TRUNCATE TABLE order_items; TRUNCATE TABLE orders; TRUNCATE TABLE cart_items; TRUNCATE TABLE carts;
-TRUNCATE TABLE item_images; TRUNCATE TABLE items; TRUNCATE TABLE time_slots; TRUNCATE TABLE providers;
-TRUNCATE TABLE vendors; TRUNCATE TABLE resource_services; TRUNCATE TABLE categories;
-TRUNCATE TABLE login_attempts; TRUNCATE TABLE verification_codes; TRUNCATE TABLE user_emails; TRUNCATE TABLE users;
-SET FOREIGN_KEY_CHECKS = 1;
+-- Clear old data, children first. Uses DELETE (not TRUNCATE) so it works even when foreign key
+-- checks are ON, which is phpMyAdmin's default. Then reset the id counters.
+DELETE FROM reports;
+DELETE FROM reviews;
+DELETE FROM notifications;
+DELETE FROM bookings;
+DELETE FROM order_items;
+DELETE FROM orders;
+DELETE FROM cart_items;
+DELETE FROM carts;
+DELETE FROM item_images;
+DELETE FROM items;
+DELETE FROM time_slots;
+DELETE FROM providers;
+DELETE FROM vendors;
+DELETE FROM resource_services;
+DELETE FROM categories;
+DELETE FROM login_attempts;
+DELETE FROM verification_codes;
+DELETE FROM user_emails;
+DELETE FROM users;
+ALTER TABLE reports AUTO_INCREMENT = 1;
+ALTER TABLE reviews AUTO_INCREMENT = 1;
+ALTER TABLE notifications AUTO_INCREMENT = 1;
+ALTER TABLE bookings AUTO_INCREMENT = 1;
+ALTER TABLE order_items AUTO_INCREMENT = 1;
+ALTER TABLE orders AUTO_INCREMENT = 1;
+ALTER TABLE cart_items AUTO_INCREMENT = 1;
+ALTER TABLE carts AUTO_INCREMENT = 1;
+ALTER TABLE item_images AUTO_INCREMENT = 1;
+ALTER TABLE items AUTO_INCREMENT = 1;
+ALTER TABLE time_slots AUTO_INCREMENT = 1;
+ALTER TABLE providers AUTO_INCREMENT = 1;
+ALTER TABLE vendors AUTO_INCREMENT = 1;
+ALTER TABLE resource_services AUTO_INCREMENT = 1;
+ALTER TABLE categories AUTO_INCREMENT = 1;
+ALTER TABLE login_attempts AUTO_INCREMENT = 1;
+ALTER TABLE verification_codes AUTO_INCREMENT = 1;
+ALTER TABLE user_emails AUTO_INCREMENT = 1;
+ALTER TABLE users AUTO_INCREMENT = 1;
 
 -- Users (id 1 admin, 2 Ashesi student, 3 guest, 4-9 vendor owners)
 INSERT INTO users (id, full_name, email, phone, password_hash, account_type, role, status, email_verified_at) VALUES

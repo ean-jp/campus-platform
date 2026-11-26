@@ -1,0 +1,159 @@
+{
+  "success": true,
+  "data": {
+    "id": 3,
+    "shop_name": "Brew & Chill",
+    "description": "Coffee, smoothies and cold drinks.",
+    "phone": "0200000003",
+    "logo": null,
+    "opens_at": "07:00",
+    "closes_at": "19:00",
+    "is_open": true,
+    "items": [
+      {
+        "id": 22,
+        "name": "Bottled Water (750ml)",
+        "description": "Chilled bottled water.",
+        "price": 3,
+        "stock": 200,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      },
+      {
+        "id": 20,
+        "name": "Fresh Orange Juice",
+        "description": "Squeezed to order.",
+        "price": 15,
+        "stock": 40,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      },
+      {
+        "id": 21,
+        "name": "Hot Chocolate",
+        "description": "Rich hot cocoa.",
+        "price": 14,
+        "stock": 35,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      },
+      {
+        "id": 17,
+        "name": "Iced Coffee",
+        "description": "Cold brew over ice.",
+        "price": 18,
+        "stock": 50,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      },
+      {
+        "id": 18,
+        "name": "Mango Smoothie",
+        "description": "Fresh mango blended with yoghurt.",
+        "price": 20,
+        "stock": 40,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      },
+      {
+        "id": 19,
+        "name": "Sobolo (500ml)",
+        "description": "Chilled hibiscus drink with ginger.",
+        "price": 10,
+        "stock": 60,
+        "in_stock": true,
+        "image": null,
+        "category": {
+          "id": 2,
+          "name": "Snacks & Drinks",
+          "slug": "snacks-drinks"
+        },
+        "vendor": {
+          "id": 3,
+          "shop_name": "Brew & Chill",
+          "is_open": true
+        },
+        "rating": {
+          "avg": null,
+          "count": 0
+        },
+        "created_at": "2026-11-25 08:30:01"
+      }
+    ]
+  }
+}

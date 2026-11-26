@@ -49,7 +49,7 @@ final class ResourceController
         if (!$user || empty($user['id'])) {
 
             header(
-                'Location: /login.html?next=' .
+                'Location: /campus-platform-fused/public/login.html?next=' .
                 rawurlencode($next)
             );
 
@@ -63,7 +63,7 @@ final class ResourceController
             \Session::destroy();
 
             header(
-                'Location: /login.html?next=' .
+                'Location: /campus-platform-fused/public/login.html?next=' .
                 rawurlencode($next)
             );
 
@@ -94,7 +94,7 @@ final class ResourceController
                    Ashesi accounts only.</p>
                 <p>Please link or use a verified Ashesi email
                    to access this feature.</p>
-                <a href="/login.html">Return to Login</a>
+                <a href="/campus-platform-fused/public/login.html">Return to Login</a>
             </body>
             </html>';
 

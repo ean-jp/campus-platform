@@ -24,6 +24,7 @@ final class Router
 
     public function get(string $path, callable|array $handler, array $middleware = []): void    { $this->add('GET', $path, $handler, $middleware); }
     public function post(string $path, callable|array $handler, array $middleware = []): void   { $this->add('POST', $path, $handler, $middleware); }
+    public function patch(string $path, callable|array $handler, array $middleware = []): void  { $this->add('PATCH', $path, $handler, $middleware); }
     public function put(string $path, callable|array $handler, array $middleware = []): void    { $this->add('PUT', $path, $handler, $middleware); }
     public function delete(string $path, callable|array $handler, array $middleware = []): void { $this->add('DELETE', $path, $handler, $middleware); }
 

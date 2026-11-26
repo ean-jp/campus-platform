@@ -5,19 +5,23 @@
  * Delete this file before final submission.
  */
 require_once __DIR__ . '/../app/Core/Session.php';
+require_once __DIR__ . '/../app/Core/Env.php';          // P4: read APP_ENV from .env (XAMPP has no system APP_ENV)
+\App\Core\Env::load(__DIR__ . '/../.env');
 
-$env = getenv('APP_ENV') ?: ($_ENV['APP_ENV'] ?? '');
+$env = \App\Core\Env::get('APP_ENV') ?: (getenv('APP_ENV') ?: '');
 if (!in_array($env, ['local', 'development'], true)) {
     http_response_code(404);
     exit('Not available.');
 }
 
 $fakeUsers = [
-    'ashesi_buyer'  => ['id' => 9001, 'name' => 'Test Ashesi Buyer', 'email' => 'buyer@ashesi.edu.gh',  'role' => 'buyer',    'account_type' => 'ashesi'],
-    'guest_buyer'   => ['id' => 9002, 'name' => 'Test Guest Buyer',  'email' => 'guest@gmail.com',       'role' => 'buyer',    'account_type' => 'guest'],
-    'ashesi_vendor' => ['id' => 9003, 'name' => 'Test Vendor',       'email' => 'vendor@ashesi.edu.gh',  'role' => 'vendor',   'account_type' => 'ashesi'],
+    // P4: ids 1-3 match real users in seed.sql (so orders, carts and vendor requests can be saved)
+    'ashesi_buyer'  => ['id' => 2, 'name' => 'Test Ashesi Buyer', 'email' => 'buyer@ashesi.edu.gh',  'role' => 'buyer',    'account_type' => 'ashesi'],
+    'guest_buyer'   => ['id' => 3, 'name' => 'Test Guest Buyer',  'email' => 'guest@gmail.com',       'role' => 'buyer',    'account_type' => 'guest'],
+    // P4: id 8 = owner of "Kente Corner" (vendor 5) in seed.sql, so the vendor pages have a real shop
+    'ashesi_vendor' => ['id' => 8,    'name' => 'Kente Corner Owner', 'email' => 'vendor5@campus-platform.test', 'role' => 'vendor', 'account_type' => 'guest'],
     'provider'      => ['id' => 9004, 'name' => 'Test Provider',     'email' => 'provider@ashesi.edu.gh','role' => 'provider', 'account_type' => 'ashesi'],
-    'admin'         => ['id' => 9005, 'name' => 'Test Admin',        'email' => 'admin@ashesi.edu.gh',   'role' => 'admin',    'account_type' => 'ashesi'],
+    'admin'         => ['id' => 1, 'name' => 'Test Admin',        'email' => 'admin@ashesi.edu.gh',   'role' => 'admin',    'account_type' => 'ashesi'],
 ];
 
 Session::start();

@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "data": {
+    "id": 2,
+    "full_name": "Ama Mensah",
+    "email": "ama.mensah@ashesi.edu.gh",
+    "phone": "0240000002",
+    "account_type": "ashesi",
+    "role": "user"
+  }
+}

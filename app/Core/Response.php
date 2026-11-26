@@ -5,15 +5,19 @@ namespace App\Core;
 
 /**
  * Every API endpoint answers through this class.
- *   success: { "success": true,  "data": ... }
+ *   success: { "success": true,  "data": ..., "meta": {...} }   (meta is optional: paging info for lists)
  *   error:   { "success": false, "error": "..." }
  * Both send the HTTP status code and stop the script.
  */
 final class Response
 {
-    public static function success(mixed $data = null, int $status = 200): void
+    public static function success(mixed $data = null, int $status = 200, ?array $meta = null): void
     {
-        self::send(['success' => true, 'data' => $data], $status);
+        $payload = ['success' => true, 'data' => $data];
+        if ($meta !== null) {
+            $payload['meta'] = $meta;
+        }
+        self::send($payload, $status);
     }
 
     public static function error(string $message, int $status = 400): void

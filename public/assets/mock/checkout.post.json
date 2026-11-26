@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "data": {
+    "orders": [
+      {
+        "id": 1,
+        "status": "received",
+        "vendor": {
+          "id": 1,
+          "shop_name": "Mama Esi's Kitchen"
+        },
+        "fulfilment": "pickup",
+        "delivery_spot": null,
+        "contact_phone": "024 123 4567",
+        "payment_method": "pay_on_delivery",
+        "pickup_code": "4990",
+        "total": 70,
+        "items": [
+          {
+            "item_id": 1,
+            "item_name": "Jollof Rice with Chicken",
+            "unit_price": 35,
+            "quantity": 2,
+            "line_total": 70
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "status": "received",
+        "vendor": {
+          "id": 2,
+          "shop_name": "Campus Bites"
+        },
+        "fulfilment": "pickup",
+        "delivery_spot": null,
+        "contact_phone": "024 123 4567",
+        "payment_method": "pay_on_delivery",
+        "pickup_code": "3235",
+        "total": 12,
+        "items": [
+          {
+            "item_id": 9,
+            "item_name": "Meat Pie",
+            "unit_price": 12,
+            "quantity": 1,
+            "line_total": 12
+          }
+        ]
+      }
+    ],
+    "order_count": 2,
+    "total": 82
+  }
+}

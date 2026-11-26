@@ -20,6 +20,11 @@ return function (Router $router): void {
     );
 
     $router->get(
+        '/resources/index.html',
+        [ResourceController::class, 'servicesPage']
+    );
+
+    $router->get(
         '/api/v1/resources/services',
         [ResourceController::class, 'services']
     );

@@ -42,7 +42,7 @@
   'use strict';
 
   /* >>> FLIP TO false WHEN THE REAL API IS LIVE <<< */
-  var MOCK = true;
+  var MOCK = false;
 
   // ---- site root, from this script's own URL (…/assets/js/api.js -> …/) ----
   var ROOT = (function () {
@@ -58,6 +58,14 @@
     var saved = sessionStorage.getItem('api-mock');
     if (saved !== null) MOCK = saved === '1';
   } catch (e) { /* storage blocked: keep the default */ }
+
+  // ?as=3 sends "X-Dev-User: 3" so the real API treats you as that seed user (server must have APP_ENV=development)
+  var DEV_USER = null;
+  try {
+    var du = /[?&]as=(\d+)/.exec(location.search);
+    if (du) sessionStorage.setItem('api-dev-user', du[1]);
+    DEV_USER = sessionStorage.getItem('api-dev-user');
+  } catch (e) { /* storage blocked */ }
 
   var config = {
     base: ROOT + 'api/v1',
@@ -146,6 +154,7 @@
   // ------------------------------------------------------------- real API
   function realRequest(method, path, params, body, opts) {
     var headers = { 'Accept': 'application/json' };
+    if (DEV_USER) headers['X-Dev-User'] = DEV_USER;
     var init = { method: method, headers: headers, credentials: 'same-origin' };
 
     if (body instanceof FormData) {
@@ -184,6 +193,34 @@
     });
   }
 
+
+  // Mock lists honour the same query params as the real API: q, status, category, vendor,
+  // min_price, max_price, sort, page, per_page (so browse/search pages behave in mock mode).
+  function mockQuery(p, q) {
+    var d = p.data.filter(function (x) {
+      if (q.status && x.status !== undefined && x.status !== q.status) return false;
+      if (q.q) {
+        var hay = ((x.name || '') + ' ' + (x.description || '') + ' ' + ((x.vendor && x.vendor.shop_name) || '')).toLowerCase();
+        if (hay.indexOf(String(q.q).toLowerCase()) < 0) return false;
+      }
+      if (q.category && x.category && String(x.category.slug) !== String(q.category) && String(x.category.id) !== String(q.category)) return false;
+      if (q.vendor && x.vendor && String(x.vendor.id) !== String(q.vendor)) return false;
+      if (q.min_price !== undefined && q.min_price !== '' && x.price < Number(q.min_price)) return false;
+      if (q.max_price !== undefined && q.max_price !== '' && x.price > Number(q.max_price)) return false;
+      return true;
+    });
+    var by = { price_asc: function (a, b) { return a.price - b.price; }, price_desc: function (a, b) { return b.price - a.price; },
+               name: function (a, b) { return String(a.name).localeCompare(String(b.name)); } }[q.sort];
+    if (by) d.sort(by);
+    var meta = p.meta;
+    if (q.per_page) {
+      var per = Math.max(1, Number(q.per_page)), page = Math.max(1, Number(q.page) || 1);
+      meta = { page: page, per_page: per, total: d.length, total_pages: Math.ceil(d.length / per) };
+      d = d.slice((page - 1) * per, page * per);
+    }
+    return { success: true, data: d, meta: meta };
+  }
+
   function mockRequest(method, path, params, body, opts) {
     return wait(config.mockDelay).then(function () {
       if (method === 'GET') {
@@ -193,23 +230,24 @@
             return finish({ ok: false, status: 404 }, r.payload, opts);
           }
           var p = r.payload;
-          if (p.success !== false && Array.isArray(p.data) && params) {      // tiny filter: ?status= and ?q=
-            p = { success: true, meta: p.meta, data: p.data.filter(function (x) {
-              if (params.status && x.status !== undefined && x.status !== params.status) return false;
-              if (params.q && x.name && x.name.toLowerCase().indexOf(String(params.q).toLowerCase()) < 0) return false;
-              return true;
-            }) };
-          }
+          if (p.success !== false && Array.isArray(p.data) && params) p = mockQuery(p, params);
           return finish(r.res, p, opts);
         });
       }
+      // a file named <path>.<method>.json (e.g. checkout.post.json) is returned as the response
+      return fetch(config.mockBase + cleanPath(path).replace(/\/$/, '') + '.' + method.toLowerCase() + '.json').then(function (res) {
+        return res.ok ? res.json().then(function (p) { return finish(res, p, opts); }) : mockEcho(method, path, body, opts);
+      });
+    });
+  }
+
+  function mockEcho(method, path, body, opts) {
       var echo = body instanceof FormData ? {} : (body || {});
       var data = {}; Object.keys(echo).forEach(function (k) { data[k] = echo[k]; });
       var pid = /\/(\d+)(?:\/[^\/]+)?$/.exec(path);
       data.id = data.id || (pid ? Number(pid[1]) : Math.floor(Math.random() * 9000) + 1000);
       data.mock = true;
       return finish({ ok: true, status: method === 'POST' ? 201 : 200 }, { success: true, data: data }, opts);
-    });
   }
 
   function request(method, path, params, body, opts) {
@@ -255,7 +293,7 @@
       var t = document.createElement('div');
       t.textContent = 'MOCK DATA';
       t.setAttribute('aria-hidden', 'true');
-      t.style.cssText = 'position:fixed;top:6px;right:8px;z-index:200;padding:2px 8px;border-radius:999px;' +
+      t.style.cssText = 'position:fixed;left:8px;bottom:72px;z-index:200;padding:2px 8px;border-radius:999px;' +
         'background:#fdf0d9;color:#9a5b00;font:600 10px/1.6 system-ui,sans-serif;letter-spacing:.04em;pointer-events:none;';
       document.body.appendChild(t);
     });

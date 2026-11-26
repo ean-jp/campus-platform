@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": 6,
+    "name": "Kenkey and Fried Fish",
+    "description": "Ga kenkey, fried fish and hot pepper.",
+    "price": 28,
+    "stock": 20,
+    "in_stock": true,
+    "image": null,
+    "category": {
+      "id": 1,
+      "name": "Food & Meals",
+      "slug": "food-meals"
+    },
+    "vendor": {
+      "id": 1,
+      "shop_name": "Mama Esi's Kitchen",
+      "is_open": true,
+      "description": "Home-style Ghanaian meals, cooked fresh daily.",
+      "phone": "0200000001",
+      "opens_at": "07:30",
+      "closes_at": "18:00"
+    },
+    "rating": {
+      "avg": null,
+      "count": 0
+    },
+    "created_at": "2026-11-25 08:36:40",
+    "images": [],
+    "reviews": []
+  }
+}

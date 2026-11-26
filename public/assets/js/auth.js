@@ -46,7 +46,7 @@
   function nextUrl() {
     var n = new URLSearchParams(location.search).get('next');
     if (n && /^\/(?![\/\\])/.test(n)) return n;           // must start with a single "/"
-    return ROOT + 'index.html';
+    return ROOT + 'shop/index.html';
   }
 
   function refreshCsrf() {

@@ -25,7 +25,7 @@ function escapeHtml($value): string
 
     <title>Appointment Availability | Campus Platform</title>
 
-    <script src="/assets/js/resources.js" defer></script>
+    <script src="/campus-platform-fused/public/assets/js/resources.js" defer></script>
 
 </head>
 
@@ -37,11 +37,11 @@ function escapeHtml($value): string
 
         <nav>
 
-            <a href="/resources">Campus Resources</a>
+            <a href="/campus-platform-fused/public/resources">Campus Resources</a>
 
             |
 
-            <a href="/resources/bookings">My Bookings</a>
+            <a href="/campus-platform-fused/public/resources/bookings">My Bookings</a>
 
         </nav>
 
@@ -118,13 +118,13 @@ function escapeHtml($value): string
         <hr>
 
         <p>
-            <a href="/resources/services/<?= (int) $provider["service_id"] ?>/providers">
+            <a href="/campus-platform-fused/public/resources/services/<?= (int) $provider["service_id"] ?>/providers">
                 Back to Providers
             </a>
         </p>
 
         <p>
-            <a href="/resources">Back to Services</a>
+            <a href="/campus-platform-fused/public/resources">Back to Services</a>
         </p>
 
     </main>

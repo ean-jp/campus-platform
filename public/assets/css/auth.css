@@ -3,6 +3,24 @@
    Everything else comes from styles.css (the shared kit).
    ========================================================================== */
 
+/* background image matching the login design */
+body[data-page] {
+  background: #14110f url("../images/login-bg.jpg") center/cover no-repeat fixed;
+}
+body[data-page]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 8, .55);
+  z-index: 0;
+  pointer-events: none;
+}
+body[data-page] .site-header,
+body[data-page] .auth-wrap {
+  position: relative;
+  z-index: 1;
+}
+
 /* centred card; no bottom-nav padding because these pages have no bottom menu */
 .auth-wrap {
   min-height: calc(100vh - var(--nav-h));

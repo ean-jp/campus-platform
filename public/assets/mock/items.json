@@ -1,0 +1,899 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 37,
+      "name": "Canvas Backpack",
+      "description": "Durable canvas backpack.",
+      "price": 95,
+      "stock": 15,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 36,
+      "name": "Kente Bow Tie",
+      "description": "Handmade kente bow tie.",
+      "price": 30,
+      "stock": 20,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 35,
+      "name": "Baseball Cap",
+      "description": "Adjustable cotton cap.",
+      "price": 40,
+      "stock": 35,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 34,
+      "name": "Beaded Necklace",
+      "description": "Handmade beaded necklace.",
+      "price": 35,
+      "stock": 25,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 33,
+      "name": "Campus Hoodie",
+      "description": "Soft fleece hoodie.",
+      "price": 120,
+      "stock": 30,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 32,
+      "name": "Kente Tote Bag",
+      "description": "Roomy tote with kente trim.",
+      "price": 70,
+      "stock": 20,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 31,
+      "name": "Kente Bracelet",
+      "description": "Handwoven kente bracelet.",
+      "price": 20,
+      "stock": 40,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 4,
+        "name": "Fashion & Accessories",
+        "slug": "fashion-accessories"
+      },
+      "vendor": {
+        "id": 5,
+        "shop_name": "Kente Corner",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 30,
+      "name": "Pencil Case",
+      "description": "Zip pencil case.",
+      "price": 10,
+      "stock": 45,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 29,
+      "name": "USB Flash Drive 32GB",
+      "description": "32GB USB 3.0 drive.",
+      "price": 60,
+      "stock": 25,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 28,
+      "name": "A4 Printing (per page)",
+      "description": "Black-and-white printing.",
+      "price": 0.5,
+      "stock": 500,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 27,
+      "name": "Sticky Notes Pack",
+      "description": "Assorted colour sticky notes.",
+      "price": 8,
+      "stock": 70,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 26,
+      "name": "Scientific Calculator",
+      "description": "Casio-style scientific calculator.",
+      "price": 85,
+      "stock": 20,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 25,
+      "name": "Highlighter Set (5 colours)",
+      "description": "Assorted colour highlighters.",
+      "price": 15,
+      "stock": 50,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 24,
+      "name": "Ballpoint Pens (pack of 10)",
+      "description": "Blue ballpoint pens.",
+      "price": 12,
+      "stock": 80,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 23,
+      "name": "A4 Notebook (200 pages)",
+      "description": "Ruled hardcover notebook.",
+      "price": 25,
+      "stock": 60,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 3,
+        "name": "Stationery & Books",
+        "slug": "stationery-books"
+      },
+      "vendor": {
+        "id": 4,
+        "shop_name": "Print & Pages",
+        "is_open": false
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 22,
+      "name": "Bottled Water (750ml)",
+      "description": "Chilled bottled water.",
+      "price": 3,
+      "stock": 200,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 21,
+      "name": "Hot Chocolate",
+      "description": "Rich hot cocoa.",
+      "price": 14,
+      "stock": 35,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 20,
+      "name": "Fresh Orange Juice",
+      "description": "Squeezed to order.",
+      "price": 15,
+      "stock": 40,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 19,
+      "name": "Sobolo (500ml)",
+      "description": "Chilled hibiscus drink with ginger.",
+      "price": 10,
+      "stock": 60,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 18,
+      "name": "Mango Smoothie",
+      "description": "Fresh mango blended with yoghurt.",
+      "price": 20,
+      "stock": 40,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 17,
+      "name": "Iced Coffee",
+      "description": "Cold brew over ice.",
+      "price": 18,
+      "stock": 50,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 3,
+        "shop_name": "Brew & Chill",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 16,
+      "name": "Fruit Cup",
+      "description": "Pineapple, watermelon and pawpaw.",
+      "price": 10,
+      "stock": 30,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 15,
+      "name": "Plantain Chips",
+      "description": "Crunchy salted plantain chips.",
+      "price": 6,
+      "stock": 90,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 14,
+      "name": "Peanut Packet",
+      "description": "Roasted groundnuts.",
+      "price": 4,
+      "stock": 100,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 13,
+      "name": "Spring Rolls (4 pcs)",
+      "description": "Vegetable spring rolls.",
+      "price": 14,
+      "stock": 40,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 12,
+      "name": "Bofrot (5 pcs)",
+      "description": "Ghanaian puff-puff, freshly fried.",
+      "price": 8,
+      "stock": 70,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 11,
+      "name": "Doughnut",
+      "description": "Freshly fried sugar doughnut.",
+      "price": 5,
+      "stock": 80,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 10,
+      "name": "Chicken Samosa (3 pcs)",
+      "description": "Crispy samosas with dipping sauce.",
+      "price": 15,
+      "stock": 50,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 9,
+      "name": "Meat Pie",
+      "description": "Flaky pastry with minced beef filling.",
+      "price": 12,
+      "stock": 60,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 2,
+        "name": "Snacks & Drinks",
+        "slug": "snacks-drinks"
+      },
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 8,
+      "name": "Vegetable Salad Bowl",
+      "description": "Fresh salad with boiled egg.",
+      "price": 22,
+      "stock": 20,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 7,
+      "name": "Plain Rice and Stew",
+      "description": "Steamed rice with tomato stew.",
+      "price": 20,
+      "stock": 50,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 6,
+      "name": "Kenkey and Fried Fish",
+      "description": "Ga kenkey, fried fish and hot pepper.",
+      "price": 28,
+      "stock": 20,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 5,
+      "name": "Red Red with Plantain",
+      "description": "Black-eyed beans stew with fried plantain.",
+      "price": 25,
+      "stock": 30,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 4,
+      "name": "Fried Rice and Beef",
+      "description": "Vegetable fried rice with spiced beef.",
+      "price": 35,
+      "stock": 30,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 3,
+      "name": "Banku and Tilapia",
+      "description": "Fresh banku with grilled tilapia and pepper.",
+      "price": 45,
+      "stock": 25,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 2,
+      "name": "Waakye Special",
+      "description": "Waakye with egg, gari, spaghetti and stew.",
+      "price": 30,
+      "stock": 35,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    },
+    {
+      "id": 1,
+      "name": "Jollof Rice with Chicken",
+      "description": "Smoky jollof, grilled chicken and shito.",
+      "price": 35,
+      "stock": 40,
+      "in_stock": true,
+      "image": null,
+      "category": {
+        "id": 1,
+        "name": "Food & Meals",
+        "slug": "food-meals"
+      },
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen",
+        "is_open": true
+      },
+      "rating": {
+        "avg": null,
+        "count": 0
+      },
+      "created_at": "2026-11-25 08:30:01"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 50,
+    "total": 37,
+    "total_pages": 1
+  }
+}

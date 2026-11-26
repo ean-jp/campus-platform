@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sign up · Campus Platform</title>
+    <link rel="icon" href="assets/images/ashesi-logo.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body data-page="signup">
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="index.html"><img src="assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="login-email.html">Log in</a>
+    </div>
+  </header>
+
+  <main class="auth-wrap">
+    <section class="card-box auth-card" aria-labelledby="title">
+      <p style="margin:0 0 var(--sp-3)"><a class="small muted" href="login.html">&larr; Back</a></p>
+      <h1 id="title">Create your account</h1>
+      <p class="muted">Use your Ashesi email for the marketplace and Campus Resources. Use any other email to continue as a guest with the marketplace only.</p>
+
+      <form id="signup-form" novalidate>
+        <input type="hidden" name="csrf_token" value="">
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input class="input" id="name" name="name" type="text" autocomplete="name" maxlength="100" required>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="190" required>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number <span class="muted">(optional)</span></label>
+          <input class="input" id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="16">
+          <span class="hint">Guests need a phone number at checkout so vendors can reach them.</span>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input class="input" id="password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="72" required>
+          <span class="hint">8 to 72 characters.</span>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <div class="field">
+          <label for="password2">Confirm password</label>
+          <input class="input" id="password2" name="password2" type="password" autocomplete="new-password" maxlength="72" required>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <button class="btn primary" type="submit">Create account</button>
+      </form>
+
+      <p class="auth-foot small muted">Already have an account? <a href="login-email.html">Log in</a></p>
+    </section>
+  </main>
+
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

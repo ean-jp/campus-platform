@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": 30,
+    "name": "Pencil Case",
+    "description": "Zip pencil case.",
+    "price": 10,
+    "stock": 45,
+    "in_stock": true,
+    "image": null,
+    "category": {
+      "id": 3,
+      "name": "Stationery & Books",
+      "slug": "stationery-books"
+    },
+    "vendor": {
+      "id": 4,
+      "shop_name": "Print & Pages",
+      "is_open": false,
+      "description": "Stationery, notebooks and printing supplies.",
+      "phone": "0200000004",
+      "opens_at": "09:00",
+      "closes_at": "17:00"
+    },
+    "rating": {
+      "avg": null,
+      "count": 0
+    },
+    "created_at": "2026-11-25 08:36:40",
+    "images": [],
+    "reviews": []
+  }
+}

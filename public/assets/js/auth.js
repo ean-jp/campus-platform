@@ -9,8 +9,8 @@
      in for static .html pages, so this file fetches GET /auth/csrf on load and
      puts the token into the hidden input (and refreshes it once if the server
      says the token is stale).
-   - The server decides the account type (Ashesi or guest). The line shown under
-     the email box while typing is only a preview.
+   - The server decides the account type (Ashesi or guest) from the verified
+     email. The pages never show or send an account type.
    ========================================================================== */
 (function () {
   'use strict';
@@ -27,7 +27,6 @@
 
   var ROOT = API.config.base.replace(/api\/v1$/, '');     // site root, e.g. /campus-platform/public/
   var OPTS = { silent: true, noRedirect: true };          // we show errors ourselves; a 401 here is normal
-  var ASHESI_DOMAIN = 'ashesi.edu.gh';
 
   var page = document.body.getAttribute('data-page');
   var form = document.querySelector('form');
@@ -80,14 +79,6 @@
     API.get('/auth/me', null, OPTS).then(function () { location.replace(nextUrl()); }, function () { /* not logged in: stay */ });
   }
 
-  function previewType(email) {
-    var at = email.lastIndexOf('@');
-    if (at < 1) return '';
-    var d = email.slice(at + 1).toLowerCase();
-    if (d === ASHESI_DOMAIN || d.slice(-(ASHESI_DOMAIN.length + 1)) === '.' + ASHESI_DOMAIN) return 'ashesi';
-    return d.indexOf('.') > 0 ? 'guest' : '';
-  }
-
   // ------------------------------------------------------------------ login
   function initLogin() {
     redirectIfLoggedIn();
@@ -124,15 +115,7 @@
   function initSignup() {
     redirectIfLoggedIn();
     var btn = form.querySelector('button[type="submit"]');
-    var hint = document.getElementById('type-hint');
 
-    field('email').addEventListener('input', function () {
-      var t = previewType(field('email').value.trim());
-      hint.className = 'hint' + (t ? ' type-' + t : '');
-      hint.textContent = t === 'ashesi' ? 'Ashesi email: you will get the marketplace and Campus Resources.'
-                       : t === 'guest'  ? 'Guest account: marketplace only. You can link an Ashesi email later.'
-                       : '';
-    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();

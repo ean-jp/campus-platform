@@ -16,10 +16,6 @@
 .auth-card form { margin-top: var(--sp-5); }
 .auth-foot { text-align: center; margin: var(--sp-5) 0 0; }
 
-/* the "you will get an Ashesi / guest account" line under the email box */
-.field .hint.type-ashesi { color: var(--ok); }
-.field .hint.type-guest  { color: var(--info); }
-
 /* big, spaced-out 6-digit box */
 .code-input {
   text-align: center;

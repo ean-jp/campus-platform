@@ -1,48 +1,3 @@
-
-<?php
-// Temporary sample provider data.
-// Later, this information will come from MySQL.
-
-$providers = [
-    [
-        "id" => 1,
-        "name" => "Academic Advisor A",
-        "service" => "Academic Advising"
-    ],
-    [
-        "id" => 2,
-        "name" => "Academic Advisor B",
-        "service" => "Academic Advising"
-    ],
-    [
-        "id" => 3,
-        "name" => "Peer Tutor A",
-        "service" => "Peer Tutoring"
-    ],
-    [
-        "id" => 4,
-        "name" => "Counsellor A",
-        "service" => "Counselling"
-    ],
-    [
-        "id" => 5,
-        "name" => "Career Advisor A",
-        "service" => "Career Services"
-    ]
-];
-
-// Get the selected service from the URL.
-$selectedService = $_GET["service"] ?? "";
-
-// Filter providers by the selected service.
-$filteredProviders = array_filter(
-    $providers,
-    function ($provider) use ($selectedService) {
-        return $provider["service"] === $selectedService;
-    }
-);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +5,7 @@ $filteredProviders = array_filter(
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
+
     <title>Service Providers</title>
 </head>
 
@@ -76,10 +32,18 @@ $filteredProviders = array_filter(
                 </h2>
 
                 <p>
-                    <?= htmlspecialchars($provider["service"], ENT_QUOTES, "UTF-8") ?>
+                    <?= htmlspecialchars($selectedService, ENT_QUOTES, "UTF-8") ?>
                 </p>
 
-                <a href="slots.php?provider_id=<?= $provider["id"] ?>">
+                <?php if (!empty($provider["bio"])): ?>
+
+                    <p>
+                        <?= htmlspecialchars($provider["bio"], ENT_QUOTES, "UTF-8") ?>
+                    </p>
+
+                <?php endif; ?>
+
+                <a href="/resources/providers/<?= (int) $provider["id"] ?>/slots">
                     View Availability
                 </a>
 
@@ -90,7 +54,7 @@ $filteredProviders = array_filter(
     <?php endif; ?>
 
     <p>
-        <a href="services.php">Back to Services</a>
+        <a href="/resources">Back to Services</a>
     </p>
 
 </body>

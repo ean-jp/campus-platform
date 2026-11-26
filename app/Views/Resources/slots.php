@@ -1,60 +1,14 @@
-
 <?php
-// Temporary provider data.
-// Later, this will be retrieved from MySQL.
 
-$providers = [
-    1 => "Academic Advisor A",
-    2 => "Academic Advisor B",
-    3 => "Peer Tutor A",
-    4 => "Counsellor A",
-    5 => "Career Advisor A"
-];
-
-// Get provider ID from the URL.
-$providerId = filter_input(
-    INPUT_GET,
-    "provider_id",
-    FILTER_VALIDATE_INT
-);
-
-// Check that the provider exists.
-$providerExists = (
-    $providerId !== false &&
-    $providerId !== null &&
-    isset($providers[$providerId])
-);
-
-if (!$providerExists) {
-    http_response_code(404);
-}
-
-// Sample appointment availability.
-// These are demonstration dates and times,
-// not real provider appointments.
-
-$availableSlots = [
-    [
-        "date" => "2026-11-24",
-        "times" => ["09:00", "10:00", "11:00"]
-    ],
-    [
-        "date" => "2026-11-25",
-        "times" => ["13:00", "14:00", "15:00"]
-    ],
-    [
-        "date" => "2026-11-26",
-        "times" => ["09:30", "11:30", "14:30"]
-    ]
-];
-
-function escapeHtml($value) {
+function escapeHtml($value): string
+{
     return htmlspecialchars(
         (string) $value,
         ENT_QUOTES,
         "UTF-8"
     );
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -70,46 +24,56 @@ function escapeHtml($value) {
 
 <body>
 
-    <?php if (!$providerExists): ?>
+    <h1>Appointment Availability</h1>
 
-        <h1>Provider Not Found</h1>
+    <h2>
+        <?= escapeHtml($provider["name"]) ?>
+    </h2>
 
-        <p>The selected provider does not exist.</p>
+    <p>
+        Service: <?= escapeHtml($provider["service_name"]) ?>
+    </p>
 
-        <a href="services.php">Back to Services</a>
+    <p>Select an available appointment date and time.</p>
+
+    <?php if (empty($groupedSlots)): ?>
+
+        <p>No appointments are currently available.</p>
 
     <?php else: ?>
 
-        <h1>Appointment Availability</h1>
-
-        <h2>
-            <?= escapeHtml($providers[$providerId]) ?>
-        </h2>
-
-        <p>Select an available appointment date and time.</p>
-
-        <?php foreach ($availableSlots as $day): ?>
+        <?php foreach ($groupedSlots as $date => $slots): ?>
 
             <div class="appointment-day">
 
                 <h3>
                     <?= escapeHtml(
-                        date(
-                            "l, F j, Y",
-                            strtotime($day["date"])
-                        )
+                        date("l, F j, Y", strtotime($date))
                     ) ?>
                 </h3>
 
                 <div class="time-slots">
 
-                    <?php foreach ($day["times"] as $time): ?>
+                    <?php foreach ($slots as $slot): ?>
 
-                        <button type="button" disabled>
+                        <button
+                            type="button"
+                            data-slot-id="<?= (int) $slot["id"] ?>"
+                            disabled
+                        >
                             <?= escapeHtml(
                                 date(
                                     "g:i A",
-                                    strtotime($time)
+                                    strtotime($slot["start_time"])
+                                )
+                            ) ?>
+
+                            -
+
+                            <?= escapeHtml(
+                                date(
+                                    "g:i A",
+                                    strtotime($slot["end_time"])
                                 )
                             ) ?>
                         </button>
@@ -125,15 +89,21 @@ function escapeHtml($value) {
         <p>
             <em>
                 Appointment booking will be enabled
-                when the database is connected.
+                in the next implementation stage.
             </em>
         </p>
 
-        <p>
-            <a href="services.php">Back to Services</a>
-        </p>
-
     <?php endif; ?>
+
+    <p>
+        <a href="/resources/services/<?= (int) $provider["service_id"] ?>/providers">
+            Back to Providers
+        </a>
+    </p>
+
+    <p>
+        <a href="/resources">Back to Services</a>
+    </p>
 
 </body>
 </html>

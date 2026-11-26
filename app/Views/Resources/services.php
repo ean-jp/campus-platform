@@ -1,32 +1,3 @@
-
-<?php
-// Temporary sample data.
-// Later, these services will be retrieved from MySQL.
-
-$services = [
-    [
-        "id" => 1,
-        "name" => "Academic Advising",
-        "description" => "Get guidance on your courses and academic progress."
-    ],
-    [
-        "id" => 2,
-        "name" => "Peer Tutoring",
-        "description" => "Receive academic assistance from peer tutors."
-    ],
-    [
-        "id" => 3,
-        "name" => "Counselling",
-        "description" => "Access confidential student support services."
-    ],
-    [
-        "id" => 4,
-        "name" => "Career Services",
-        "description" => "Get advice on internships and career development."
-    ]
-];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +31,7 @@ $services = [
                     <?= htmlspecialchars($service["description"], ENT_QUOTES, "UTF-8") ?>
                 </p>
 
-                <a href="providers.php?service=<?= urlencode($service["name"]) ?>">
+                <a href="/resources/services/<?= (int) $service["id"] ?>/providers">
                     View Providers
                 </a>
 

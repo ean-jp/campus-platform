@@ -258,6 +258,7 @@ final class AuthController
     {
         $code = VerificationService::issue($userId, $email, $purpose);
         if (!MailService::sendCode($email, $name, $code, $purpose)) {
+            VerificationService::discardUnused($userId, $purpose);   // no email went out, so no cooldown either
             self::fail('EMAIL_FAILED', 'We could not send the email. Please try again in a moment.', 502);
         }
     }

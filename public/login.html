@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Log in · Campus Platform</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body data-page="login">
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="logo" href="index.html"><img src="assets/images/ashesi-logo.png" alt="">Campus Platform</a>
+      <div class="nav-spacer"></div>
+      <a class="btn ghost sm auto" href="signup.html">Sign up</a>
+    </div>
+  </header>
+
+  <main class="auth-wrap">
+    <section class="card-box auth-card" aria-labelledby="title">
+      <h1 id="title">Welcome back</h1>
+      <p class="muted">Log in with the email you signed up with. Ashesi emails get the marketplace and Campus Resources; other emails get the marketplace.</p>
+
+      <form id="login-form" novalidate>
+        <input type="hidden" name="csrf_token" value="">
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+          <span class="error" aria-live="polite"></span>
+        </div>
+
+        <button class="btn primary" type="submit">Log in</button>
+      </form>
+
+      <p class="auth-foot small muted">New here? <a href="signup.html">Create an account</a></p>
+    </section>
+  </main>
+
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

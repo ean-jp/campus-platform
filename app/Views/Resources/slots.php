@@ -1,139 +1,138 @@
-
 <?php
-// Temporary provider data.
-// Later, this will be retrieved from MySQL.
 
-$providers = [
-    1 => "Academic Advisor A",
-    2 => "Academic Advisor B",
-    3 => "Peer Tutor A",
-    4 => "Counsellor A",
-    5 => "Career Advisor A"
-];
+declare(strict_types=1);
 
-// Get provider ID from the URL.
-$providerId = filter_input(
-    INPUT_GET,
-    "provider_id",
-    FILTER_VALIDATE_INT
-);
-
-// Check that the provider exists.
-$providerExists = (
-    $providerId !== false &&
-    $providerId !== null &&
-    isset($providers[$providerId])
-);
-
-if (!$providerExists) {
-    http_response_code(404);
-}
-
-// Sample appointment availability.
-// These are demonstration dates and times,
-// not real provider appointments.
-
-$availableSlots = [
-    [
-        "date" => "2026-11-24",
-        "times" => ["09:00", "10:00", "11:00"]
-    ],
-    [
-        "date" => "2026-11-25",
-        "times" => ["13:00", "14:00", "15:00"]
-    ],
-    [
-        "date" => "2026-11-26",
-        "times" => ["09:30", "11:30", "14:30"]
-    ]
-];
-
-function escapeHtml($value) {
+function escapeHtml($value): string
+{
     return htmlspecialchars(
         (string) $value,
         ENT_QUOTES,
-        "UTF-8"
+        'UTF-8'
     );
 }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Appointment Availability</title>
+    <title>Appointment Availability | Campus Platform</title>
+
+    <script src="/assets/js/resources.js" defer></script>
+
 </head>
 
 <body>
 
-    <?php if (!$providerExists): ?>
-
-        <h1>Provider Not Found</h1>
-
-        <p>The selected provider does not exist.</p>
-
-        <a href="services.php">Back to Services</a>
-
-    <?php else: ?>
+    <header>
 
         <h1>Appointment Availability</h1>
 
+        <nav>
+
+            <a href="/resources">Campus Resources</a>
+
+            |
+
+            <a href="/resources/bookings">My Bookings</a>
+
+        </nav>
+
+    </header>
+
+    <hr>
+
+    <main>
+
+        <div id="resource-message" role="status"></div>
+
         <h2>
-            <?= escapeHtml($providers[$providerId]) ?>
+            <?= escapeHtml($provider["name"]) ?>
         </h2>
+
+        <p>
+            <strong>Service:</strong>
+            <?= escapeHtml($provider["service_name"]) ?>
+        </p>
 
         <p>Select an available appointment date and time.</p>
 
-        <?php foreach ($availableSlots as $day): ?>
+        <?php if (empty($groupedSlots)): ?>
 
-            <div class="appointment-day">
+            <p>No appointments are currently available.</p>
 
-                <h3>
-                    <?= escapeHtml(
-                        date(
-                            "l, F j, Y",
-                            strtotime($day["date"])
-                        )
-                    ) ?>
-                </h3>
+        <?php else: ?>
 
-                <div class="time-slots">
+            <?php foreach ($groupedSlots as $date => $slots): ?>
 
-                    <?php foreach ($day["times"] as $time): ?>
+                <section class="appointment-day">
 
-                        <button type="button" disabled>
-                            <?= escapeHtml(
-                                date(
-                                    "g:i A",
-                                    strtotime($time)
-                                )
-                            ) ?>
-                        </button>
+                    <h3>
+                        <?= escapeHtml(
+                            date("l, F j, Y", strtotime($date))
+                        ) ?>
+                    </h3>
 
-                    <?php endforeach; ?>
+                    <div class="time-slots">
 
-                </div>
+                        <?php foreach ($slots as $slot): ?>
 
-            </div>
+                            <button
+                                type="button"
+                                data-slot-id="<?= (int) $slot["id"] ?>"
+                            >
+                                <?= escapeHtml(
+                                    date(
+                                        "g:i A",
+                                        strtotime($slot["start_time"])
+                                    )
+                                ) ?>
 
-        <?php endforeach; ?>
+                                -
+
+                                <?= escapeHtml(
+                                    date(
+                                        "g:i A",
+                                        strtotime($slot["end_time"])
+                                    )
+                                ) ?>
+                            </button>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                </section>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+        <hr>
 
         <p>
-            <em>
-                Appointment booking will be enabled
-                when the database is connected.
-            </em>
+            <a href="/resources/services/<?= (int) $provider["service_id"] ?>/providers">
+                Back to Providers
+            </a>
         </p>
 
         <p>
-            <a href="services.php">Back to Services</a>
+            <a href="/resources">Back to Services</a>
         </p>
 
-    <?php endif; ?>
+    </main>
+
+    <footer>
+        <p>Campus Platform | Campus Resources</p>
+    </footer>
 
 </body>
+
 </html>

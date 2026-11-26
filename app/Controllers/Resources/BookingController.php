@@ -6,25 +6,93 @@ namespace App\Controllers\Resources;
 
 use App\Core\Database;
 use App\Core\Response;
+use App\Core\Csrf;
+use App\Models\User;
+use App\Services\BookingMailService;
 use Throwable;
 
 require_once BASE_PATH . '/app/Core/Session.php';
+require_once BASE_PATH . '/app/Middleware/AuthMiddleware.php';
 
 final class BookingController
 {
-    // Book an appointment.
-    public static function book(array $params): void
-    {
-        $user = \Session::user();
+    // ==========================================
+    // CSRF VALIDATION
+    // ==========================================
 
-        if (!$user || empty($user['id'])) {
+    private static function validateCsrf(): void
+    {
+        $body = $_POST;
+
+        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
+
+        if (stripos($contentType, 'application/json') !== false) {
+
+            $decoded = json_decode(
+                file_get_contents('php://input'),
+                true
+            );
+
+            if (!is_array($decoded)) {
+                Response::error(
+                    'Invalid JSON request body',
+                    400
+                );
+            }
+
+            $body = $decoded;
+        }
+
+        if (!Csrf::verify($body)) {
             Response::error(
-                'You must log in to book an appointment',
+                'Invalid CSRF token',
+                403
+            );
+        }
+    }
+
+    // ==========================================
+    // USER ELIGIBILITY
+    // ==========================================
+
+    private static function requireEligibleUser(): int
+    {
+        $user = \requireAshesi();
+
+        $userId = (int) $user['id'];
+
+        $account = User::findById($userId);
+
+        if (!$account) {
+            Response::error(
+                'User account not found',
                 401
             );
         }
 
-        $userId = (int) $user['id'];
+        if (
+            $account['account_type'] !== 'ashesi' ||
+            $account['status'] !== 'active' ||
+            empty($account['email_verified_at'])
+        ) {
+            Response::error(
+                'You are not eligible to manage appointments',
+                403
+            );
+        }
+
+        return $userId;
+    }
+
+    // ==========================================
+    // BOOK AN APPOINTMENT
+    // ==========================================
+
+    public static function book(array $params): void
+    {
+        $userId = self::requireEligibleUser();
+
+        self::validateCsrf();
 
         $slotId = filter_var(
             $params['id'] ?? null,
@@ -41,33 +109,8 @@ final class BookingController
 
         $db = Database::connection();
 
-        // Verify the user's eligibility.
-        $stmt = $db->prepare(
-            "SELECT id, account_type, status, email_verified_at
-             FROM users
-             WHERE id = ?"
-        );
-
-        $stmt->execute([$userId]);
-
-        $account = $stmt->fetch();
-
-        if (!$account) {
-            Response::error('User account not found', 401);
-        }
-
-        if (
-            $account['account_type'] !== 'ashesi' ||
-            $account['status'] !== 'active' ||
-            empty($account['email_verified_at'])
-        ) {
-            Response::error(
-                'You are not eligible to book appointments',
-                403
-            );
-        }
-
         try {
+
             $db->beginTransaction();
 
             // Reserve the slot only if it is still available.
@@ -82,12 +125,17 @@ final class BookingController
                  AND t.is_booked = 0
                  AND p.is_active = 1
                  AND s.is_active = 1
-                 AND TIMESTAMP(t.slot_date, t.start_time) > NOW()"
+                 AND TIMESTAMP(
+                     t.slot_date,
+                     t.start_time
+                 ) > NOW()"
             );
 
             $stmt->execute([$slotId]);
 
+            // Prevent double booking.
             if ($stmt->rowCount() !== 1) {
+
                 $db->rollBack();
 
                 Response::error(
@@ -106,18 +154,15 @@ final class BookingController
                  VALUES (?, ?, 'confirmed')"
             );
 
-            $stmt->execute([$userId, $slotId]);
+            $stmt->execute([
+                $userId,
+                $slotId
+            ]);
 
             $bookingId = (int) $db->lastInsertId();
 
+            // Permanently save the booking.
             $db->commit();
-
-            Response::success([
-                'message' => 'Appointment booked successfully',
-                'booking_id' => $bookingId,
-                'slot_id' => $slotId,
-                'status' => 'confirmed'
-            ], 201);
 
         } catch (Throwable $e) {
 
@@ -133,22 +178,62 @@ final class BookingController
                 'Unable to complete appointment booking',
                 500
             );
+
+            return;
         }
-    }
 
-    // Cancel an existing appointment.
-    public static function cancel(array $params): void
-    {
-        $user = \Session::user();
+        // ==========================================
+        // SEND BOOKING CONFIRMATION EMAIL
+        // ==========================================
 
-        if (!$user || empty($user['id'])) {
-            Response::error(
-                'You must log in to cancel an appointment',
-                401
+        // Email delivery happens after the transaction
+        // has been successfully committed.
+
+        $emailSent = false;
+
+        try {
+
+            $emailSent =
+                BookingMailService::sendConfirmation(
+                    $bookingId
+                );
+
+        } catch (Throwable $mailError) {
+
+            error_log(
+                'Booking confirmation email failed: '
+                . $mailError->getMessage()
             );
         }
 
-        $userId = (int) $user['id'];
+        // Email failure must not cancel the booking.
+        if (!$emailSent) {
+
+            error_log(
+                'Confirmation email not sent for booking '
+                . $bookingId
+            );
+        }
+
+        // Return the successful booking response.
+        Response::success([
+            'message' => 'Appointment booked successfully',
+            'booking_id' => $bookingId,
+            'slot_id' => $slotId,
+            'status' => 'confirmed',
+            'email_sent' => $emailSent
+        ], 201);
+    }
+
+    // ==========================================
+    // CANCEL AN APPOINTMENT
+    // ==========================================
+
+    public static function cancel(array $params): void
+    {
+        $userId = self::requireEligibleUser();
+
+        self::validateCsrf();
 
         // Validate the booking ID.
         $bookingId = filter_var(
@@ -158,21 +243,28 @@ final class BookingController
         );
 
         if (!$bookingId) {
-            Response::error('Invalid booking ID', 400);
+            Response::error(
+                'Invalid booking ID',
+                400
+            );
         }
 
         $db = Database::connection();
 
         try {
+
             $db->beginTransaction();
 
             // Retrieve and lock the user's booking.
             $stmt = $db->prepare(
-                "SELECT b.id,
-                        b.slot_id,
-                        b.status,
-                        TIMESTAMP(t.slot_date, t.start_time) > NOW()
-                            AS is_future
+                "SELECT
+                    b.id,
+                    b.slot_id,
+                    b.status,
+                    TIMESTAMP(
+                        t.slot_date,
+                        t.start_time
+                    ) > NOW() AS is_future
                  FROM bookings AS b
                  INNER JOIN time_slots AS t
                      ON b.slot_id = t.id
@@ -181,19 +273,27 @@ final class BookingController
                  FOR UPDATE"
             );
 
-            $stmt->execute([$bookingId, $userId]);
+            $stmt->execute([
+                $bookingId,
+                $userId
+            ]);
 
             $booking = $stmt->fetch();
 
             // Verify booking ownership.
             if (!$booking) {
+
                 $db->rollBack();
 
-                Response::error('Booking not found', 404);
+                Response::error(
+                    'Booking not found',
+                    404
+                );
             }
 
             // Only confirmed appointments can be cancelled.
             if ($booking['status'] !== 'confirmed') {
+
                 $db->rollBack();
 
                 Response::error(
@@ -204,6 +304,7 @@ final class BookingController
 
             // Prevent cancellation of past appointments.
             if (!(int) $booking['is_future']) {
+
                 $db->rollBack();
 
                 Response::error(
@@ -222,9 +323,13 @@ final class BookingController
                  AND status = 'confirmed'"
             );
 
-            $stmt->execute([$bookingId, $userId]);
+            $stmt->execute([
+                $bookingId,
+                $userId
+            ]);
 
             if ($stmt->rowCount() !== 1) {
+
                 throw new \RuntimeException(
                     'Booking cancellation failed'
                 );
@@ -238,9 +343,12 @@ final class BookingController
                  AND is_booked = 1"
             );
 
-            $stmt->execute([$booking['slot_id']]);
+            $stmt->execute([
+                $booking['slot_id']
+            ]);
 
             if ($stmt->rowCount() !== 1) {
+
                 throw new \RuntimeException(
                     'Unable to release appointment slot'
                 );
@@ -250,9 +358,14 @@ final class BookingController
             $db->commit();
 
             Response::success([
-                'message' => 'Appointment cancelled successfully',
+                'message' =>
+                    'Appointment cancelled successfully',
+
                 'booking_id' => $bookingId,
-                'slot_id' => (int) $booking['slot_id'],
+
+                'slot_id' =>
+                    (int) $booking['slot_id'],
+
                 'status' => 'cancelled'
             ], 200);
 
@@ -263,7 +376,8 @@ final class BookingController
             }
 
             error_log(
-                'Cancellation failed: ' . $e->getMessage()
+                'Cancellation failed: '
+                . $e->getMessage()
             );
 
             Response::error(
@@ -273,9 +387,14 @@ final class BookingController
         }
     }
 
-    // Retrieve bookings belonging to a specific user.
-    private static function getUserBookings(int $userId): array
-    {
+    // ==========================================
+    // RETRIEVE USER BOOKINGS
+    // ==========================================
+
+    private static function getUserBookings(
+        int $userId
+    ): array {
+
         $db = Database::connection();
 
         $stmt = $db->prepare(
@@ -290,21 +409,33 @@ final class BookingController
                 t.end_time,
                 p.name AS provider_name,
                 s.name AS service_name,
+
                 CASE
                     WHEN b.status = 'confirmed'
-                    AND TIMESTAMP(t.slot_date, t.start_time) > NOW()
+                    AND TIMESTAMP(
+                        t.slot_date,
+                        t.start_time
+                    ) > NOW()
                     THEN 1
                     ELSE 0
                 END AS can_cancel
+
              FROM bookings AS b
+
              INNER JOIN time_slots AS t
                  ON b.slot_id = t.id
+
              INNER JOIN providers AS p
                  ON t.provider_id = p.id
+
              INNER JOIN resource_services AS s
                  ON p.service_id = s.id
+
              WHERE b.user_id = ?
-             ORDER BY t.slot_date DESC, t.start_time DESC"
+
+             ORDER BY
+                 t.slot_date DESC,
+                 t.start_time DESC"
         );
 
         $stmt->execute([$userId]);
@@ -312,58 +443,102 @@ final class BookingController
         return $stmt->fetchAll();
     }
 
-    // Return the authenticated user's bookings as JSON.
-    public static function bookings(array $params): void
-    {
-        $user = \Session::user();
+    // ==========================================
+    // MY BOOKINGS API
+    // ==========================================
 
-        if (!$user || empty($user['id'])) {
-            Response::error(
-                'You must log in to view your bookings',
-                401
-            );
-        }
+    public static function bookings(
+        array $params
+    ): void {
+
+        $user = \requireLogin();
 
         $userId = (int) $user['id'];
 
-        $bookings = self::getUserBookings($userId);
+        $bookings = self::getUserBookings(
+            $userId
+        );
 
-        Response::success($bookings, 200);
+        Response::success(
+            $bookings,
+            200
+        );
     }
 
-    // Display the My Bookings page.
-    public static function bookingsPage(array $params): void
-    {
+    // ==========================================
+    // MY BOOKINGS PAGE
+    // ==========================================
+
+    public static function bookingsPage(
+        array $params
+    ): void {
+
         $user = \Session::user();
 
+        // Redirect unauthenticated users.
         if (!$user || empty($user['id'])) {
-            Response::error(
-                'You must log in to view your bookings',
-                401
+
+            header(
+                'Location: /login.html?next=/resources/bookings'
             );
+
+            exit;
+        }
+
+        // Verify that the account is still active.
+        $account = User::findById(
+            (int) $user['id']
+        );
+
+        if (
+            !$account ||
+            $account['status'] !== 'active'
+        ) {
+
+            \Session::destroy();
+
+            header(
+                'Location: /login.html?next=/resources/bookings'
+            );
+
+            exit;
         }
 
         $userId = (int) $user['id'];
 
-        $bookings = self::getUserBookings($userId);
+        $bookings = self::getUserBookings(
+            $userId
+        );
 
         $upcomingBookings = [];
         $bookingHistory = [];
 
-        // Separate upcoming appointments from booking history.
+        // Separate upcoming appointments from history.
         foreach ($bookings as $booking) {
 
             if ((int) $booking['can_cancel'] === 1) {
+
                 $upcomingBookings[] = $booking;
+
             } else {
+
                 $bookingHistory[] = $booking;
             }
         }
 
         // Display upcoming appointments chronologically.
-        $upcomingBookings = array_reverse($upcomingBookings);
+        $upcomingBookings = array_reverse(
+            $upcomingBookings
+        );
+
+        // Generate a CSRF token for the booking interface.
+        $csrfToken = Csrf::token();
+
+        // Prevent caching of private booking information.
+        header('Cache-Control: no-store');
 
         // Load the My Bookings view.
-        require BASE_PATH . '/app/Views/Resources/bookings.php';
+        require BASE_PATH
+            . '/app/Views/Resources/bookings.php';
     }
 }

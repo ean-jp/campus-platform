@@ -6,9 +6,104 @@ namespace App\Controllers\Resources;
 
 use App\Core\Database;
 use App\Core\Response;
+use App\Models\User;
+
+require_once BASE_PATH . '/app/Core/Session.php';
+require_once BASE_PATH . '/app/Middleware/AuthMiddleware.php';
 
 final class ResourceController
 {
+    // ==========================================
+    // API ACCESS PROTECTION
+    // ==========================================
+
+    private static function requireEligibleUser(): void
+    {
+        $user = \requireAshesi();
+
+        $account = User::findById((int) $user['id']);
+
+        if (
+            !$account ||
+            $account['status'] !== 'active' ||
+            $account['account_type'] !== 'ashesi' ||
+            empty($account['email_verified_at'])
+        ) {
+            Response::error(
+                'Campus Resources is available to verified Ashesi accounts only',
+                403
+            );
+        }
+    }
+
+    // ==========================================
+    // PAGE ACCESS PROTECTION
+    // ==========================================
+
+    private static function requireEligiblePageUser(
+        string $next
+    ): void {
+
+        $user = \Session::user();
+
+        if (!$user || empty($user['id'])) {
+
+            header(
+                'Location: /login.html?next=' .
+                rawurlencode($next)
+            );
+
+            exit;
+        }
+
+        $account = User::findById((int) $user['id']);
+
+        if (!$account || $account['status'] !== 'active') {
+
+            \Session::destroy();
+
+            header(
+                'Location: /login.html?next=' .
+                rawurlencode($next)
+            );
+
+            exit;
+        }
+
+        if (
+            $account['account_type'] !== 'ashesi' ||
+            empty($account['email_verified_at'])
+        ) {
+
+            http_response_code(403);
+
+            header('Content-Type: text/html; charset=UTF-8');
+            header('Cache-Control: no-store');
+
+            echo '<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1.0">
+                <title>Access Restricted</title>
+            </head>
+            <body>
+                <h1>Access Restricted</h1>
+                <p>Campus Resources is available to verified
+                   Ashesi accounts only.</p>
+                <p>Please link or use a verified Ashesi email
+                   to access this feature.</p>
+                <a href="/login.html">Return to Login</a>
+            </body>
+            </html>';
+
+            exit;
+        }
+
+        header('Cache-Control: no-store');
+    }
+
     // ==========================================
     // SERVICES
     // ==========================================
@@ -31,11 +126,15 @@ final class ResourceController
 
     public static function services(array $params): void
     {
+        self::requireEligibleUser();
+
         Response::success(self::getServices());
     }
 
     public static function servicesPage(array $params): void
     {
+        self::requireEligiblePageUser('/resources');
+
         $services = self::getServices();
 
         require BASE_PATH . '/app/Views/Resources/services.php';
@@ -82,6 +181,8 @@ final class ResourceController
 
     public static function providers(array $params): void
     {
+        self::requireEligibleUser();
+
         $serviceId = filter_var(
             $params['id'] ?? null,
             FILTER_VALIDATE_INT,
@@ -117,6 +218,12 @@ final class ResourceController
             return;
         }
 
+        self::requireEligiblePageUser(
+            '/resources/services/' .
+            $serviceId .
+            '/providers'
+        );
+
         $service = self::getService($serviceId);
 
         if ($service === null) {
@@ -136,7 +243,8 @@ final class ResourceController
 
         unset($provider);
 
-        require BASE_PATH . '/app/Views/Resources/providers.php';
+        require BASE_PATH .
+            '/app/Views/Resources/providers.php';
     }
 
     // ==========================================
@@ -165,8 +273,10 @@ final class ResourceController
         return $provider ?: null;
     }
 
-    private static function getAvailableSlots(int $providerId): array
-    {
+    private static function getAvailableSlots(
+        int $providerId
+    ): array {
+
         $db = Database::connection();
 
         $stmt = $db->prepare(
@@ -186,6 +296,8 @@ final class ResourceController
 
     public static function slots(array $params): void
     {
+        self::requireEligibleUser();
+
         $providerId = filter_var(
             $params['id'] ?? null,
             FILTER_VALIDATE_INT,
@@ -221,6 +333,12 @@ final class ResourceController
             return;
         }
 
+        self::requireEligiblePageUser(
+            '/resources/providers/' .
+            $providerId .
+            '/slots'
+        );
+
         $provider = self::getProvider($providerId);
 
         if ($provider === null) {
@@ -229,7 +347,9 @@ final class ResourceController
             return;
         }
 
-        $availableSlots = self::getAvailableSlots($providerId);
+        $availableSlots = self::getAvailableSlots(
+            $providerId
+        );
 
         $groupedSlots = [];
 
@@ -237,6 +357,7 @@ final class ResourceController
             $groupedSlots[$slot['slot_date']][] = $slot;
         }
 
-        require BASE_PATH . '/app/Views/Resources/slots.php';
+        require BASE_PATH .
+            '/app/Views/Resources/slots.php';
     }
 }

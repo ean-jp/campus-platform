@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 function escapeHtml($value): string
 {
     return htmlspecialchars(
         (string) $value,
         ENT_QUOTES,
-        "UTF-8"
+        'UTF-8'
     );
 }
 
@@ -15,95 +17,122 @@ function escapeHtml($value): string
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Appointment Availability</title>
+    <title>Appointment Availability | Campus Platform</title>
+
+    <script src="/assets/js/resources.js" defer></script>
+
 </head>
 
 <body>
 
-    <h1>Appointment Availability</h1>
+    <header>
 
-    <h2>
-        <?= escapeHtml($provider["name"]) ?>
-    </h2>
+        <h1>Appointment Availability</h1>
 
-    <p>
-        Service: <?= escapeHtml($provider["service_name"]) ?>
-    </p>
+        <nav>
 
-    <p>Select an available appointment date and time.</p>
+            <a href="/resources">Campus Resources</a>
 
-    <?php if (empty($groupedSlots)): ?>
+            |
 
-        <p>No appointments are currently available.</p>
+            <a href="/resources/bookings">My Bookings</a>
 
-    <?php else: ?>
+        </nav>
 
-        <?php foreach ($groupedSlots as $date => $slots): ?>
+    </header>
 
-            <div class="appointment-day">
+    <hr>
 
-                <h3>
-                    <?= escapeHtml(
-                        date("l, F j, Y", strtotime($date))
-                    ) ?>
-                </h3>
+    <main>
 
-                <div class="time-slots">
+        <div id="resource-message" role="status"></div>
 
-                    <?php foreach ($slots as $slot): ?>
-
-                        <button
-                            type="button"
-                            data-slot-id="<?= (int) $slot["id"] ?>"
-                            disabled
-                        >
-                            <?= escapeHtml(
-                                date(
-                                    "g:i A",
-                                    strtotime($slot["start_time"])
-                                )
-                            ) ?>
-
-                            -
-
-                            <?= escapeHtml(
-                                date(
-                                    "g:i A",
-                                    strtotime($slot["end_time"])
-                                )
-                            ) ?>
-                        </button>
-
-                    <?php endforeach; ?>
-
-                </div>
-
-            </div>
-
-        <?php endforeach; ?>
+        <h2>
+            <?= escapeHtml($provider["name"]) ?>
+        </h2>
 
         <p>
-            <em>
-                Appointment booking will be enabled
-                in the next implementation stage.
-            </em>
+            <strong>Service:</strong>
+            <?= escapeHtml($provider["service_name"]) ?>
         </p>
 
-    <?php endif; ?>
+        <p>Select an available appointment date and time.</p>
 
-    <p>
-        <a href="/resources/services/<?= (int) $provider["service_id"] ?>/providers">
-            Back to Providers
-        </a>
-    </p>
+        <?php if (empty($groupedSlots)): ?>
 
-    <p>
-        <a href="/resources">Back to Services</a>
-    </p>
+            <p>No appointments are currently available.</p>
+
+        <?php else: ?>
+
+            <?php foreach ($groupedSlots as $date => $slots): ?>
+
+                <section class="appointment-day">
+
+                    <h3>
+                        <?= escapeHtml(
+                            date("l, F j, Y", strtotime($date))
+                        ) ?>
+                    </h3>
+
+                    <div class="time-slots">
+
+                        <?php foreach ($slots as $slot): ?>
+
+                            <button
+                                type="button"
+                                data-slot-id="<?= (int) $slot["id"] ?>"
+                            >
+                                <?= escapeHtml(
+                                    date(
+                                        "g:i A",
+                                        strtotime($slot["start_time"])
+                                    )
+                                ) ?>
+
+                                -
+
+                                <?= escapeHtml(
+                                    date(
+                                        "g:i A",
+                                        strtotime($slot["end_time"])
+                                    )
+                                ) ?>
+                            </button>
+
+                        <?php endforeach; ?>
+
+                    </div>
+
+                </section>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
+
+        <hr>
+
+        <p>
+            <a href="/resources/services/<?= (int) $provider["service_id"] ?>/providers">
+                Back to Providers
+            </a>
+        </p>
+
+        <p>
+            <a href="/resources">Back to Services</a>
+        </p>
+
+    </main>
+
+    <footer>
+        <p>Campus Platform | Campus Resources</p>
+    </footer>
 
 </body>
+
 </html>

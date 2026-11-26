@@ -5,10 +5,15 @@ declare(strict_types=1);
 use App\Core\Router;
 use App\Controllers\Resources\ResourceController;
 use App\Controllers\Resources\BookingController;
+use App\Controllers\Resources\ProviderController;
+use App\Controllers\Resources\AvailabilityController;
 
 return function (Router $router): void {
 
-    // Resource services
+    // ==========================================
+    // RESOURCE SERVICES
+    // ==========================================
+
     $router->get(
         '/resources',
         [ResourceController::class, 'servicesPage']
@@ -19,7 +24,10 @@ return function (Router $router): void {
         [ResourceController::class, 'services']
     );
 
-    // Service providers
+    // ==========================================
+    // SERVICE PROVIDERS
+    // ==========================================
+
     $router->get(
         '/resources/services/{id}/providers',
         [ResourceController::class, 'providersPage']
@@ -30,7 +38,10 @@ return function (Router $router): void {
         [ResourceController::class, 'providers']
     );
 
-    // Available appointment slots
+    // ==========================================
+    // AVAILABLE APPOINTMENT SLOTS
+    // ==========================================
+
     $router->get(
         '/resources/providers/{id}/slots',
         [ResourceController::class, 'slotsPage']
@@ -41,27 +52,78 @@ return function (Router $router): void {
         [ResourceController::class, 'slots']
     );
 
-    // Book an appointment
+    // ==========================================
+    // APPOINTMENT BOOKING
+    // ==========================================
+
     $router->post(
         '/api/v1/resources/slots/{id}/book',
         [BookingController::class, 'book']
     );
 
-    // Cancel an appointment
     $router->post(
         '/api/v1/resources/bookings/{id}/cancel',
         [BookingController::class, 'cancel']
     );
 
-    // My Bookings page
+    // ==========================================
+    // MY BOOKINGS
+    // ==========================================
+
     $router->get(
         '/resources/bookings',
         [BookingController::class, 'bookingsPage']
     );
 
-    // My Bookings API
     $router->get(
         '/api/v1/resources/bookings',
         [BookingController::class, 'bookings']
+    );
+
+    // ==========================================
+    // PROVIDER DASHBOARD
+    // ==========================================
+
+    $router->get(
+        '/resources/provider/dashboard',
+        [ProviderController::class, 'dashboardPage']
+    );
+
+    $router->get(
+        '/api/v1/resources/provider/dashboard',
+        [ProviderController::class, 'dashboard']
+    );
+
+    // ==========================================
+    // PROVIDER APPOINTMENT MANAGEMENT
+    // ==========================================
+
+    $router->post(
+        '/api/v1/resources/provider/bookings/{id}/complete',
+        [ProviderController::class, 'complete']
+    );
+
+    $router->post(
+        '/api/v1/resources/provider/bookings/{id}/no-show',
+        [ProviderController::class, 'noShow']
+    );
+
+    $router->post(
+        '/api/v1/resources/provider/bookings/{id}/notes',
+        [ProviderController::class, 'saveNotes']
+    );
+
+    // ==========================================
+    // PROVIDER AVAILABILITY MANAGEMENT
+    // ==========================================
+
+    $router->post(
+        '/api/v1/resources/provider/slots',
+        [AvailabilityController::class, 'create']
+    );
+
+    $router->post(
+        '/api/v1/resources/provider/slots/{id}/remove',
+        [AvailabilityController::class, 'remove']
     );
 };

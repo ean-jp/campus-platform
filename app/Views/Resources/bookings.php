@@ -27,17 +27,22 @@ function formatBookingTime(string $time): string
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <title>My Bookings | Campus Platform</title>
+
+    <script src="/assets/js/resources.js" defer></script>
+
 </head>
 
 <body>
 
     <header>
+
         <h1>My Bookings</h1>
 
         <p>View and manage your campus resource appointments.</p>
@@ -45,13 +50,17 @@ function formatBookingTime(string $time): string
         <nav>
             <a href="/resources">Browse Campus Resources</a>
         </nav>
+
     </header>
 
     <hr>
 
     <main>
 
+        <div id="resource-message" role="status"></div>
+
         <!-- Upcoming appointments -->
+
         <section>
 
             <h2>Upcoming Appointments</h2>
@@ -100,13 +109,14 @@ function formatBookingTime(string $time): string
                         <p>
                             <strong>Status:</strong>
 
-                            <?= escapeBooking(ucfirst($booking['status'])) ?>
+                            <?= escapeBooking(
+                                ucfirst($booking['status'])
+                            ) ?>
                         </p>
 
                         <button
                             type="button"
                             data-booking-id="<?= (int) $booking['booking_id'] ?>"
-                            disabled
                         >
                             Cancel Appointment
                         </button>
@@ -122,6 +132,7 @@ function formatBookingTime(string $time): string
         </section>
 
         <!-- Appointment history -->
+
         <section>
 
             <h2>Appointment History</h2>
@@ -168,7 +179,9 @@ function formatBookingTime(string $time): string
                         <p>
                             <strong>Status:</strong>
 
-                            <?= escapeBooking(ucfirst($booking['status'])) ?>
+                            <?= escapeBooking(
+                                ucfirst($booking['status'])
+                            ) ?>
                         </p>
 
                         <?php if (!empty($booking['cancelled_at'])): ?>

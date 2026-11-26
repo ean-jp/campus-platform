@@ -35,6 +35,19 @@ final class VerificationService
         return max(0, self::RESEND_SECONDS - (int) $age);
     }
 
+    /**
+     * Throw away the code that is still waiting to be used. Called when the email
+     * could not be sent, so the user can try again straight away instead of
+     * waiting out the one-code-per-minute limit for a code they never received.
+     */
+    public static function discardUnused(int $userId, string $purpose): void
+    {
+        $st = Database::connection()->prepare(
+            'DELETE FROM verification_codes WHERE user_id = ? AND purpose = ? AND used_at IS NULL'
+        );
+        $st->execute([$userId, $purpose]);
+    }
+
     /** Create a new code and return it in plain text (to be emailed, never stored). */
     public static function issue(int $userId, string $email, string $purpose): string
     {

@@ -1,0 +1,52 @@
+{
+  "success": true,
+  "data": {
+    "id": 2,
+    "status": "received",
+    "total": 12,
+    "fulfilment": "pickup",
+    "delivery_spot": null,
+    "contact_phone": "024 123 4567",
+    "payment_method": "pay_on_delivery",
+    "pickup_code": "2639",
+    "created_at": "2026-11-25 08:30:01",
+    "updated_at": "2026-11-25 08:30:01",
+    "vendor": {
+      "id": 2,
+      "shop_name": "Campus Bites",
+      "phone": "0200000002"
+    },
+    "items": [
+      {
+        "item_id": 9,
+        "item_name": "Meat Pie",
+        "unit_price": 12,
+        "quantity": 1,
+        "line_total": 12
+      }
+    ],
+    "timeline": [
+      {
+        "status": "received",
+        "label": "Order received",
+        "state": "current"
+      },
+      {
+        "status": "preparing",
+        "label": "Being prepared",
+        "state": "todo"
+      },
+      {
+        "status": "ready",
+        "label": "Ready",
+        "state": "todo"
+      },
+      {
+        "status": "completed",
+        "label": "Completed",
+        "state": "todo"
+      }
+    ],
+    "can_cancel": true
+  }
+}

@@ -3,28 +3,28 @@
   "data": [
     {
       "id": 1,
-      "name": "Clothes",
-      "slug": "clothes"
+      "name": "Food & Meals",
+      "slug": "food-meals"
     },
     {
       "id": 2,
-      "name": "Electronics",
-      "slug": "electronics"
+      "name": "Snacks & Drinks",
+      "slug": "snacks-drinks"
     },
     {
       "id": 3,
-      "name": "Snacks",
-      "slug": "snacks"
+      "name": "Stationery & Books",
+      "slug": "stationery-books"
     },
     {
       "id": 4,
-      "name": "Books",
-      "slug": "books"
+      "name": "Fashion & Accessories",
+      "slug": "fashion-accessories"
     },
     {
       "id": 5,
-      "name": "Food",
-      "slug": "food"
+      "name": "Electronics & Gadgets",
+      "slug": "electronics-gadgets"
     }
   ]
 }

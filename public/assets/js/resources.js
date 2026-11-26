@@ -2,10 +2,12 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
+    const BASE = location.pathname.replace(/\/resources(\/.*)?$/, "");
+
     // Retrieve a CSRF token for the current session.
     async function getCsrfToken() {
 
-        const response = await fetch("/api/v1/auth/csrf", {
+        const response = await fetch(`${BASE}/api/v1/auth/csrf`, {
             method: "GET",
             credentials: "same-origin",
             headers: {
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
                      window.location.search;
 
         window.location.href =
-            "/login.html?next=" + encodeURIComponent(next);
+            `${BASE}/login.html?next=` + encodeURIComponent(next);
     }
 
     // Display feedback to the user.
@@ -134,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
 
             const result = await sendRequest(
-                `/api/v1/resources/slots/${slotId}/book`
+                `${BASE}/api/v1/resources/slots/${slotId}/book`
             );
 
             if (!result) {
@@ -150,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(function () {
 
-                window.location.href = "/resources/bookings";
+                window.location.href = `${BASE}/resources/bookings`;
 
             }, 1200);
 
@@ -188,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
 
             const result = await sendRequest(
-                `/api/v1/resources/bookings/${bookingId}/cancel`
+                `${BASE}/api/v1/resources/bookings/${bookingId}/cancel`
             );
 
             if (!result) {

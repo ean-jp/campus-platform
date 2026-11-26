@@ -43,7 +43,7 @@
 
                 <?php endif; ?>
 
-                <a href="/resources/providers/<?= (int) $provider["id"] ?>/slots">
+                <a href="/campus-platform-fused/public/resources/providers/<?= (int) $provider["id"] ?>/slots">
                     View Availability
                 </a>
 
@@ -54,7 +54,7 @@
     <?php endif; ?>
 
     <p>
-        <a href="/resources">Back to Services</a>
+        <a href="/campus-platform-fused/public/resources">Back to Services</a>
     </p>
 
 </body>

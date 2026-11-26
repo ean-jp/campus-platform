@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": 32,
+    "name": "Kente Tote Bag",
+    "description": "Roomy tote with kente trim.",
+    "price": 70,
+    "stock": 20,
+    "in_stock": true,
+    "image": null,
+    "category": {
+      "id": 4,
+      "name": "Fashion & Accessories",
+      "slug": "fashion-accessories"
+    },
+    "vendor": {
+      "id": 5,
+      "shop_name": "Kente Corner",
+      "is_open": false,
+      "description": "Kente accessories, bags and campus wear.",
+      "phone": "0200000005",
+      "opens_at": "10:00",
+      "closes_at": "18:00"
+    },
+    "rating": {
+      "avg": null,
+      "count": 0
+    },
+    "created_at": "2026-11-25 08:36:40",
+    "images": [],
+    "reviews": []
+  }
+}

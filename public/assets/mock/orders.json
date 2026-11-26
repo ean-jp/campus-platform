@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 2,
+      "status": "received",
+      "total": 12,
+      "fulfilment": "pickup",
+      "created_at": "2026-11-25 08:30:01",
+      "item_count": 1,
+      "summary": "Meat Pie",
+      "vendor": {
+        "id": 2,
+        "shop_name": "Campus Bites"
+      },
+      "can_cancel": true
+    },
+    {
+      "id": 1,
+      "status": "received",
+      "total": 70,
+      "fulfilment": "pickup",
+      "created_at": "2026-11-25 08:30:01",
+      "item_count": 2,
+      "summary": "Jollof Rice with Chicken",
+      "vendor": {
+        "id": 1,
+        "shop_name": "Mama Esi's Kitchen"
+      },
+      "can_cancel": true
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "total": 2,
+    "total_pages": 1
+  }
+}

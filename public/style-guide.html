@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Campus Platform – style guide</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <style>.sw{height:56px;border-radius:12px;border:1px solid var(--line)}.sl{font-size:12px;font-weight:700;margin-top:6px}</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="logo" href="#"><span class="brand-tile"><i class="ic ic-store" aria-hidden="true"></i></span><span>Campus <b>Platform</b></span></a>
+    <nav class="nav-links" aria-label="Main menu">
+      <a href="#" aria-current="page"><i class="ic ic-home" aria-hidden="true"></i>Home</a>
+      <a href="#"><i class="ic ic-bag" aria-hidden="true"></i>Shop</a>
+      <a href="#"><i class="ic ic-receipt" aria-hidden="true"></i>My orders <span class="count">2</span></a>
+      <a href="#"><i class="ic ic-clock" aria-hidden="true"></i>Resources</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn ghost" href="#"><i class="ic ic-bag" aria-hidden="true"></i><span class="btn-label">Cart</span></a>
+      <a class="icon-btn" href="#" aria-label="Notifications, 3 unread"><i class="ic ic-bell" aria-hidden="true"></i><span class="count">3</span></a>
+      <span class="avatar" title="Kofi A.">KA</span>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <section class="hero" style="margin:-40px -32px 0">
+    <span class="pill"><i class="ic ic-shield" aria-hidden="true"></i>Campus marketplace</span>
+    <h1 class="display">Everything on campus. <span class="text-red">One place.</span></h1>
+    <p class="lead">Shop from student and local vendors, and book campus resources, in a few taps.</p>
+    <div class="hero-actions"><a class="btn primary" href="#"><i class="ic ic-bag" aria-hidden="true"></i>Browse the shop</a><a class="btn soft" href="#">Book a resource</a></div>
+  </section>
+
+  <section class="section">
+    <span class="eyebrow">Categories</span><h2>Shop by category</h2><div style="height:20px"></div>
+    <div class="tiles">
+      <a class="tile" href="#"><span class="tile-icon"><i class="ic ic-bag" aria-hidden="true"></i></span><span class="tile-body"><span class="tile-value">Food &amp; Meals</span><span class="tile-label">24 items</span></span><i class="ic ic-arrow-right" aria-hidden="true"></i></a>
+      <a class="tile" href="#"><span class="tile-icon black"><i class="ic ic-tag" aria-hidden="true"></i></span><span class="tile-body"><span class="tile-value">Snacks</span><span class="tile-label">18 items</span></span><i class="ic ic-arrow-right" aria-hidden="true"></i></a>
+      <a class="tile" href="#"><span class="tile-icon"><i class="ic ic-package" aria-hidden="true"></i></span><span class="tile-body"><span class="tile-value">Books</span><span class="tile-label">9 items</span></span><i class="ic ic-arrow-right" aria-hidden="true"></i></a>
+      <a class="tile" href="#"><span class="tile-icon black"><i class="ic ic-star" aria-hidden="true"></i></span><span class="tile-body"><span class="tile-value">Fashion</span><span class="tile-label">12 items</span></span><i class="ic ic-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><span class="eyebrow">Marketplace</span><h2>Fresh today</h2></div><a class="link" href="#">See all <i class="ic ic-arrow-right" aria-hidden="true"></i></a></div>
+    <div class="search"><i class="ic ic-search" aria-hidden="true"></i><input placeholder="Search jollof, books, chargers…" aria-label="Search"><button class="btn primary">Search</button></div>
+    <div class="filters">
+      <div class="tabs"><a class="tab" href="#" aria-current="true">All</a><a class="tab" href="#">Food</a><a class="tab" href="#">Snacks</a><a class="tab" href="#">Books</a></div>
+      <select class="select" aria-label="Sort"><option>Sort: Newest</option></select>
+    </div>
+    <div class="grid auto">
+      <a class="item-card" href="#"><div class="media"><img alt="" src="assets/images/placeholder.svg"><span class="tag">Open now</span></div><div class="body"><div class="top"><span class="title">Jollof with chicken</span><span class="price">GH₵ 35</span></div><span class="meta">Ama's Kitchen · Pickup or delivery</span><span class="btn primary block">Add to cart</span></div></a>
+      <a class="item-card" href="#"><div class="media"><img alt="" src="assets/images/placeholder.svg"><span class="tag">Open now</span></div><div class="body"><div class="top"><span class="title">Waakye special</span><span class="price">GH₵ 30</span></div><span class="meta">Ama's Kitchen · Pickup or delivery</span><span class="btn primary block">Add to cart</span></div></a>
+      <a class="item-card is-off" href="#"><div class="media"><img alt="" src="assets/images/placeholder.svg"><span class="tag sold">Sold out</span></div><div class="body"><div class="top"><span class="title">Meat pie</span><span class="price">GH₵ 8</span></div><span class="meta">Campus Bakes · Pickup</span><span class="btn ghost block">Notify me</span></div></a>
+    </div>
+  </section>
+
+  <section class="section grid cols-2">
+    <div class="card-box">
+      <div class="card-head"><h3>Checkout details</h3><span class="badge dark">Guest</span></div>
+      <div class="field"><label for="g1">Phone number *</label><input id="g1" class="input" placeholder="024 000 0000"><span class="hint">Vendors use this to reach you.</span></div>
+      <div class="field invalid"><label for="g2">Delivery spot</label><select id="g2" class="select"><option>Choose a location</option></select><span class="error">Pick a delivery location.</span></div>
+      <div class="options"><label class="option"><input type="radio" name="f" checked><div><strong>Pickup</strong><span>Collect from the vendor</span></div></label><label class="option"><input type="radio" name="f"><div><strong>Delivery</strong><span>To a campus location</span></div></label></div>
+      <div style="height:20px"></div>
+      <div class="row"><button class="btn primary">Place order</button><button class="btn ghost">Back to cart</button><button class="btn danger">Cancel order</button></div>
+    </div>
+    <div class="card-box">
+      <div class="card-head"><h3>Order #1042</h3><span class="badge status-preparing">Preparing</span></div>
+      <ul class="timeline"><li class="done">Order received</li><li class="current">Preparing</li><li>Ready for pickup</li><li>Completed</li></ul>
+      <div class="chips" style="margin:12px 0"><span class="badge status-received">Received</span><span class="badge status-ready">Ready</span><span class="badge status-cancelled">Cancelled</span><span class="badge ok">Open now</span><span class="badge">Hidden</span></div>
+      <div class="alert info"><i class="ic ic-alert" aria-hidden="true"></i>Show code <strong>4821</strong> when you collect.</div>
+      <div class="row between"><div class="qty"><button aria-label="Less">−</button><span>2</span><button aria-label="More">+</button></div><span class="price">GH₵ 70.00</span></div>
+      <div class="toast success" style="margin-top:16px">Added to cart.</div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom-nav" aria-label="Main menu"><div class="items">
+  <a href="#" aria-current="page"><i class="ic ic-home" aria-hidden="true"></i>Home</a>
+  <a href="#"><i class="ic ic-bag" aria-hidden="true"></i>Shop</a>
+  <a href="#"><i class="ic ic-receipt" aria-hidden="true"></i>Orders</a>
+  <a href="#"><i class="ic ic-user" aria-hidden="true"></i>Me</a>
+</div></nav>
+</body>
+</html>

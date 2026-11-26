@@ -1,0 +1,45 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 3,
+      "shop_name": "Brew & Chill",
+      "description": "Coffee, smoothies and cold drinks.",
+      "logo": null,
+      "is_open": true,
+      "item_count": 6
+    },
+    {
+      "id": 2,
+      "shop_name": "Campus Bites",
+      "description": "Quick snacks, pastries and light bites.",
+      "logo": null,
+      "is_open": true,
+      "item_count": 8
+    },
+    {
+      "id": 5,
+      "shop_name": "Kente Corner",
+      "description": "Kente accessories, bags and campus wear.",
+      "logo": null,
+      "is_open": false,
+      "item_count": 7
+    },
+    {
+      "id": 1,
+      "shop_name": "Mama Esi's Kitchen",
+      "description": "Home-style Ghanaian meals, cooked fresh daily.",
+      "logo": null,
+      "is_open": true,
+      "item_count": 8
+    },
+    {
+      "id": 4,
+      "shop_name": "Print & Pages",
+      "description": "Stationery, notebooks and printing supplies.",
+      "logo": null,
+      "is_open": false,
+      "item_count": 8
+    }
+  ]
+}

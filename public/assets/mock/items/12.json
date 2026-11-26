@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": {
+    "id": 12,
+    "name": "Bofrot (5 pcs)",
+    "description": "Ghanaian puff-puff, freshly fried.",
+    "price": 8,
+    "stock": 70,
+    "in_stock": true,
+    "image": null,
+    "category": {
+      "id": 2,
+      "name": "Snacks & Drinks",
+      "slug": "snacks-drinks"
+    },
+    "vendor": {
+      "id": 2,
+      "shop_name": "Campus Bites",
+      "is_open": true,
+      "description": "Quick snacks, pastries and light bites.",
+      "phone": "0200000002",
+      "opens_at": "08:00",
+      "closes_at": "20:00"
+    },
+    "rating": {
+      "avg": null,
+      "count": 0
+    },
+    "created_at": "2026-11-25 08:36:40",
+    "images": [],
+    "reviews": []
+  }
+}

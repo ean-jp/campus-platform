@@ -4,167 +4,169 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Add Product · Campus Platform</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/vendor.css">
 </head>
-<body>
+<body class="v-vendor">
 
-  <header class="site-header">
-    <div class="bar">
-      <a class="logo" href="../index.html"><img src="../assets/images/ashesi-logo.png" alt="">Campus Platform</a>
-      <span class="badge v-hide-phone">Vendor</span>
-      <div class="nav-spacer"></div>
-      <a class="btn ghost sm auto" href="../index.html">Shop as buyer</a>
-      <a class="icon-btn" href="notifications.html" aria-label="Notifications, 3 unread"><span aria-hidden="true">🔔</span><span class="count">3</span></a>
-      <span class="small muted v-user">Ama K.</span>
+  <header class="v-top">
+    <div class="v-top-bar">
+      <a class="v-brand" href="index.html">
+        <span class="v-brand-tile"><i class="v-ic v-ic-store" aria-hidden="true"></i></span>
+        <span>Campus <b>Platform</b></span>
+      </a>
+      <nav class="v-top-nav" aria-label="Vendor menu">
+        <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Dashboard</a>
+        <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders <span class="v-count">4</span></a>
+        <a href="products.html" aria-current="page"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+        <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+        <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
+      </nav>
+      <div class="v-top-actions">
+        <a class="v-iconbtn" href="notifications.html" aria-label="Notifications, 3 unread"><i class="v-ic v-ic-bell" aria-hidden="true"></i><span class="v-dot-count">3</span></a>
+        <span class="v-avatar" title="Ama K.">AK</span>
+      </div>
     </div>
   </header>
 
-  <div class="v-layout">
-    <nav class="v-sidebar" aria-label="Vendor menu">
-      <div class="v-shop">
-        <strong>Ama's Kitchen</strong>
-        <span class="v-status"><span class="v-dot open"></span>Open now</span>
+  <main class="page v-page">
+    <div class="v-pagehead">
+      <div>
+        <a href="products.html" class="v-back"><i class="v-ic v-ic-arrow-left v-ic-sm" aria-hidden="true"></i>Back to my products</a>
+        <span class="v-eyebrow" id="form-eyebrow">New listing</span>
+        <h1 id="form-title">Add a product</h1>
+        <p>Fields marked * are required.</p>
       </div>
-      <ul class="v-nav">
-        <li><a href="index.html"><span class="v-nav-icon" aria-hidden="true">🏠</span>Dashboard</a></li>
-        <li><a href="orders.html"><span class="v-nav-icon" aria-hidden="true">🧾</span>Orders<span class="v-nav-count">4</span></a></li>
-        <li><a href="products.html"><span class="v-nav-icon" aria-hidden="true">📦</span>My products</a></li>
-        <li><a href="product-form.html" aria-current="page"><span class="v-nav-icon" aria-hidden="true">➕</span>Add product</a></li>
-        <li><a href="sales.html"><span class="v-nav-icon" aria-hidden="true">📈</span>Sales</a></li>
-        <li><a href="profile.html"><span class="v-nav-icon" aria-hidden="true">🏪</span>Shop profile</a></li>
-        <li><a href="notifications.html"><span class="v-nav-icon" aria-hidden="true">🔔</span>Notifications</a></li>
-      </ul>
-    </nav>
+    </div>
 
-    <main class="page v-main">
-      <div class="v-head">
-        <div>
-          <a href="products.html" class="v-back">← Back to my products</a>
-          <h1>Add a product</h1>
-          <p class="muted">The same form is used for editing. Fields marked * are required.</p>
-        </div>
-      </div>
+    <!--
+      vendor/product-form.js sends this to POST /api/v1/vendor/items (new)
+      or PATCH /api/v1/vendor/items/{id} (edit), then uploads the photos.
+      The input names match what the API expects.
+    -->
+    <form id="product-form" action="#" method="post" enctype="multipart/form-data" class="v-grid" novalidate>
+      <input type="hidden" name="csrf_token" value="">
 
-      <!--
-        Later: this form posts to the API.
-        enctype="multipart/form-data" is needed so photos can be uploaded.
-        The input "name" values match the columns in the items table.
-      -->
-      <form action="#" method="post" enctype="multipart/form-data" class="v-grid">
-        <input type="hidden" name="csrf_token" value="">
-        <input type="hidden" name="id" value="">
+      <div class="v-col">
+        <section class="v-card">
+          <div class="v-card-head"><h3>Product details</h3></div>
 
-        <div class="v-col">
-          <section class="card-box">
-            <h3>Product details</h3>
+          <div class="field">
+            <label for="name">Product name *</label>
+            <input class="input" type="text" id="name" name="name" maxlength="150" required placeholder="e.g. Wireless earbuds, Canvas tote bag">
+            <span class="error"></span>
+          </div>
 
-            <div class="field">
-              <label for="name">Product name *</label>
-              <input class="input" type="text" id="name" name="name" maxlength="100" required placeholder="e.g. Jollof with chicken">
-              <span class="error" id="name-error"></span>
-            </div>
-
+          <div class="grid cols-2">
             <div class="field">
               <label for="category_id">Category *</label>
               <select class="select" id="category_id" name="category_id" required>
                 <option value="">Choose a category</option>
-                <option value="1">Clothes</option>
-                <option value="2">Electronics</option>
-                <option value="3">Snacks</option>
-                <option value="4">Books</option>
-                <option value="5">Food</option>
               </select>
+              <span class="error"></span>
             </div>
-
             <div class="field">
-              <label for="description">Description *</label>
-              <textarea class="textarea" id="description" name="description" maxlength="1000" required placeholder="What's included, size, spice level, condition..."></textarea>
-              <span class="hint">Up to 1,000 characters.</span>
+              <label for="condition">Condition</label>
+              <select class="select" id="condition" name="condition">
+                <option value="">Not stated</option>
+                <option value="new">New</option>
+                <option value="like_new">Like new</option>
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+              </select>
+              <span class="hint">Buyers see this on the product card.</span>
+              <span class="error"></span>
             </div>
-
-            <div class="grid cols-2">
-              <div class="field">
-                <label for="price">Price (GH₵) *</label>
-                <input class="input" type="number" id="price" name="price" min="0.50" step="0.50" required placeholder="35.00">
-              </div>
-              <div class="field">
-                <label for="stock">Number in stock *</label>
-                <input class="input" type="number" id="stock" name="stock" min="0" step="1" required placeholder="20">
-                <span class="hint">Set to 0 to show it as sold out.</span>
-              </div>
-            </div>
-          </section>
-
-          <section class="card-box">
-            <h3>Photos</h3>
-            <div class="v-upload">
-              <div class="field">
-                <label for="images">Add up to 4 photos</label>
-                <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
-                <span class="hint">JPG, PNG or WebP · max 2 MB each · the first photo is the cover.</span>
-              </div>
-            </div>
-            <div class="v-previews">
-              <figure>
-                <img src="../assets/images/placeholder.svg" alt="Preview of uploaded photo 1">
-                <figcaption>Cover</figcaption>
-              </figure>
-              <figure>
-                <img src="../assets/images/placeholder.svg" alt="Preview of uploaded photo 2">
-                <figcaption>Photo 2</figcaption>
-              </figure>
-            </div>
-          </section>
-        </div>
-
-        <div class="v-col">
-          <section class="card-box">
-            <h3>Visibility</h3>
-            <fieldset class="stack" style="border:0;padding:0;margin:0">
-              <legend class="sr-only">Product status</legend>
-              <label class="check"><input type="radio" name="status" value="active" checked> On sale: buyers can order it</label>
-              <label class="check"><input type="radio" name="status" value="sold_out"> Sold out: shown, but can't be ordered</label>
-              <label class="check"><input type="radio" name="status" value="hidden"> Hidden: buyers can't see it</label>
-            </fieldset>
-          </section>
-
-          <section class="card-box">
-            <h3>Food options</h3>
-            <p class="muted small">Only for products in the Food category.</p>
-            <div class="stack">
-              <label class="check"><input type="checkbox" name="allow_pickup" value="1" checked> Pickup available</label>
-              <label class="check"><input type="checkbox" name="allow_delivery" value="1" checked> Delivery on campus</label>
-            </div>
-          </section>
-
-          <div class="v-form-actions">
-            <a class="btn ghost" href="products.html">Cancel</a>
-            <button class="btn primary" type="submit">Save product</button>
           </div>
-          <div class="msg" role="status" aria-live="polite"></div>
 
-          <!-- Delete only shows when editing an existing product -->
-          <section class="card-box">
-            <h3>Delete product</h3>
-            <p class="muted small">Old orders keep their details, but buyers won't see this product any more.</p>
-            <button class="btn danger auto" type="button">Delete this product</button>
-          </section>
+          <div class="field">
+            <label for="description">Description *</label>
+            <textarea class="textarea" id="description" name="description" maxlength="1000" required placeholder="What it is, size or model, what's included, any marks or wear..."></textarea>
+            <span class="hint"><span id="desc-count">0</span> / 1,000 characters</span>
+            <span class="error"></span>
+          </div>
+
+          <div class="grid cols-2">
+            <div class="field">
+              <label for="price">Price (GH₵) *</label>
+              <input class="input" type="number" id="price" name="price" min="0.50" step="0.01" required placeholder="45.00" inputmode="decimal">
+              <span class="error"></span>
+            </div>
+            <div class="field" id="stock">
+              <label for="stock-input">Number in stock *</label>
+              <input class="input" type="number" id="stock-input" name="stock" min="0" step="1" required placeholder="10" inputmode="numeric">
+              <span class="hint">At 0 it shows as sold out automatically.</span>
+              <span class="error"></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="v-card">
+          <div class="v-card-head"><h3>Photos</h3><span class="v-chip" id="photo-count">0 / 4</span></div>
+          <div class="field" style="margin:0">
+            <div class="v-drop">
+              <span class="v-tile-icon"><i class="v-ic v-ic-upload" aria-hidden="true"></i></span>
+              <label for="images"><strong>Add up to 4 photos</strong></label>
+              <span class="muted" style="font-size:13px">JPG, PNG or WebP · max 2 MB each · the first photo is the cover</span><br>
+              <input type="file" id="images" name="images[]" accept="image/jpeg,image/png,image/webp" multiple>
+            </div>
+            <span class="error"></span>
+          </div>
+          <!-- saved photos (with remove buttons) and photos waiting to upload -->
+          <div class="v-previews" id="previews" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <div class="v-col">
+        <section class="v-card">
+          <div class="v-card-head"><h3>Visibility</h3></div>
+          <fieldset class="v-options" style="border:0;padding:0;margin:0">
+            <legend class="sr-only">Product status</legend>
+            <label class="v-option"><input type="radio" name="status" value="active" checked><span><strong>On sale</strong><span>Buyers can see and order it</span></span></label>
+            <label class="v-option"><input type="radio" name="status" value="hidden"><span><strong>Hidden</strong><span>Only you can see it. Good for drafts.</span></span></label>
+          </fieldset>
+        </section>
+
+        <section class="v-card">
+          <div class="v-card-head"><h3>How buyers get it</h3></div>
+          <div class="field" style="margin:0">
+            <div class="stack">
+              <label class="check"><input type="checkbox" name="allow_pickup" value="1" checked> Pickup or meet-up on campus</label>
+              <label class="check"><input type="checkbox" name="allow_delivery" value="1"> I can deliver to hostels</label>
+            </div>
+            <span class="error"></span>
+          </div>
+        </section>
+
+        <div class="v-form-actions">
+          <a class="v-btn v-btn-outline" href="products.html">Cancel</a>
+          <button class="v-btn v-btn-red" type="submit" id="save-btn">Save product</button>
         </div>
-      </form>
-    </main>
-  </div>
+
+        <!-- Only shown when editing a product -->
+        <section class="v-card" id="delete-card" hidden>
+          <div class="v-card-head"><h3>Delete product</h3></div>
+          <p class="muted" style="font-size:13.5px">Buyers won't see it any more. Past orders keep their details.</p>
+          <button class="v-btn v-btn-text-red" type="button" id="delete-btn"><i class="v-ic v-ic-trash" aria-hidden="true"></i>Delete this product</button>
+        </section>
+      </div>
+    </form>
+  </main>
 
   <nav class="bottom-nav" aria-label="Vendor menu">
     <div class="items">
-      <a href="index.html"><span aria-hidden="true">🏠</span>Home</a>
-      <a href="orders.html"><span aria-hidden="true">🧾</span>Orders</a>
-      <a href="products.html" aria-current="page"><span aria-hidden="true">📦</span>Products</a>
-      <a href="sales.html"><span aria-hidden="true">📈</span>Sales</a>
-      <a href="profile.html"><span aria-hidden="true">🏪</span>Shop</a>
+      <a href="index.html"><i class="v-ic v-ic-home" aria-hidden="true"></i>Home</a>
+      <a href="orders.html"><i class="v-ic v-ic-receipt" aria-hidden="true"></i>Orders</a>
+      <a href="products.html" aria-current="page"><i class="v-ic v-ic-package" aria-hidden="true"></i>Products</a>
+      <a href="sales.html"><i class="v-ic v-ic-chart" aria-hidden="true"></i>Sales</a>
+      <a href="profile.html"><i class="v-ic v-ic-store" aria-hidden="true"></i>Shop</a>
     </div>
   </nav>
 
+  <script src="../assets/js/ui.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/vendor/common.js"></script>
+  <script src="../assets/js/vendor/product-form.js"></script>
 </body>
 </html>

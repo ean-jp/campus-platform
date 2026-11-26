@@ -19,4 +19,7 @@ return function (Router $router): void {
     $router->post('/api/v1/auth/login',  [AuthController::class, 'login']);
     $router->post('/api/v1/auth/logout', [AuthController::class, 'logout']);
     $router->get('/api/v1/auth/me',      [AuthController::class, 'me']);
+
+    // Alias: shop-common.js calls GET /me (without /auth/ prefix)
+    $router->get('/api/v1/me',           [AuthController::class, 'me']);
 };

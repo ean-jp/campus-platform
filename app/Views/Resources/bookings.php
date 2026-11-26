@@ -35,7 +35,7 @@ function formatBookingTime(string $time): string
 
     <title>My Bookings | Campus Platform</title>
 
-    <script src="/assets/js/resources.js" defer></script>
+    <script src="/campus-platform-fused/public/assets/js/resources.js" defer></script>
 
 </head>
 
@@ -48,7 +48,7 @@ function formatBookingTime(string $time): string
         <p>View and manage your campus resource appointments.</p>
 
         <nav>
-            <a href="/resources">Browse Campus Resources</a>
+            <a href="/campus-platform-fused/public/resources">Browse Campus Resources</a>
         </nav>
 
     </header>
@@ -69,7 +69,7 @@ function formatBookingTime(string $time): string
 
                 <p>You have no upcoming appointments.</p>
 
-                <a href="/resources">Book an appointment</a>
+                <a href="/campus-platform-fused/public/resources">Book an appointment</a>
 
             <?php else: ?>
 
